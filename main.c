@@ -184,9 +184,26 @@ void	ra(t_list *stack_a)
 	last_a = ft_lstlast(stack_a);
 
 	temp_ra = stack_a->next;
-	temp_ra->previous = NULL;
 	last_a->next = stack_a;
+	stack_a->previous = last_a;
+	temp_ra->previous = NULL;
 	stack_a->next = NULL;
+}
+
+void	rb(t_list *stack_b)
+{
+	t_list	*temp_rb;
+	t_list	*last_b;
+
+	while (stack_b->previous)
+		stack_b= stack_b->previous;
+	last_b = ft_lstlast(stack_b);
+
+	temp_rb = stack_b->next;
+	last_b->next = stack_b;
+	stack_b->previous = last_b;
+	temp_rb->previous = NULL;
+	stack_b->next = NULL;
 }
 
 void	rra(t_list *stack_a)
@@ -236,16 +253,22 @@ void	commands(t_list *stack_a, t_list *stack_b, int command)
 		pb(stack_a, stack_b);
 	if (command == 5)
 		ra(stack_a);
-	/* if (command == 6)
-		rb(stack_a, stack_b);
-	if (command == 7)
-		rr(stack_a, stack_b);*/
+	if (command == 6)
+		rb(stack_b);
+	if (command == 7) 
+	{
+		ra(stack_a);
+		rb(stack_b);
+	}
 	if (command == 8)
 		rra(stack_a);
 	if (command == 9)
 		rrb(stack_b);
-	/* if (command == 10)
-		rrr(stack_b); */
+	if (command == 10)
+	{
+		rra(stack_a);
+		rrb(stack_b);
+	}
 }
 
 int main(int argc, char **argv)
@@ -261,14 +284,18 @@ int main(int argc, char **argv)
 	}
 	stack_a = create_linked_list(argc, argv);
 	stack_b = create_empty_linked_list(argc, 0);
-	command = 5;
+	command = 7;
 	commands(stack_a, stack_b, command);
 	//stack_a= stack_a->next;
 	//stack_b= stack_b->previous;
+	while (stack_a->previous)
+		stack_a = stack_a->previous;
+	while (stack_b->previous)
+		stack_b = stack_b->previous;
 	while(stack_a)
 	{
 		printf("--------------main test stack a = %d\n", stack_a->num);
-		stack_a = stack_a->previous;
+		stack_a = stack_a->next;
 	}
 	while(stack_b)
 	{
