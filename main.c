@@ -3,7 +3,7 @@
 // gcc -Wall -Werror -Wextra main.c -L../libft -lft && ./a.out 1 2 3 4 5
 //gcc -g main.c -L../libft_for_push_swap -lft && ./a.out 1 4 12 2 10 6 9 13 3 11 7 15
 
-t_list	*ft_lstnew_new(char *content)
+t_list	*ft_lstnew_new(char *content, t_list *stack_a)
 {
 	t_list	*new;
 
@@ -14,15 +14,9 @@ t_list	*ft_lstnew_new(char *content)
 		return (new);
 	}
 	new->next = NULL;
-	new->num = ft_atoi(content);
+	new->num = ft_atoi(content, stack_a);
 	new->len = 1;
 	new->subs = NULL;
-	if(new->num == 0 || new->num == -1)
-	{
-		write(1, "atoi returned error\n", 19);
-		exit(1);
-	}
-	//printf("Atoi: %d\n", new->num);
 	return (new);
 }
 
@@ -59,21 +53,17 @@ t_list *create_linked_list(int argc, char **argv)
 	t_list *stack_a;
 	t_list	*ox2;
 
-	if (argc <= 1)
-		return (0);
-	printf("argc: %d\n", argc);
 	i = 1;
-	stack_a = ft_lstnew_empty(0);
-	stack_a->prev = NULL;
+	stack_a = ft_lstnew_new(argv[i], stack_a);
+	i++;
 	ptr_first = stack_a;
-	//printf("ox2: %d and stirng: %s -- now loop->\n", ptr_first->num, argv[1]);
+	stack_a->prev = NULL;
 	while (i < argc)
 	{
-		stack_a->next = ft_lstnew_new(argv[i]);
+		stack_a->next = ft_lstnew_new(argv[i], stack_a);
 		ox2 = stack_a;
 		stack_a = stack_a->next;
 		stack_a->prev = ox2;
-		//printf("in loop: index: %d contains: %d\n", i, stack_a->num);
 		i++;
 	}
 	stack_a->next = NULL;
@@ -89,7 +79,6 @@ void sa(t_list *ox2)
 
 	while (ox2->next)
 		ox2 = ox2->next;
-	printf("test\n");
 	if(ox2->prev)
 		ox1 = ox2->prev;
 	if(ox1->prev)
@@ -299,27 +288,27 @@ void	empty_stack_b(t_list *stack_a, t_list *stack_b)
 	}
 }
 
-void	check_multiples(t_list *inner)
+void	check_multiples(t_list *first)
 {
 	t_list	*outer;
-	t_list	*first;
-
-	first = inner;
-	outer = inner;
-	while(outer)
+//	t_list	*inner_down;
+	t_list	*inner_up;
+//	inner_down = first;
+	outer = first;
+	while(outer->next)
+	{
+		inner_up = outer->next;
+		while(inner_up)
 		{
-			inner = first;
-			while(inner)
+			if(inner_up->num == outer->num)
 			{
-				if(inner->num == outer->num && inner != outer)
-				{
-					write(1, "multiples!\n", 11);
-					exit(1);
-				}
-				inner = inner->next;
+				write(1, "multiples!\n", 11);
+				exit(1);
 			}
-			outer = outer->next;
+			inner_up = inner_up->next;
 		}
+		outer = outer->next;
+	}
 }
 
 int main(int argc, char **argv)
@@ -327,10 +316,11 @@ int main(int argc, char **argv)
 	t_list	*stack_a;
 	t_list	*stack_b;
 	t_list	*longest = NULL;
-
-	if(argc > 1000)
+	
+	printf("argc: %d\n", argc);
+	if(argc > 1000 || argc < 2)
 	{
-		write(1, "argc too big", 12);
+		write(1, "argc too big or small!\n", 23);
 		return(1);
 	}
 	stack_a = create_linked_list(argc, argv);
@@ -382,7 +372,6 @@ int main(int argc, char **argv)
 		}
 
 		//rotates and pushed numbers
-
 		t_list	*last= stack_a;
 		while(last && last->num)
 		{
@@ -392,15 +381,15 @@ int main(int argc, char **argv)
 			last = last->prev;
 			if (temp == longest)
 			{
-				longest = longest->subs;
-				printf("pushed b = %d \n", temp->num);
-				commands(temp, stack_b, 4);
-			}
-			else
-			{
 				commands(temp, NULL, 8);
 				printf("rotate = %d \n", temp->num);
 			}
+			else
+			{
+				longest = longest->subs;
+				printf("pushed b = %d \n", temp->num);
+				commands(temp, stack_b, 4);
+			}	
 		}
 		//puts "0" in bottom by rotation
 		commands(stack_a, NULL, 8);
