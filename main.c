@@ -296,6 +296,22 @@ void empty_stack_b(t_list *stack_a, t_list *stack_b)
 	}
 }
 
+void	exit_statement_and_free_extra(t_list *stack_a)
+{
+	t_list *next;
+	
+	while (stack_a->prev)
+		stack_a = stack_a->prev;
+	while (stack_a->next)
+	{
+		next = stack_a->next;
+		if (stack_a)
+			free(stack_a);
+		stack_a = stack_a->next;
+	}
+	exit(1);
+}
+
 void check_multiples(t_list *first)
 {
 	t_list *outer;
@@ -310,7 +326,7 @@ void check_multiples(t_list *first)
 			if (inner_up->num == outer->num)
 			{
 				write(1, "multiples!\n", 11);
-				exit(1);
+				exit_statement_and_free_extra(first);
 			}
 			inner_up = inner_up->next;
 		}
@@ -328,28 +344,11 @@ void	check_if_small_or_big(int argc)
 
 }
 
-int main(int argc, char **argv)
+t_list	make_lis(t_list *stack_a, t_list *stack_b)
 {
-	t_list *stack_a;
-	t_list *stack_b;
-	t_list *longest = NULL;
-	printf("argc: %d\n", argc);
-	check_if_small_or_big(argc);
-	stack_a = create_linked_list(argc, argv);
-	stack_b = NULL;
-	check_multiples(stack_a);
-
 	t_list *outer = stack_a;
 	t_list *inner = stack_a;
-	t_list *temp = stack_a;
-
-	if (argc <= 5)
-		write(1, "small\n", 6);
-	int twotimes = 0;
-		
-	// makes LIS-----------------------
 	outer = stack_a;
-	printf("Beginning main loop\n");
 	while (outer)
 	{
 		inner = stack_a;
@@ -367,6 +366,27 @@ int main(int argc, char **argv)
 		}
 		outer = outer->next;
 	}
+}
+
+int main(int argc, char **argv)
+{
+	t_list *stack_a;
+	t_list *stack_b;
+	t_list *longest = NULL;
+	printf("argc: %d\n", argc);
+	check_if_small_or_big(argc);
+	stack_a = create_linked_list(argc, argv);
+	stack_b = NULL;
+	check_multiples(stack_a);
+
+	t_list *temp = stack_a;
+
+	if (argc <= 5)
+		write(1, "small\n", 6);
+	int twotimes = 0;
+
+	printf("Beginning main loop\n");
+	make_lis(stack_a, stack_b);
 
 	// finds last number in LIS
 	longest = find_last_in_sequence(stack_a);
@@ -383,6 +403,7 @@ int main(int argc, char **argv)
 	t_list *last_main = ft_lstlast(stack_a);
 	t_list	*temp_main;
 	int	i = 0;
+
 
 	while (i < argc - 1)
 	{
@@ -405,7 +426,6 @@ int main(int argc, char **argv)
 		}
 		i++;
 	}
-
 	/* int	twosortings = 0;
 	if (twosortings < 1)
 	{
