@@ -19,19 +19,21 @@ t_list *ft_lstnew_new(char *content, t_list *stack_a)
 	return (new);
 }
 
-t_list *ft_lstnew_empty(int zero)
+int	ft_lstsize_new(t_list *lst)
 {
-	t_list *new;
+	int		i;
+	t_list	*temp;
 
-	new = malloc(sizeof(t_list));
-	if (!new)
+	if (!lst)
+		return (0);
+	temp = lst;
+	i = 1;
+	while (temp->next)
 	{
-		new = NULL;
-		return (new);
+		i++;
+		temp = temp->next;
 	}
-	new->next = NULL;
-	new->num = zero;
-	return (new);
+	return (i);
 }
 
 t_list *ft_lstlast(t_list *lst)
@@ -108,22 +110,22 @@ t_list	*pb(t_list *stack_a, t_list *stack_b)
 	// If no stack b
 	if (!stack_b)
 	{
-		
 		prev_a_pb = stack_a->prev;
 		prev_a_pb->next = NULL;
 		stack_b = stack_a;
 		stack_b->prev = NULL;
+		return (stack_a);
 	}
 	//if stack_b
 	else
 	{
 		prev_a_pb = stack_a->prev;
+		prev_a_pb->next = NULL;
 		last_b = ft_lstlast(stack_b);
 		last_b->next = stack_a;
 		stack_a->prev = last_b;
-		prev_a_pb->next = NULL;
+		return (stack_a);
 	}
-	return (stack_b);
 }
 
 void ra(t_list *stack_a)
@@ -278,24 +280,6 @@ int numbers_in_order(t_list *first)
 	printf("end check order\n");
 }
 
-void empty_stack_b(t_list *stack_a, t_list *stack_b)
-{
-	t_list *temp;
-	stack_b = ft_lstlast(stack_b);
-	/* 	while(stack_b->prev)
-		{
-			stack_b = stack_b->prev;
-			printf("  emptying stack   all b%d\n", stack_b->num);
-		} */
-	while (stack_b->num)
-	{
-		temp = stack_b->prev;
-		commands(stack_a, stack_b, 3); // pushes b to stack a
-		stack_b = temp;
-		printf("last b %d\n", stack_b->num);
-	}
-}
-
 void	exit_statement_and_free_extra(t_list *stack_a)
 {
 	t_list *next;
@@ -368,6 +352,145 @@ t_list	make_lis(t_list *stack_a, t_list *stack_b)
 	}
 }
 
+t_list	*calculate_num_before(t_list *stack_a, t_list *stack_b, count_list *dif, int argc)
+{
+	int	stop = 0;
+	int	i = 0;
+	dif->rotate_before = 10000;
+	while (stack_a->prev)	
+	{
+		if (stack_b->num - stack_a->num < dif->dif_plus && stack_b->num > stack_a->num)
+		{
+			dif->ptr_plus  = stack_a;
+			dif->dif_plus = stack_b->num - stack_a->num;
+			dif->rev_before = i;
+		}
+		stack_a = stack_a->prev;
+		i++;
+	}
+
+	i = 0;
+	while (stack_a->next)	
+	{
+		if (stack_b->num > stack_a->num && stack_b->num - stack_a->num <= dif->dif_plus)
+		{
+			dif->rotate_before= i;
+		}
+		stack_a = stack_a->next;
+		i++;
+	}
+
+	/* int	length = ft_lstsize_new(stack_a);
+	//DO SAME FOR OTHER FUNCTION
+	if(length/ 2 < dif->rev_before)
+		dif->rotate_before = dif->rev_before - argc / 2; */
+}
+
+t_list	*calculate_num_after(t_list *stack_a, t_list *stack_b, count_list *dif)
+{
+	int	stop = 0;
+	int	i = 0;
+	//rotate_after = 10000;
+	while (stack_a->prev)	
+	{
+		if (stack_a->num - stack_b->num < dif->dif_minus && stack_a->num - stack_b->num > 0)
+		{
+			dif->ptr_minus  = stack_a;
+			dif->dif_minus = stack_a->num -  stack_b->num;
+			dif->rev_after = i;
+		}
+		stack_a = stack_a->prev;
+		i++;
+	}
+}
+
+/* calc_num_rot(stack_a, stack_b, dif)
+{
+	while (stack_a)
+	{
+		if (stack_a)
+	}
+} */
+
+count_list	*calculating_and_sorting_back_to_a(t_list *stack_a, t_list *stack_b, int argc)
+{
+	//void	*best_strategy;
+	count_list	*dif;
+	dif->dif_plus = 1000;
+	dif->dif_minus = 1000;
+	dif->ptr_plus= NULL;
+	dif->ptr_minus= NULL;
+	dif->rev_before = 10000;
+	dif->rev_after = 10000;
+	
+	printf("stack b testing    %d\n\n", stack_b->num);
+	stack_b = ft_lstlast(stack_b);
+	calculate_num_before(stack_a, stack_b, dif, argc);
+	calculate_num_after(stack_a, stack_b, dif);
+
+
+	//TESTING
+	printf("closest -  %d\n", dif->dif_plus);
+	t_list *temp = dif->ptr_plus;
+	printf("num on stack a -  %d\n", temp->num);
+	printf("revers rotations -  %d\n", dif->rev_before);
+	printf("reg rotations -  %d\n", dif->rotate_before);
+	printf("closest -  %d\n", dif->dif_minus);
+	temp = dif->ptr_minus;
+	if (dif->ptr_minus)
+		printf("num on stack a -  %d\n", temp->num);
+
+	//calc_num_rot(stack_a, stack_b, dif);
+	return (dif);
+}
+
+t_list	*lis_pushing_to_b(t_list *stack_a, t_list *stack_b, t_list *longest, int argc)
+{
+
+	// rotates and pushed numbers
+	t_list *last_main = ft_lstlast(stack_a);
+	t_list	*temp_main;
+	int	i = 0;
+
+	while (i < argc - 1)
+	{
+		temp_main = last_main;
+		// rotated a
+		if (temp_main->num == longest->num)
+		{
+			if(longest->subs)
+				longest = longest->subs;
+			last_main = commands(last_main, NULL, 8);
+			printf("rotate = %d \n", last_main->num);
+		}
+		// pushed to b
+		else
+		{
+			if(last_main->prev)
+				last_main = last_main->prev;
+			stack_b = pb(temp_main, stack_b);
+			printf("pushed b = %d \n", last_main->num);
+		}
+		i++;
+	}
+	// just testing
+	t_list *temp_a = ft_lstlast(stack_a);
+	t_list *temp_b = ft_lstlast(stack_b);
+	
+	while (temp_a)
+	{
+		printf("a checking = %d\n", temp_a->num);
+		temp_a = temp_a->prev;
+	}
+	while (temp_b)
+	{
+		printf("b checking = %d\n", temp_b->num);
+		temp_b = temp_b->prev;
+	}
+	calculating_and_sorting_back_to_a(last_main, stack_b, argc);
+	return (last_main);
+}
+
 int main(int argc, char **argv)
 {
 	t_list *stack_a;
@@ -400,56 +523,7 @@ int main(int argc, char **argv)
 	}
 	
 	// rotates and pushed numbers
-	t_list *last_main = ft_lstlast(stack_a);
-	t_list	*temp_main;
-	int	i = 0;
+	stack_a = lis_pushing_to_b(stack_a, stack_b, longest, argc);
 
-
-	while (i < argc - 1)
-	{
-		temp = last_main;
-		// rotated a
-		if (temp->num == longest->num)
-		{
-			if(longest->subs)
-				longest = longest->subs;
-			last_main = commands(last_main, NULL, 8);
-			printf("rotate = %d \n", last_main->num);
-		}
-		// pushed to b
-		else
-		{
-			if(last_main->prev)
-				last_main = last_main->prev;
-			stack_b = pb(temp, stack_b);
-			printf("pushed b = %d \n", last_main->num);
-		}
-		i++;
-	}
-	/* int	twosortings = 0;
-	if (twosortings < 1)
-	{
-		twosortings == 0;
-		continue;
-	}
-	twosortings++; */
-
-	// Now put all from stack b to stack a
-	//empty_stack_b(stack_a, stack_b);
-
-	// just testing
-	t_list *temp_a = stack_a;
-	t_list *temp_b = stack_b;
-	while (temp_a)
-	{
-		printf("a checking = %d\n", temp_a->num);
-		temp_a = temp_a->next;
-	}
-	while (temp_b)
-	{
-		printf("b checking = %d\n", temp_b->num);
-		temp_b = temp_b->next;
-	}
-	
 	printf("\nlist sorted!\n");
 }
