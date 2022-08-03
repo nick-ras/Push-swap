@@ -44,20 +44,21 @@ int numbers_in_order(t_push *first)
 	while (first->next)
 	{
 		next = first->next;
-		printf("checking order%d - %d\n", first->num, next->num);
+		ft_printf("checking order%d - %d\n", first->num, next->num);
 		if (first->num > next->num)
 		{
 			return (1);
 		}
 		first = first->next;
 	}
-	printf("end check order\n");
+	ft_printf("end check order\n");
+	return (0);
 }
 
-void	exit_statement_and_free_extra(t_push *stack_a)
+void	exit_statement_and_free(t_push *stack_a)
 {
-	t_push *next;
-	
+	void	*next = NULL;
+
 	while (stack_a->prev)
 		stack_a = stack_a->prev;
 	while (stack_a->next)
@@ -67,5 +68,6 @@ void	exit_statement_and_free_extra(t_push *stack_a)
 			free(stack_a);
 		stack_a = stack_a->next;
 	}
+	ft_printf("freeing everything%d\n", next);
 	exit(1);
 }

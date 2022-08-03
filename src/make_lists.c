@@ -11,7 +11,7 @@ t_push *ft_lstnew_new(char *content, t_push *stack_a)
 		return (new);
 	}
 	new->next = NULL;
-	new->num = ft_atoi(content, stack_a);
+	new->num = ft_atoi_push(content, stack_a);
 	new->len = 1;
 	new->subs = NULL;
 	return (new);
@@ -33,11 +33,10 @@ int	ft_lstsize_new(t_push *lst)
 	}
 	return (i);
 }
-t_push *create_linked_list(int argc, char **argv)
+t_push *create_linked_list(int argc, char **argv, t_push *stack_a)
 {
-	int i;
+	int	i;
 	t_push *ptr_first;
-	t_push *stack_a;
 	t_push *ox2;
 
 	i = 1;

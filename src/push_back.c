@@ -16,7 +16,7 @@ t_push	*lis_pushing_to_b(t_push *stack_a, t_push *stack_b, t_push *longest, int 
 			if(longest->subs)
 				longest = longest->subs;
 			last_main = commands(last_main, NULL, 8);
-			printf("rotate = %d \n", last_main->num);
+			ft_printf("rotate = %d \n", last_main->num);
 		}
 		// pushed to b
 		else
@@ -24,7 +24,7 @@ t_push	*lis_pushing_to_b(t_push *stack_a, t_push *stack_b, t_push *longest, int 
 			if(last_main->prev)
 				last_main = last_main->prev;
 			stack_b = pb(temp_main, stack_b);
-			printf("pushed b = %d \n", last_main->num);
+			ft_printf("pushed b = %d \n", last_main->num);
 		}
 		i++;
 	}
@@ -34,15 +34,15 @@ t_push	*lis_pushing_to_b(t_push *stack_a, t_push *stack_b, t_push *longest, int 
 	
 	while (temp_a)
 	{
-		printf("a checking = %d\n", temp_a->num);
+		ft_printf("a checking = %d\n", temp_a->num);
 		temp_a = temp_a->prev;
 	}
 	while (temp_b)
 	{
-		printf("b checking = %d\n", temp_b->num);
+		ft_printf("b checking = %d\n", temp_b->num);
 		temp_b = temp_b->prev;
 	}
-	ft_printf("stack b testing    %d\n\n", stack_b->num);
+	ft_printf("stack b testing outside   %d\n\n", stack_b->num);
 	calculating_and_sorting_back_to_a(last_main, stack_b, argc);
 	return (last_main);
 }

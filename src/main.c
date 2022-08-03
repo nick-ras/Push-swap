@@ -16,7 +16,7 @@ void check_multiples(t_push *first)
 			if (inner_up->num == outer->num)
 			{
 				write(1, "multiples!\n", 11);
-				exit_statement_and_free_extra(first);
+				exit_statement_and_free(first);
 			}
 			inner_up = inner_up->next;
 		}
@@ -34,7 +34,7 @@ void	check_if_small_or_big(int argc)
 
 }
 
-t_push	make_lis(t_push *stack_a, t_push *stack_b)
+void	make_lis(t_push *stack_a)
 {
 	t_push *outer = stack_a;
 	t_push *inner = stack_a;
@@ -60,23 +60,20 @@ t_push	make_lis(t_push *stack_a, t_push *stack_b)
 
 int main(int argc, char **argv)
 {
-	t_push *stack_a;
+	t_push *stack_a = NULL;
 	t_push *stack_b;
 	t_push *longest = NULL;
-	printf("argc: %d\n", argc);
+	ft_printf("argc: %d\n", argc);
 	check_if_small_or_big(argc);
-	stack_a = create_linked_list(argc, argv);
+
+	stack_a = create_linked_list(argc, argv, stack_a);
 	stack_b = NULL;
 	check_multiples(stack_a);
 
-	t_push *temp = stack_a;
-
 	if (argc <= 5)
 		write(1, "small\n", 6);
-	int twotimes = 0;
-
-	printf("Beginning main loop\n");
-	make_lis(stack_a, stack_b);
+	ft_printf("Beginning main loop\n");
+	make_lis(stack_a);
 
 	// finds last number in LIS
 	longest = find_last_in_sequence(stack_a);
@@ -85,12 +82,12 @@ int main(int argc, char **argv)
 	t_push *longest_debugging= longest;
 	while (longest_debugging)
 	{
-		printf("LIS number %d\n", longest_debugging->num);
+		ft_printf("LIS number %d\n", longest_debugging->num);
 		longest_debugging = longest_debugging->subs;
 	}
 	
 	// rotates and pushed numbers
 	stack_a = lis_pushing_to_b(stack_a, stack_b, longest, argc);
 
-	printf("\nlist sorted!\n");
+	ft_printf("\nlist sorted!\n");
 }

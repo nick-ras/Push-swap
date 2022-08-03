@@ -33,6 +33,7 @@ t_push *commands(t_push *stack_a, t_push *stack_b, int command)
 	// 	rra(stack_a);
 	// 	rrb(stack_b);
 	// }
+	return (0);
 }
 
 // 0
@@ -59,8 +60,8 @@ void pa(t_push *stack_a, t_push *stack_b)
 {
 	t_push *prev_b;
 
-	stack_a = ft_lstlast(stack_a);
-	stack_b = ft_lstlast(stack_b);
+	stack_a = ft_lstlast_new(stack_a);
+	stack_b = ft_lstlast_new(stack_b);
 	prev_b = stack_b->prev;
 	prev_b->next = NULL;
 	stack_a->next = stack_b;
@@ -87,7 +88,7 @@ t_push	*pb(t_push *stack_a, t_push *stack_b)
 	{
 		prev_a_pb = stack_a->prev;
 		prev_a_pb->next = NULL;
-		last_b = ft_lstlast(stack_b);
+		last_b = ft_lstlast_new(stack_b);
 		last_b->next = stack_a;
 		stack_a->prev = last_b;
 		return (stack_a);
