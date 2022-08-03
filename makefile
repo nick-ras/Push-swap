@@ -3,8 +3,8 @@ CC = gcc
 # := will expand one time
 # = expanded whenever used
 
-LIBFT_PATH	= ./libft
-LIBFT_A	= $(LIBFT_PATH)/libft.a
+# LIBFT_PATH	= ./libft
+# LIBFT_A	= $(LIBFT_PATH)/libft.a
 
 LIBFTPRINTF_PATH	= ./printf
 LIBFTPRINTF_A	= $(PRINTF_PATH)/libftprintf.a
@@ -29,11 +29,13 @@ OBJ			= $(addprefix $(OBJ_DIR),$(OBJ_FILES))
 
 $(NAME): $(OBJ)
 	echo "make started"
-	$(CC) $(OBJ_FILES) -L $(PRINTF_PATH) -lft -o $(NAME) 
+	$(CC) -o $(NAME) $(OBJ) ./printf/libftprintf.a
 	echo "code has been compiled!"
 #targets : prerequisites
 #	      recipe
 ## i gcc OBJ_FILES because it has all files in right
+# linking, you can give it the path -L or -lft if starting with ft, or just add archive in gcc
+#i could make  $(LIBFTPRINTF_A) but would have to actively compile it for it to cound be a rule(doing smth)
 
 all: $(NAME)
 
