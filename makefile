@@ -7,7 +7,7 @@ CC = gcc
 # LIBFT_A	= $(LIBFT_PATH)/libft.a
 
 LIBFTPRINTF_PATH	= ./printf
-LIBFTPRINTF_A	= $(PRINTF_PATH)/libftprintf.a
+LIBFTPRINTF_A	= $(LIBFTPRINTF_PATH)/libftprintf.a
 #libft.a is copied LIBFTinto this archive
 
 SRC_DIR = ./src/
@@ -27,9 +27,9 @@ SRC			= $(addprefix $(SRC_DIR),$(SRC_FILES))
 OBJ			= $(addprefix $(OBJ_DIR),$(OBJ_FILES))
 #prefix adds will result in ./src/main.c (and same for all other files in src)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) $(LIBFTPRINTF_A)
 	echo "make started"
-	$(CC) -o $(NAME) $(OBJ) ./printf/libftprintf.a
+	$(CC) -o $(NAME) $^
 	echo "code has been compiled!"
 #targets : prerequisites
 #	      recipe
