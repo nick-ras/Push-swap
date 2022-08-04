@@ -31,22 +31,36 @@ count_list	*calculating_and_sorting_back_to_a(t_push *stack_a, t_push *stack_b, 
 	int	rotations = 0;
 	
 	stack_b = ft_lstlast_new(stack_b);
+
+	//lav outer loop så der tjekkes for hvert tal nedadgående i b
+	//while(stack_b->prev)
+
 	//check rotations to get lower on top of a (by check smallest dif)
 	while (stack_a->prev)	
 	{
 		// + = a > b
-		nb_dif = stack_a->num - stack_b->num;
+		nb_dif = stack_b->num - stack_a->num;
 		//iif dif is smaller then stored value and dif is > 0
 		if (nb_dif < dif->dif_a_bg && nb_dif > 0)
 		{
 		//the iteration becomes dif->dif
 			dif->dif_a_lw = nb_dif;
 			rotations = half(rotations, argc); //if rotations > half argc, then measure rra instead of ra
+			//HERHERHEREHERE
+			//HERHERHEREHERE
+			//HERHERHEREHERE
+			//HERHERHEREHERE
+			//HERHERHEREHERE
+			//HERHERHEREHERE
+			//HERHERHEREHERE
+			//HERHERHEREHERE
+			//HERHERHEREHERE
+			//HERHERHEREHERE position, check på papir hvordan du fåropad (ra) eller nedad rotation (rra), whichever er hurtigst (men måske udlign med b's rotations først?????????? for hvis den er opad (rra) (skal roteres opad) så kan den lægges sammen med rrb så det blivver rrr
 			dif->dif_a_lw_pos = rotations;
 		}
 		stack_a = stack_a->prev;
 		rotations++;
-		printf("dif_a_lw_pos %d\n, nb_dif%d\n random%d", dif->dif_a_lw, dif->dif_a_lw_pos, first->len);
+		printf("dif_a_lw_pos     %d\ndif_a_low     %d\nrandom    %d\n", dif->dif_a_lw_pos, dif->dif_a_lw, first->len);
 	}
 	//check rotations to get bigger on top of a
 
