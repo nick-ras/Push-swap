@@ -42,7 +42,6 @@ t_push	*lis_pushing_to_b(t_push *stack_a, t_push *stack_b, t_push *longest, int 
 		ft_printf("b checking = %d\n", temp_b->num);
 		temp_b = temp_b->prev;
 	}
-	ft_printf("stack b testing outside   %d\n\n", stack_b->num);
 	calculating_and_sorting_back_to_a(last_main, stack_b, argc);
 	return (last_main);
 }

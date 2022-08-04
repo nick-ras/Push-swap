@@ -1,7 +1,7 @@
 NAME = push_swap
 CC = gcc
 # := will expand one time
-# = expanded whenever used
+# = expanded whenever used, and is recursived so gcc can also be a variable that refer to even another variable
 
 # LIBFT_PATH	= ./libft
 # LIBFT_A	= $(LIBFT_PATH)/libft.a
@@ -13,7 +13,7 @@ LIBFTPRINTF_A	= $(LIBFTPRINTF_PATH)/libftprintf.a
 SRC_DIR = ./src/
 OBJ_DIR = ./obj/
 
-FLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror -g3
 
 RM = rm -rf
 
@@ -56,7 +56,7 @@ fclean: clean
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	mkdir -p $(OBJ_DIR)
-	$(CC) $(FLAGS) -o $@ -c $^
+	$(CC) $(CFLAGS) -o $@ -c $^
 #-p will print rules and variable values
 #^ is all prereq and < is first prereq
 # if several prerequities, the first depends on date on the second, and if the first is older, the recipe below will be executed. The default value for .LIBPATTERNS is ‘lib%.so lib%.a’

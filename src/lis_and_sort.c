@@ -1,51 +1,10 @@
 #include "../push_swap.h"
 
-count_list	*calculate_num_before(t_push *stack_a, t_push *stack_b, count_list *dif)
+int	half(int rotations, int argc)
 {
-	int	i = 0;
-	dif->rotate_before = 10000;
-	while (stack_a->prev)	
-	{
-		if (stack_b->num - stack_a->num < dif->dif_plus && stack_b->num > stack_a->num)
-		{
-			dif->ptr_plus  = stack_a;
-			dif->dif_plus = stack_b->num - stack_a->num;
-			dif->rev_before = i;
-		}
-		stack_a = stack_a->prev;
-		i++;
-	}
-
-	i = 0;
-	while (stack_a->next)	
-	{
-		if (stack_b->num > stack_a->num && stack_b->num - stack_a->num <= dif->dif_plus)
-			dif->rotate_before= i;
-		stack_a = stack_a->next;
-		i++;
-	}
-	/* int	length = ft_lstsize_new(stack_a);
-	//DO SAME FOR OTHER FUNCTION
-	if(length/ 2 < dif->rev_before)
-		dif->rotate_before = dif->rev_before - argc / 2; */
-	return (dif);
-}
-
-void	calculate_num_after(t_push *stack_a, t_push *stack_b, count_list *dif)
-{
-	int	i = 0;
-	//rotate_after = 10000;
-	while (stack_a->prev)	
-	{
-		if (stack_a->num - stack_b->num < dif->dif_minus && stack_a->num - stack_b->num > 0)
-		{
-			dif->ptr_minus  = stack_a;
-			dif->dif_minus = stack_a->num -  stack_b->num;
-			dif->rev_after = i;
-		}
-		stack_a = stack_a->prev;
-		i++;
-	}
+	if (rotations > (argc / 2) && rotations -  argc / 2 != 1)
+		rotations = -argc + rotations - 1;
+	return(rotations);
 }
 
 /* calc_num_rot(stack_a, stack_b, dif)
@@ -60,32 +19,42 @@ count_list	*calculating_and_sorting_back_to_a(t_push *stack_a, t_push *stack_b, 
 {
 	//void	*best_strategy;
 	count_list	*dif = malloc(sizeof(count_list));
-	ft_printf("stack b testing inside   %d\n\n", stack_b->num);
-	dif->dif_plus = 1000;
-	dif->dif_minus = 1000;
-	dif->ptr_plus= stack_b;
-	dif->ptr_minus= stack_b;
-	dif->rev_before = 10000;
-	dif->rev_after = 10000;
-	printf("%d%d%p%p%d%d", dif->dif_plus, dif->dif_minus, dif->ptr_plus, dif->ptr_minus, dif->rev_before, dif->rev_after);
-	ft_printf("argc just testing %d", argc);
+	t_push	*first = ft_lstlast_new(stack_a);
 
+	//set again every loop
+	dif->dif_a_bg = 1000;
+	dif->dif_a_lw = 1000;
+	dif->dif_a_bg_pos = 1000;
+	dif->dif_a_lw_pos = 1000;
+	dif->dif_b = 1000;
+	int	nb_dif;
+	int	rotations = 0;
+	
 	stack_b = ft_lstlast_new(stack_b);
-	dif = calculate_num_before(stack_a, stack_b, dif);
+	//check rotations to get lower on top of a (by check smallest dif)
+	while (stack_a->prev)	
+	{
+		// + = a > b
+		nb_dif = stack_a->num - stack_b->num;
+		//iif dif is smaller then stored value and dif is > 0
+		if (nb_dif < dif->dif_a_bg && nb_dif > 0)
+		{
+		//the iteration becomes dif->dif
+			dif->dif_a_lw = nb_dif;
+			rotations = half(rotations, argc); //if rotations > half argc, then measure rra instead of ra
+			dif->dif_a_lw_pos = rotations;
+		}
+		stack_a = stack_a->prev;
+		rotations++;
+		printf("dif_a_lw_pos %d\n, nb_dif%d\n random%d", dif->dif_a_lw, dif->dif_a_lw_pos, first->len);
+	}
+	//check rotations to get bigger on top of a
+
+	// compare how many rb or rrb that needs, and combine with ra or rra into rr or rrr. if dif_a_lw_pos is plus then its ra and if minus its rra.
+
+
+
 	//calculate_num_after(stack_a, stack_b, dif);
-
-
-	//TESTING
-	ft_printf("closest -  %d\n", dif->dif_plus);
-	t_push *temp = dif->ptr_plus;
-	ft_printf("num on stack a -  %d\n", temp->num);
-	ft_printf("revers rotations -  %d\n", dif->rev_before);
-	ft_printf("reg rotations -  %d\n", dif->rotate_before);
-	ft_printf("closest -  %d\n", dif->dif_minus);
-	temp = dif->ptr_minus;
-	if (dif->ptr_minus)
-		ft_printf("num on stack a -  %d\n", temp->num);
-
 	//calc_num_rot(stack_a, stack_b, dif);
 	return (dif);
 }

@@ -1,6 +1,3 @@
-#include "./printf/ft_printf.h"
-#include "./libft/libft.h"
-
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include <stdio.h>
@@ -8,6 +5,8 @@
 # include <stdlib.h>
 # include <string.h>
 # include <stddef.h>
+# include "./printf/ft_printf.h"
+# include "./libft/libft.h"
 
 typedef struct s_push
 {
@@ -20,14 +19,12 @@ typedef struct s_push
 
 typedef struct counter_list
 {
-	struct s_push	*ptr_plus;
-	int	dif_plus;
-	int	rev_before;
-	int	rotate_before;
-	struct s_push	*ptr_minus;
-	int	dif_minus;
-	int	rotate_after;
-	int	rev_after;
+	int	dif_a_bg;
+	int	dif_a_lw;
+	int	dif_a_bg_pos;
+	int	dif_a_lw_pos;
+	int	dif_b;
+	//all most be used with half
 }	count_list;
 
 typedef struct rotation
@@ -71,8 +68,9 @@ void	check_multiples(t_push *first);
 void	check_if_small_or_big(int argc);
 
 void	make_lis(t_push *stack_a);
-count_list	*calculate_num_before(t_push *stack_a, t_push *stack_b, count_list *dif);
+void	calculate_num_before(t_push *stack_a, t_push *stack_b, count_list *dif, int argc);
 void	calculate_num_after(t_push *stack_a, t_push *stack_b, count_list *dif);
+int	half(int b_dif, int argc);
 
 count_list	*calculating_and_sorting_back_to_a(t_push *stack_a, t_push *stack_b, int argc);
 t_push	*lis_pushing_to_b(t_push *stack_a, t_push *stack_b, t_push *longest, int argc);

@@ -25,7 +25,7 @@ int	ft_atoi_push(char *str, t_push *stack_a)
 
 	i = 0;
 	sign = 1;
-	while (str[i] == 32 || (str[i] >= 9) && str[i] <= 13)
+	while (str[i] == 32 || ((str[i] >= 9) && str[i] <= 13))
 		i++;
 	if (str[i] == '-' || str[i] == '+')
 	{

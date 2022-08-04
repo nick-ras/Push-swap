@@ -57,17 +57,43 @@ int numbers_in_order(t_push *first)
 
 void	exit_statement_and_free(t_push *stack_a)
 {
-	void	*next = NULL;
+	t_push	*del;
 
-	while (stack_a->prev)
-		stack_a = stack_a->prev;
-	while (stack_a->next)
+	stack_a = ft_lstlast_new(stack_a);
+	while (stack_a)
 	{
-		next = stack_a->next;
-		if (stack_a)
-			free(stack_a);
-		stack_a = stack_a->next;
+		del = stack_a;
+		stack_a = stack_a->prev;
+		free(del);
+		del = NULL;
 	}
-	ft_printf("freeing everything%d\n", next);
+//den hopper over sidste loop hvor der står "0"
+
+
+	// t_stack	*del;
+	// t_stack	*tmp;
+
+	// tmp = *stack;
+	// while (tmp)
+	// {
+	// 	del = tmp;
+	// 	tmp = tmp->next;
+	// 	free(del);
+	// }
+	// *stack = NULL;
+
+
+	// while (stack_a->prev)
+	// 	stack_a = stack_a->prev;
+	// while (stack_a->next)
+	// {
+	// 	next = stack_a->next;
+	// 	if (stack_a)
+	// 		free(stack_a);
+	// 	stack_a = next;
+	// }
+	// if (stack_a)
+	// 	free(stack_a);
+	ft_printf("freeing everything\n");
 	exit(1);
 }
