@@ -1,6 +1,7 @@
 #include "../push_swap.h"
 
 // clear && gcc -g main.c -Llibft_for_push_swap -lft && ./a.out 1 2 3 4 5 1
+//./push_swap 1 4 12 2 10 6 9 13 3 11 7 15
 
 void check_multiples(t_push *first)
 {

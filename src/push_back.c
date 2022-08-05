@@ -34,13 +34,12 @@ t_push	*lis_pushing_to_b(t_push *stack_a, t_push *stack_b, t_push *longest, int 
 	
 	while (temp_a)
 	{
-		ft_printf("a checking = %d\n", temp_a->num);
+		ft_printf("a checking from last a =  %d b = %d \n", temp_a->num, temp_b->num);
 		temp_a = temp_a->prev;
-	}
-	while (temp_b)
-	{
-		ft_printf("b checking = %d\n", temp_b->num);
-		temp_b = temp_b->prev;
+		if (stack_a->prev)
+			temp_a = temp_a->prev;
+		if (stack_b->prev)
+			temp_b = temp_b->prev;
 	}
 	calculating_and_sorting_back_to_a(last_main, stack_b, argc);
 	return (last_main);
