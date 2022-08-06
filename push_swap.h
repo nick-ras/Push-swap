@@ -23,6 +23,7 @@ typedef struct counter_list
 	int	dif_a_bg_pos;
 	int	dif_a_lw_pos;
 	int	dif_b;
+	int	dif_both;
 	//all most be used with half
 }	count_list;
 
