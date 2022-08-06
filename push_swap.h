@@ -6,7 +6,6 @@
 # include <string.h>
 # include <stddef.h>
 # include "./printf/ft_printf.h"
-# include "./libft/libft.h"
 
 typedef struct s_push
 {
