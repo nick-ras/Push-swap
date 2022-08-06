@@ -1,21 +1,16 @@
 #include "../push_swap.h"
 
-int	half(int rotations, int argc)
+int	half(int rotations, t_push *stack_a)
 {
-	if (rotations > (argc / 2) && rotations -  argc / 2 != 1)
-		rotations = -argc + rotations - 1;
+	int	length;
+
+	length = ft_lstsize_new(stack_a);
+	if (rotations > (length / 2) && rotations - length / 2 != 1)
+		rotations = -length + rotations - 1;
 	return(rotations);
 }
 
-/* calc_num_rot(stack_a, stack_b, dif)
-{
-	while (stack_a)
-	{
-		if (stack_a)
-	}
-} */
-
-count_list	*calculating_and_sorting_back_to_a(t_push *stack_a, t_push *stack_b, int argc)
+count_list	*calculating_and_sorting_back_to_a(t_push *stack_a, t_push *stack_b)
 {
 	//void	*best_strategy;
 	count_list	*dif = malloc(sizeof(count_list));
@@ -41,19 +36,30 @@ count_list	*calculating_and_sorting_back_to_a(t_push *stack_a, t_push *stack_b, 
 		// + = a > b
 		nb_dif = stack_b->num - stack_a->num;
 		//iif dif is smaller then stored value and dif is > 0
-		if (nb_dif < dif->dif_a_bg && nb_dif > 0)
+		if (nb_dif < dif->dif_a_lw && nb_dif > 0)
 		{
 		//the iteration becomes dif->dif
 			dif->dif_a_lw = nb_dif;
-			rotations = half(rotations, argc); //if rotations > half argc, then measure rra instead of ra
+			rotations = half(rotations, stack_a); //if rotations > half argc, then measure rra instead of ra
 			//HERHERHEREHERE
-			//HERHERHEREHERE
-			//HERHERHEREHERE
-			//HERHERHEREHERE
-			//HERHERHEREHERE
-			//HERHERHEREHERE
-			//HERHERHEREHERE
-			//HERHERHEREHERE
+			//HERHERHEREHERE position, check på papir hvordan du fåropad (ra) eller nedad rotation (rra), whichever er hurtigst (men måske udlign med b's rotations først?????????? for hvis den er opad (rra) (skal roteres opad) så kan den lægges sammen med rrb så det blivver rrr
+			dif->dif_a_lw_pos = rotations;
+		}
+		stack_a = stack_a->prev;
+		rotations++;
+		printf("dif_a_lw_pos     %d\ndif_a_low     %d\nrandom    %d\n", dif->dif_a_lw_pos, dif->dif_a_lw, first->len);
+	}
+
+	while (stack_a->prev)	
+	{
+		// + = a > b
+		nb_dif = stack_b->num - stack_a->num;
+		//iif dif is smaller then stored value and dif is > 0
+		if (nb_dif < dif->dif_a_lw && nb_dif > 0)
+		{
+		//the iteration becomes dif->dif
+			dif->dif_a_lw = nb_dif;
+			rotations = half(rotations, stack_a); //if rotations > half argc, then measure rra instead of ra
 			//HERHERHEREHERE
 			//HERHERHEREHERE position, check på papir hvordan du fåropad (ra) eller nedad rotation (rra), whichever er hurtigst (men måske udlign med b's rotations først?????????? for hvis den er opad (rra) (skal roteres opad) så kan den lægges sammen med rrb så det blivver rrr
 			dif->dif_a_lw_pos = rotations;
@@ -63,12 +69,7 @@ count_list	*calculating_and_sorting_back_to_a(t_push *stack_a, t_push *stack_b, 
 		printf("dif_a_lw_pos     %d\ndif_a_low     %d\nrandom    %d\n", dif->dif_a_lw_pos, dif->dif_a_lw, first->len);
 	}
 	//check rotations to get bigger on top of a
-
 	// compare how many rb or rrb that needs, and combine with ra or rra into rr or rrr. if dif_a_lw_pos is plus then its ra and if minus its rra.
-
-
-
-	//calculate_num_after(stack_a, stack_b, dif);
-	//calc_num_rot(stack_a, stack_b, dif);
+	//calculate_num_after(stack_a, stack_b, dif);																																																
 	return (dif);
 }

@@ -18,22 +18,6 @@ t_push *ft_lstnew_new(char *content, t_push *stack_a)
 	return (new);
 }
 
-int	ft_lstsize_new(t_push *lst)
-{
-	int		i;
-	t_push	*temp;
-
-	if (!lst)
-		return (0);
-	temp = lst;
-	i = 1;
-	while (temp->next)
-	{
-		i++;
-		temp = temp->next;
-	}
-	return (i);
-}
 t_push *create_linked_list(int argc, char **argv, t_push *stack_a)
 {
 	int	i;

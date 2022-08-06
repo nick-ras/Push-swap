@@ -1,5 +1,22 @@
 #include "../push_swap.h"
 
+int	ft_lstsize_new(t_push *lst)
+{
+	int		i;
+	t_push	*temp;
+
+	if (!lst)
+		return (0);
+	temp = lst;
+	i = 1;
+	while (temp->next)
+	{
+		i++;
+		temp = temp->next;
+	}
+	return (i);
+}
+
 t_push	*ft_lstlast_new(t_push *lst)
 {
 	int		i;

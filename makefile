@@ -17,8 +17,8 @@ CFLAGS = -Wall -Wextra -Werror -g3
 
 RM = rm -rf
 
-SRC_FILES	= main.c push_back.c make_lists.c \
-			lis_and_sort.c find_exit.c \
+SRC_FILES	= main.c calculate.c make_lists.c \
+			lis.c checks.c \
 			commands_1.c commands_2.c \
 			libft_changed.c
 

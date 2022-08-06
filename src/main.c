@@ -1,62 +1,22 @@
 #include "../push_swap.h"
 
 // clear && gcc -g main.c -Llibft_for_push_swap -lft && ./a.out 1 2 3 4 5 1
-//./push_swap 1 4 12 2 10 6 9 13 3 11 7 15
-
-void check_multiples(t_push *first)
+// clear && make re && ./push_swap
+void	exit_statement_and_free(t_push *stack_a)
 {
-	t_push *outer;
-	t_push *inner_up;
+	t_push	*del;
 
-	outer = first;
-	while (outer->next)
+	stack_a = ft_lstlast_new(stack_a);
+	while (stack_a)
 	{
-		inner_up = outer->next;
-		while (inner_up)
-		{
-			if (inner_up->num == outer->num)
-			{
-				write(1, "multiples!\n", 11);
-				exit_statement_and_free(first);
-			}
-			inner_up = inner_up->next;
-		}
-		outer = outer->next;
-	}
-}
-
-void	check_if_small_or_big(int argc)
-{
-	if (argc > 1000 || argc < 2)
-	{
-		write(1, "argc too big or small!\n", 23);
-		exit (1);
+		del = stack_a;
+		stack_a = stack_a->prev;
+		free(del);
+		del = NULL;
 	}
 
-}
-
-void	make_lis(t_push *stack_a)
-{
-	t_push *outer = stack_a;
-	t_push *inner = stack_a;
-	outer = stack_a;
-	while (outer)
-	{
-		inner = stack_a;
-		while (inner && inner != outer)
-		{
-			if (inner->num < outer->num)
-			{
-				if (inner->len + 1 >= outer->len)
-				{
-					outer->len = inner->len + 1;
-					outer->subs = inner;
-				}
-			}
-			inner = inner->next;
-		}
-		outer = outer->next;
-	}
+	ft_printf("freeing everything\n");
+	exit(1);
 }
 
 int main(int argc, char **argv)
@@ -89,6 +49,5 @@ int main(int argc, char **argv)
 	
 	// rotates and pushed numbers
 	stack_a = lis_pushing_to_b(stack_a, stack_b, longest, argc);
-
 	ft_printf("\nlist sorted!\n");
 }
