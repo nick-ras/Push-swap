@@ -20,7 +20,7 @@ int	half(int rotations, t_push *stack_a)
 {
 	int	length;
 
-	length = ft_lstsize_new(stack_a);
+	length = length(stack_a);
 	if (rotations > length / 2)
 		rotations = -length + rotations;
 	return(rotations);
@@ -28,17 +28,17 @@ int	half(int rotations, t_push *stack_a)
 
 count_list	*calculating_and_sorting_back_to_a(t_push *stack_a, t_push *stack_b)
 {
-	count_list	*dif = malloc(sizeof(count_list));
+	count_list	*recipe = malloc(sizeof(count_list));
 	t_push	*first = ft_lstlast_new(stack_a);
 
 	//set again every loop
-	dif->bg = 1000;
-	dif->lw = 1000;
-	dif->bg_pos = 1000;
-	dif->lw_ra = 1000;
-	dif->b = 1000;
+	recipe->bg = 1000;
+	recipe->lw = 1000;
+	recipe->bg_pos = 1000;
+	recipe->lw_ra = 1000;
+	recipe->b = 1000;
 
-	int	nb_dif = 0;
+	int	b_minus_a = 0;
 	int	rotations = 0;
 	int	rotations_out = 0;
 	
@@ -47,38 +47,32 @@ count_list	*calculating_and_sorting_back_to_a(t_push *stack_a, t_push *stack_b)
 	//lav outer loop så der tjekkes for hvert tal nedadgående i b
 	//while(stack_b->prev)
 
-	//check rotations to get lower on top of a (by check smallest dif)
+	//check rotations to get lower on top of a (by check smallest recipe)
 	while(stack_b)
 	{
 		printf("start outer\n");
 		stack_a = first;
 		rotations = half(rotations_out, stack_b);
-		//smth with modulus
 		while (stack_a->prev)
 		{
 			// + = a > b
-			nb_dif = stack_b->num - stack_a->num;
-			//iif dif is smaller then stored value and dif is > 0
-			if (nb_dif < dif->lw && nb_dif > 0)
+			//smth with modulus
+			b_minus_a = stack_b->num - stack_a->num;
+			//finding smallet difference + checking rotations needed
+			if (b_minus_a < recipe->lw && b_minus_a > 0 && half(length(stack_a) - rotations) + rotations_out < recipe->lw_ra)
 			{
-			//the iteration becomes dif->dif
-				dif->lw = nb_dif;
-				rotations = half(rotations, stack_a); 
-				dif->lw_ra = rotations;
+				recipe->lw = b_minus_a;
+				recipe->lw_ra = half(rotations, stack_a)
+				recipe->rrr = half(rotations_out, stack_b);
 			}
 			stack_a = stack_a->prev;
 			rotations++;
 		}
-		printf("lw_ra %d   lw %d\n", dif->lw_ra, dif->lw);
-
+		printf("lw_ra %d   lw %d\n", recipe->lw_ra, recipe->lw);
 		stack_b = stack_b->prev;
 		rotations_out++;
-	}
-	
-	//check rotations to get bigger on top of a
-	// compare how many rb or rrb that needs, and combine with ra or rra into rr or rrr. if lw_ra is plus then its ra and if minus its rra.
-	//calculate_num_after(stack_a, stack_b, dif);									
-	return (dif);
+	}							
+	return (recipe);
 }
 
 int	rotations_b(int rotations_out, int length)

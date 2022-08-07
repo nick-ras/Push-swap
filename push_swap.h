@@ -23,7 +23,7 @@ typedef struct counter_list
 	int	bg_pos;
 	int	lw_ra;
 	int	b;
-	int	both;
+	int	rrr;
 	//all most be used with half
 }	count_list;
 
@@ -50,7 +50,7 @@ void	check_if_small_or_big(int argc);
 void	exit_statement_and_free(t_push *stack_a);
 
 t_push *ft_lstnew_new(char *content, t_push *stack_a);
-int	ft_lstsize_new(t_push *lst);
+int	length(t_push *lst);
 t_push *create_linked_list(int argc, char **argv, t_push *stack_a);
 
 void sa(t_push *ox2);
