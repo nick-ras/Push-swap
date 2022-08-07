@@ -67,7 +67,7 @@ t_push	*ft_lstlast_new(t_push *lst);
 int	ft_atoi_push(char *str, t_push *stack_a);
 
 t_push *find_last_in_sequence(t_push *stack_a);
-int sort_check(t_push *stack_a);
+int sort_check(t_push *stack_a, t_push *stack_b);
 int numbers_in_order(t_push *first);
 
 void	make_lis(t_push *stack_a);

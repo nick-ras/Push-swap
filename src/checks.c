@@ -32,11 +32,12 @@ void	check_if_small_or_big(int argc)
 
 }
 
-int	sort_check(t_push *stack_a)
+int	sort_check(t_push *stack_a, t_push *stack_b)
 {
 	t_push *next_nb;
 
 	next_nb = stack_a;
+	if ()
 	while (next_nb->prev)
 		next_nb = next_nb->prev;
 	stack_a = next_nb;

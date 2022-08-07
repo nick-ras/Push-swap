@@ -75,6 +75,6 @@ count_list	*calculating_and_sorting_back_to_a(t_push *stack_a, t_push *stack_b)
 	
 	//check rotations to get bigger on top of a
 	// compare how many rb or rrb that needs, and combine with ra or rra into rr or rrr. if lw_pos is plus then its ra and if minus its rra.
-	//calculate_num_after(stack_a, stack_b, dif);																																																
+	//calculate_num_after(stack_a, stack_b, dif);									
 	return (dif);
 }

@@ -39,15 +39,17 @@ int main(int argc, char **argv)
 	// finds last number in LIS
 	longest = find_last_in_sequence(stack_a);
 
-	// DEBUGGING showing whole sequence that need to be pushed to stack_b
-	t_push *longest_debugging= longest;
-	while (longest_debugging)
-	{
-		ft_printf("LIS number %d\n", longest_debugging->num);
-		longest_debugging = longest_debugging->subs;
-	}
-	
 	// rotates and pushed numbers
 	stack_a = lis_pushing_to_b(stack_a, stack_b, longest, argc);
+
+	count_list *recipe;
+	int ii = 0;
+	while (ii < 5) //sort_check(stack_a, stack_b)
+	{
+		recipe = calculating_and_sorting_back_to_a( stack_a, stack_b);
+		put_back(stack_a, stack_b, recipe);
+		print_lists( stack_a, stack_b);
+		ii++;
+	}
 	ft_printf("\nlist sorted!\n");
 }

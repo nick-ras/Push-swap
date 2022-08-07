@@ -27,7 +27,9 @@ void	make_lis(t_push *stack_a)
 t_push	*find_last_in_sequence(t_push *stack_a)
 {
 	int length = 0;
-	t_push *longest = NULL;
+	t_push	*longest;
+
+	longest = NULL;
 	while (stack_a)
 	{
 		if (stack_a->len >= length)
@@ -36,7 +38,7 @@ t_push	*find_last_in_sequence(t_push *stack_a)
 			longest = stack_a;
 		}
 		if (!stack_a->next)
-			break;
+			break ;
 		stack_a = stack_a->next;
 	}
 	return (longest);
@@ -57,7 +59,7 @@ t_push	*lis_pushing_to_b(t_push *stack_a, t_push *stack_b, t_push *longest, int 
 			if (longest->subs)
 				longest = longest->subs;
 			stack_a = commands(stack_a, NULL, 8);
-			ft_printf("abc rotate = %d \n", stack_a->num);
+			ft_printf("abc ra = %d \n", stack_a->num);
 		}
 		// pushed to b
 		else
@@ -65,7 +67,7 @@ t_push	*lis_pushing_to_b(t_push *stack_a, t_push *stack_b, t_push *longest, int 
 			if (stack_a->prev)
 				stack_a = stack_a->prev;
 			stack_b = pb(stack_a, stack_b);
-			ft_printf("abc pushed b = %d \n", stack_a->num);
+			ft_printf("abc pb = %d \n", stack_a->num);
 		}
 		i++;
 	}
