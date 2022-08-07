@@ -28,9 +28,8 @@ OBJ			= $(addprefix $(OBJ_DIR),$(OBJ_FILES))
 #prefix adds will result in ./src/main.c (and same for all other files in src)
 
 $(NAME): $(OBJ) $(LIBFTPRINTF_A)
-	echo "make started"
-	$(CC) -o $(NAME) $^
-	echo "code has been compiled!"
+	@$(CC) -o $(NAME) $^
+	@echo "code has been compiled!"
 #targets : prerequisites
 #	      recipe
 ## i gcc OBJ_FILES because it has all files in right
@@ -55,8 +54,8 @@ fclean: clean
 # $(RM) $(LIBFTPRINTF_A)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS) -o $@ -c $^
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(CFLAGS) -o $@ -c $^
 #-p will print rules and variable values
 #^ is all prereq and < is first prereq
 # if several prerequities, the first depends on date on the second, and if the first is older, the recipe below will be executed. The default value for .LIBPATTERNS is ‘lib%.so lib%.a’

@@ -18,12 +18,12 @@ typedef struct s_push
 
 typedef struct counter_list
 {
-	int	dif_a_bg;
-	int	dif_a_lw;
-	int	dif_a_bg_pos;
-	int	dif_a_lw_pos;
-	int	dif_b;
-	int	dif_both;
+	int	bg;
+	int	lw;
+	int	bg_pos;
+	int	lw_pos;
+	int	b;
+	int	both;
 	//all most be used with half
 }	count_list;
 
@@ -43,6 +43,8 @@ typedef struct rotation
 }	rotations;
 
 int main(int argc, char **argv);
+void	print_lists(t_push *stack_a, t_push *stack_b);
+
 void	check_multiples(t_push *first);
 void	check_if_small_or_big(int argc);
 void	exit_statement_and_free(t_push *stack_a);
