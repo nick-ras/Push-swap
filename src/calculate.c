@@ -21,8 +21,8 @@ int	half(int rotations, t_push *stack_a)
 	int	length;
 
 	length = ft_lstsize_new(stack_a);
-	if (rotations > (length / 2) && rotations - length / 2 != 1)
-		rotations = -length + rotations - 1;
+	if (rotations > length / 2)
+		rotations = -length + rotations;
 	return(rotations);
 }
 
@@ -35,7 +35,7 @@ count_list	*calculating_and_sorting_back_to_a(t_push *stack_a, t_push *stack_b)
 	dif->bg = 1000;
 	dif->lw = 1000;
 	dif->bg_pos = 1000;
-	dif->lw_pos = 1000;
+	dif->lw_ra = 1000;
 	dif->b = 1000;
 
 	int	nb_dif = 0;
@@ -52,7 +52,8 @@ count_list	*calculating_and_sorting_back_to_a(t_push *stack_a, t_push *stack_b)
 	{
 		printf("start outer\n");
 		stack_a = first;
-		rotations = rotations_out;
+		rotations = half(rotations_out, stack_b);
+		//smth with modulus
 		while (stack_a->prev)
 		{
 			// + = a > b
@@ -63,18 +64,27 @@ count_list	*calculating_and_sorting_back_to_a(t_push *stack_a, t_push *stack_b)
 			//the iteration becomes dif->dif
 				dif->lw = nb_dif;
 				rotations = half(rotations, stack_a); 
-				dif->lw_pos = rotations;
+				dif->lw_ra = rotations;
 			}
 			stack_a = stack_a->prev;
 			rotations++;
 		}
-		printf("lw_pos %d   lw %d\n", dif->lw_pos, dif->lw);
+		printf("lw_ra %d   lw %d\n", dif->lw_ra, dif->lw);
+
 		stack_b = stack_b->prev;
-		rotations_out--;
+		rotations_out++;
 	}
 	
 	//check rotations to get bigger on top of a
-	// compare how many rb or rrb that needs, and combine with ra or rra into rr or rrr. if lw_pos is plus then its ra and if minus its rra.
+	// compare how many rb or rrb that needs, and combine with ra or rra into rr or rrr. if lw_ra is plus then its ra and if minus its rra.
 	//calculate_num_after(stack_a, stack_b, dif);									
 	return (dif);
+}
+
+int	rotations_b(int rotations_out, int length)
+{
+	if (rotations_out >= 0)
+		rotations_out++;
+	if (rotations_out > length / 2)
+		
 }

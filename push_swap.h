@@ -21,7 +21,7 @@ typedef struct counter_list
 	int	bg;
 	int	lw;
 	int	bg_pos;
-	int	lw_pos;
+	int	lw_ra;
 	int	b;
 	int	both;
 	//all most be used with half
