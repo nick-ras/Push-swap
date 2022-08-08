@@ -36,8 +36,9 @@ int	sort_check(t_push *stack_a, t_push *stack_b)
 {
 	t_push *next_nb;
 
+	if (stack_b)
+		return (1);
 	next_nb = stack_a;
-	if ()
 	while (next_nb->prev)
 		next_nb = next_nb->prev;
 	stack_a = next_nb;
@@ -59,7 +60,6 @@ int	numbers_in_order(t_push *first)
 	while (first->next)
 	{
 		next = first->next;
-		ft_printf("checking order%d - %d\n", first->num, next->num);
 		if (first->num > next->num)
 		{
 			return (1);

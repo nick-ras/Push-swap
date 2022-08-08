@@ -2,6 +2,7 @@
 
 // clear && gcc -g main.c -Llibft_for_push_swap -lft && ./a.out 1 2 3 4 5 1
 // clear && make re && ./push_swap
+//["1", "4", "12", "2", "10", "6", "9", "13", "3", "11", "7", "15"],
 void	exit_statement_and_free(t_push *stack_a)
 {
 	t_push	*del;
@@ -22,13 +23,11 @@ void	exit_statement_and_free(t_push *stack_a)
 int main(int argc, char **argv)
 {
 	t_push *stack_a = NULL;
-	t_push *stack_b;
 	t_push *longest = NULL;
 	ft_printf("argc: %d\n", argc);
 	check_if_small_or_big(argc);
 
 	stack_a = create_linked_list(argc, argv, stack_a);
-	stack_b = NULL;
 	check_multiples(stack_a);
 
 	if (argc <= 5)
@@ -40,16 +39,6 @@ int main(int argc, char **argv)
 	longest = find_last_in_sequence(stack_a);
 
 	// rotates and pushed numbers
-	stack_a = lis_pushing_to_b(stack_a, stack_b, longest, argc);
-
-	count_list *recipe;
-	int ii = 0;
-	while (ii < 5) //sort_check(stack_a, stack_b)
-	{
-		recipe = calculating_and_sorting_back_to_a( stack_a, stack_b);
-		put_back(stack_a, stack_b, recipe);
-		print_lists( stack_a, stack_b);
-		ii++;
-	}
-	ft_printf("\nlist sorted!\n");
+	push_lis_leftover(stack_a, longest, argc);
+	ft_printf("\nend of main!\n");
 }

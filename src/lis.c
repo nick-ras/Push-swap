@@ -45,14 +45,19 @@ t_push	*find_last_in_sequence(t_push *stack_a)
 }
 
 // rotates and pushed numbers
-t_push	*lis_pushing_to_b(t_push *stack_a, t_push *stack_b, t_push *longest, int argc)
+void	push_lis_leftover(t_push *stack_a, t_push *longest, int argc)
 {
 	int		i;
+	t_push *temp;
+	t_push	*stack_b;
 
+	stack_b = NULL;
 	i = 0;
 	stack_a = ft_lstlast_new(stack_a);
 	while (i < argc - 1)
 	{
+		if (!stack_a->prev)
+			break ;
 		// rotated a
 		if (stack_a->num == longest->num)
 		{
@@ -64,13 +69,21 @@ t_push	*lis_pushing_to_b(t_push *stack_a, t_push *stack_b, t_push *longest, int 
 		// pushed to b
 		else
 		{
-			if (stack_a->prev)
-				stack_a = stack_a->prev;
+			temp = stack_a->prev;
 			stack_b = pb(stack_a, stack_b);
-			ft_printf("abc pb = %d \n", stack_a->num);
+			stack_a = temp;
 		}
+		ft_printf("abc pb = %d \n", stack_a->num);
 		i++;
 	}
 	print_lists(stack_a, stack_b);
-	return (stack_a);
+	t_count *instructions;
+	int ii = 0;
+	while (ii < 5) //sort_check(stack_a, stack_b)
+	{
+		instructions = make_instructions( stack_a, stack_b);
+		put_back(stack_a, stack_b, instructions);
+		print_lists(stack_a, stack_b);
+		ii++;
+	}
 }

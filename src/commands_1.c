@@ -1,6 +1,6 @@
 #include "../push_swap.h"
 
-t_push *commands(t_push *stack_a, t_push *stack_b, int command)
+t_push	*commands(t_push *stack_a, t_push *stack_b, int command)
 {
 	// if (command == 0)
 	// 	sa(stack_a);
@@ -37,10 +37,10 @@ t_push *commands(t_push *stack_a, t_push *stack_b, int command)
 }
 
 // 0
-void sa(t_push *ox2)
+void	sa(t_push *ox2)
 {
-	t_push *ox1;
-	t_push *ox0;
+	t_push	*ox1;
+	t_push	*ox0;
 	// t_push	temp_ox1;
 
 	while (ox2->next)
@@ -55,10 +55,11 @@ void sa(t_push *ox2)
 	ox2->prev = ox1->prev;
 	ox1->next = NULL;
 }
+
 // 3
-void pa(t_push *stack_a, t_push *stack_b)
+void	pa(t_push *stack_a, t_push *stack_b)
 {
-	t_push *prev_b;
+	t_push	*prev_b;
 
 	stack_a = ft_lstlast_new(stack_a);
 	stack_b = ft_lstlast_new(stack_b);
@@ -68,12 +69,12 @@ void pa(t_push *stack_a, t_push *stack_b)
 	stack_b->prev = stack_a;
 	stack_b->next = NULL;
 }
+
 //           4
-t_push	*pb(t_push *stack_a, t_push *stack_b)
+t_push *pb(t_push *stack_a, t_push *stack_b)
 {
-	t_push *prev_a_pb;
-	t_push*last_b;
-	
+	t_push	*prev_a_pb;
+
 	// If no stack b
 	if (!stack_b)
 	{
@@ -81,16 +82,16 @@ t_push	*pb(t_push *stack_a, t_push *stack_b)
 		prev_a_pb->next = NULL;
 		stack_b = stack_a;
 		stack_b->prev = NULL;
-		return (stack_a);
 	}
-	//if stack_b
+	// if stack_b
 	else
 	{
 		prev_a_pb = stack_a->prev;
 		prev_a_pb->next = NULL;
-		last_b = ft_lstlast_new(stack_b);
-		last_b->next = stack_a;
-		stack_a->prev = last_b;
-		return (stack_a);
+		stack_b = ft_lstlast_new(stack_b);
+		stack_b->next = stack_a;
+		stack_a->prev = stack_b;
+		stack_b = stack_b->next;
 	}
+	return (stack_b);
 }

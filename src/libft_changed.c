@@ -1,6 +1,6 @@
 #include "../push_swap.h"
 
-int	ft_lstsize_new(t_push *lst)
+int	length_list(t_push *lst)
 {
 	int		i;
 	t_push	*temp;

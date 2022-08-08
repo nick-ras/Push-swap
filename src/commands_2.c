@@ -32,20 +32,21 @@ void rb(t_push *stack_b)
 	stack_b->next = NULL;
 }
 
-t_push	*rra(t_push *stack_a)
+t_push	*rra(t_push *last)
 {
-	t_push *prev_a_rra;
-	t_push *last_a;
+	t_push	*sec_last;
+	t_push	*first;
 
-	while (stack_a->prev)
-		stack_a = stack_a->prev;
-	last_a = ft_lstlast_new(stack_a);
-	prev_a_rra = last_a->prev;
-	prev_a_rra->next = NULL;
-	stack_a->prev = last_a;
-	last_a->next = stack_a;
-	last_a->prev = NULL;
-	return (prev_a_rra);
+	last = ft_lstlast_new(last);
+	first = last;
+	while (first->prev)
+		first = first->prev;
+	sec_last = last->prev;
+	sec_last->next = NULL;
+	first->prev = last;
+	last->next = first;
+	last->prev = NULL;
+	return (sec_last);
 }
 
 void rrb(t_push *stack_b)

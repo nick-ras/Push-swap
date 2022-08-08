@@ -1,8 +1,8 @@
 #include "../push_swap.h"
 
-t_push *ft_lstnew_new(char *content, t_push *stack_a)
+t_push	*ft_lstnew_new(char *content, t_push *stack_a)
 {
-	t_push *new;
+	t_push	*new;
 
 	new = malloc(sizeof(t_push));
 	if (!new)
@@ -18,10 +18,10 @@ t_push *ft_lstnew_new(char *content, t_push *stack_a)
 	return (new);
 }
 
-t_push *create_linked_list(int argc, char **argv, t_push *stack_a)
+t_push	*create_linked_list(int argc, char **argv, t_push *stack_a)
 {
-	int	i;
-	t_push *ptr_first;
+	int		i;
+	t_push	*ptr_first;
 
 	i = 1;
 	stack_a = ft_lstnew_new(argv[i], stack_a);

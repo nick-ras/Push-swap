@@ -20,7 +20,7 @@ RM = rm -rf
 SRC_FILES	= main.c calculate.c make_lists.c \
 			lis.c checks.c \
 			commands_1.c commands_2.c \
-			libft_changed.c
+			libft_changed.c put_back.c
 
 OBJ_FILES	= ${SRC_FILES:.c=.o}
 SRC			= $(addprefix $(SRC_DIR),$(SRC_FILES))
@@ -31,7 +31,7 @@ $(NAME): $(OBJ) $(LIBFTPRINTF_A)
 	@$(CC) -o $(NAME) $^
 	@echo "code has been compiled!"
 #targets : prerequisites
-#	      recipe
+#	      instructions
 ## i gcc OBJ_FILES because it has all files in right
 # linking, you can give it the path -L or -lft if starting with ft, or just add archive in gcc
 #i could make  $(LIBFTPRINTF_A) but would have to actively compile it for it to cound be a rule(doing smth)
@@ -58,7 +58,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@$(CC) $(CFLAGS) -o $@ -c $^
 #-p will print rules and variable values
 #^ is all prereq and < is first prereq
-# if several prerequities, the first depends on date on the second, and if the first is older, the recipe below will be executed. The default value for .LIBPATTERNS is ‘lib%.so lib%.a’
+# if several prerequities, the first depends on date on the second, and if the first is older, the instructions below will be executed. The default value for .LIBPATTERNS is ‘lib%.so lib%.a’
 #$@ - The file name of the target. which will be directory + x.o
 
 re: fclean all

@@ -9,8 +9,8 @@
 
 typedef struct s_push
 {
-	int	num;
-	int	len;
+	int				num;
+	int				len;
 	struct s_push	*prev;
 	struct s_push	*next;
 	struct s_push	*subs;
@@ -24,8 +24,8 @@ typedef struct counter_list
 	int	lw_ra;
 	int	b;
 	int	rrr;
-	//all most be used with half
-}	count_list;
+	//all most be used with fastest_route
+}	t_count;
 
 typedef struct rotation
 {
@@ -40,42 +40,47 @@ typedef struct rotation
 	int	rra;
 	int	rrb;
 	int	rrr;
-}	rotations;
+}	t_rotations;
 
-int main(int argc, char **argv);
+int		main(int argc, char **argv);
 void	print_lists(t_push *stack_a, t_push *stack_b);
 
 void	check_multiples(t_push *first);
 void	check_if_small_or_big(int argc);
 void	exit_statement_and_free(t_push *stack_a);
 
-t_push *ft_lstnew_new(char *content, t_push *stack_a);
-int	length(t_push *lst);
-t_push *create_linked_list(int argc, char **argv, t_push *stack_a);
+t_push	*ft_lstnew_new(char *content, t_push *stack_a);
+int		length_list(t_push *lst);
+t_push	*create_linked_list(int argc, char **argv, t_push *stack_a);
 
-void sa(t_push *ox2);
-void pa(t_push *stack_a, t_push *stack_b);
+//Commands
+void	sa(t_push *ox2);
+void	pa(t_push *stack_a, t_push *stack_b);
 t_push	*pb(t_push *stack_a, t_push *stack_b);
-void ra(t_push *stack_a);
-void rb(t_push *stack_b);
+void	ra(t_push *stack_a);
+void	rb(t_push *stack_b);
 
+//commands
 t_push	*rra(t_push *stack_a);
 void rrb(t_push *stack_b);
 t_push *commands(t_push *stack_a, t_push *stack_b, int command);
 
+//libft
 t_push	*ft_lstlast_new(t_push *lst);
 int	ft_atoi_push(char *str, t_push *stack_a);
 
-t_push *find_last_in_sequence(t_push *stack_a);
 int sort_check(t_push *stack_a, t_push *stack_b);
 int numbers_in_order(t_push *first);
 
 void	make_lis(t_push *stack_a);
-void	calculate_num_before(t_push *stack_a, t_push *stack_b, count_list *dif, int argc);
-void	calculate_num_after(t_push *stack_a, t_push *stack_b, count_list *dif);
-int	half(int b_dif, t_push *stack_a);
+t_push *find_last_in_sequence(t_push *stack_a);
+void	push_lis_leftover(t_push *stack_a, \
+t_push *longest, int argc);
 
-count_list	*calculating_and_sorting_back_to_a(t_push *stack_a, t_push *stack_b);
-t_push	*lis_pushing_to_b(t_push *stack_a, t_push *stack_b, t_push *longest, int argc);
+void	calculate_num_before(t_push *stack_a, t_push *stack_b, t_count *dif, int argc);
+int	fastest_route(int b_dif, t_push *stack_a);
+t_count	*make_instructions(t_push *stack_a, t_push *stack_b);
+
+t_push  *put_back(t_push *last_main,t_push *stack_b, t_count *instructions);
 
 #endif
