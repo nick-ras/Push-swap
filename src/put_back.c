@@ -1,6 +1,6 @@
 #include "../push_swap.h"
 
-t_push	*put_back(t_push *last_main,t_push *stack_b, t_count *instructions)
+t_push	*execute_instructions(t_push *last_main,t_push *stack_b, t_count *instructions)
 {
 	t_push		*prev_b;
 

@@ -2,9 +2,11 @@
 
 void	make_lis(t_push *stack_a)
 {
-	t_push *outer = stack_a;
-	t_push *inner = stack_a;
+	t_push	*outer;
+	t_push	*inner;
+
 	outer = stack_a;
+	inner = stack_a;
 	while (outer)
 	{
 		inner = stack_a;
@@ -26,9 +28,10 @@ void	make_lis(t_push *stack_a)
 
 t_push	*find_last_in_sequence(t_push *stack_a)
 {
-	int length = 0;
+	int		length;
 	t_push	*longest;
 
+	length = 0;
 	longest = NULL;
 	while (stack_a)
 	{
@@ -44,11 +47,11 @@ t_push	*find_last_in_sequence(t_push *stack_a)
 	return (longest);
 }
 
-// rotates and pushed numbers
-void	push_lis_leftover(t_push *stack_a, t_push *longest, int argc)
+// pushed numbers, that are not in the longest increasing subsequence, to stack b. Afterwards it hands stack a and stack b to other functions that handles the instructions to put stack b numbers back to stack a
+void	sorting_pipeline(t_push *stack_a, t_push *longest, int argc)
 {
 	int		i;
-	t_push *temp;
+	t_push	*temp;
 	t_push	*stack_b;
 
 	stack_b = NULL;
@@ -63,26 +66,37 @@ void	push_lis_leftover(t_push *stack_a, t_push *longest, int argc)
 		{
 			if (longest->subs)
 				longest = longest->subs;
-			stack_a = commands(stack_a, NULL, 8);
 			ft_printf("abc ra = %d \n", stack_a->num);
+			stack_a = commands(stack_a, NULL, 8);
 		}
 		// pushed to b
 		else
 		{
 			temp = stack_a->prev;
+			ft_printf("abc pb = %d \n", stack_a->num);
 			stack_b = pb(stack_a, stack_b);
 			stack_a = temp;
 		}
-		ft_printf("abc pb = %d \n", stack_a->num);
 		i++;
 	}
 	print_lists(stack_a, stack_b);
-	t_count *instructions;
-	int ii = 0;
-	while (ii < 5) //sort_check(stack_a, stack_b)
+	sorting_back(stack_a, stack_b);
+}
+
+//sorting leftover numbers (stack b) back into stack a
+void	sorting_back(t_push *stack_a, t_push *stack_b)
+{
+	t_count	*instructions;
+	instructions = malloc(sizeof(t_count));
+	int		ii;
+
+	ii = 0;
+	while (ii < 5)
 	{
-		instructions = make_instructions( stack_a, stack_b);
-		put_back(stack_a, stack_b, instructions);
+		stack_a = ft_lstlast_new(stack_a);
+		stack_b = ft_lstlast_new(stack_b);
+		make_instructions(stack_a, stack_b, instructions);
+		execute_instructions(stack_a, stack_b, instructions);
 		print_lists(stack_a, stack_b);
 		ii++;
 	}
