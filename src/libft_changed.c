@@ -3,35 +3,27 @@
 int	length_list(t_push *lst)
 {
 	int		i;
-	t_push	*temp;
 
 	if (!lst)
 		return (0);
-	temp = lst;
+	lst = ft_lstlast_new(lst);
 	i = 1;
-	while (temp->next)
+	while (lst->prev)
 	{
 		i++;
-		temp = temp->next;
+		lst = lst->prev;
 	}
 	return (i);
 }
 
 t_push	*ft_lstlast_new(t_push *lst)
 {
-	int		i;
-	t_push	*temp;
 
 	if (!lst)
 		return (NULL);
-	temp = lst;
-	i = 0;
-	while (temp->next)
-	{
-		i++;
-		temp = temp->next;
-	}
-	return (temp);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
 }
 
 int	ft_atoi_push(char *str, t_push *stack_a)

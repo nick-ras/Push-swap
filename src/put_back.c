@@ -4,35 +4,32 @@ t_push	*execute_instructions(t_push *last_main,t_push *stack_b, t_count *instruc
 {
 	t_push		*prev_b;
 
-	while (instructions->rrr > 0)
+	while (instructions->rr > 0)
 	{
-		commands(last_main, stack_b, 7);
-		printf("abc\n");
-		instructions->rrr--;
+		r(last_main);
+		r(stack_b);
+		instructions->rr--;
 
 	}
-	while (instructions->rrr < 0)
+	while (instructions->rr < 0)
 	{
-		commands(last_main, stack_b, 7);
-		printf("abc\n");
-		instructions->rrr++;
+		rr(last_main);
+		rr(stack_b);
+		instructions->rr++;
 
 	}
 	while (instructions->lw_ra > 0)
 	{
-		commands(last_main, stack_b, 7);
-		printf("abc\n");
+		r(last_main);
 		instructions->lw_ra--;
 	}
 	while (instructions->lw_ra < 0)
 	{
-		commands(last_main, stack_b, 7);
-		printf("abc\n");
+		rr(last_main);
 		instructions->lw_ra++;
 	}
 	stack_b = ft_lstlast_new(stack_b);
 	prev_b = stack_b->prev;
-	commands(last_main, stack_b, 3);
-	printf("abc\n");
+	stack_b = pa(last_main, stack_b);
 	return (prev_b);
 }

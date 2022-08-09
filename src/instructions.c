@@ -1,33 +1,5 @@
 #include "../push_swap.h"
 
-void	make_instructions(t_push *stack_a, t_push *stack_b, \
-t_count *instructions)
-{
-	t_push	*first;
-
-	first = stack_a;
-	initialize_instructions_struct(instructions);
-	//lav outer loop så der tjekkes for hvert tal nedadgående i b
-	//while(stack_b->prev)
-	//check rotations to get lower on top of a (by check smallest instructions)
-	while (stack_b)
-	{
-		ft_printf("start outer\n");
-		stack_a = first;
-		instructions->stack_a_pos = instructions->stack_b_pos;
-		while (stack_a->prev)
-		{
-			check_if_route_shorter(stack_a, stack_b, instructions);
-			stack_a = stack_a->prev;
-			instructions->stack_a_pos++;
-		}
-		ft_printf("lw_ra %d   lw %d\n", instructions->lw_ra, instructions->lw);
-		stack_b = stack_b->prev;
-		instructions->stack_b_pos++;
-	}							
-	return (instructions);
-}
-
 void	initialize_instructions_struct(t_count *instructions)
 {
 	instructions->bg = 1000;
@@ -40,53 +12,51 @@ void	initialize_instructions_struct(t_count *instructions)
 	instructions->stack_a_pos = 0;
 }
 
-void	check_if_route_shorter(t_push *stack_a, t_push *stack_b, \
+void	make_instructions(t_push *stack_a, t_push *stack_b, \
+t_count *instructions)
+{
+	initialize_instructions_struct(instructions);
+	while (stack_b)
+	{
+		ft_printf("start outer\n");
+		stack_a = ft_lstlast_new(stack_a); //always start at last
+		instructions->stack_a_pos = instructions->stack_b_pos;
+		while (stack_a->prev) //from last
+		{
+			if (check_and_update_instructions(stack_a, stack_b, instructions))
+				set_commands(stack_a, instructions);
+			stack_a = stack_a->prev;
+			instructions->stack_a_pos++;
+		}
+		ft_printf("b %d\n", stack_b->num);
+		stack_b = stack_b->prev;
+		instructions->stack_b_pos++;
+	}
+}
+
+//you could throw it into two dif function depending if its plus or minus
+int	check_and_update_instructions(t_push *stack_a, t_push *stack_b, \
 t_count *instructions)
 {
 	int	b_minus_a;
 
-	// + = a > b
-	//smth with modulus
 	b_minus_a = stack_b->num - stack_a->num;
-	//you could throw it into two dif function depending if its plus or minus
 	if (b_minus_a < 1)
-		return ;
-	//finding smallet difference + checking rotations needed
-	if (b_minus_a < instructions->lw && b_minus_a > 0 && \
-	does_is_use_less_commands(stack_a, instructions))
+		return (0);
+	if (b_minus_a < instructions->lw && \
+	fastest_route(instructions->stack_a_pos - instructions->stack_b_pos, \
+	stack_a) < instructions->lw_ra)
 	{
-		instructions->lw = b_minus_a;
-		set_commands(stack_a, instructions);
+		return (1);
 	}
+	return (0);
 }
 
-//will set new rotation
 void	set_commands(t_push *stack_a, t_count *instructions)
 {
-	int	modulo;
-	int	ra_or_rra;
-
-	modulo = instructions->stack_a_pos % length_list(stack_a);
-	ra_or_rra = -length_list(stack_a) + modulo;
-	instructions->lw_ra = ra_or_rra;
-}
-
-//will determine if the fastest way is to do ra og rra (reverse)
-int	does_is_use_less_commands(t_push *stack_a, t_count *instructions)
-{
-	int	modulo;
-	int	ra_or_rra;
-	//SET RRR!!!
-	modulo = instructions->stack_a_pos % length_list(stack_a);
-	if (modulo > length_list(stack_a) / 2)
-	{
-		instructions->rr = instructions->stack_a_pos - \
-		instructions->stack_b_pos;
-		ra_or_rra = -length_list(stack_a) + modulo;
-	}
-	if (ra_or_rra < instructions->lw_ra)
-		return (1);
-	return (0);
+		instructions->rr = instructions->stack_b_pos;
+		instructions->lw_ra = fastest_route(instructions->stack_a_pos \
+		- instructions->stack_b_pos, stack_a);
 }
 
 int	fastest_route(int rotations, t_push *stack_a)

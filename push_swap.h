@@ -29,21 +29,6 @@ typedef struct counter_list
 	//all most be used with fastest_route
 }	t_count;
 
-typedef struct rotation
-{
-	int	sa;
-	int	sb;
-	int	ss;
-	int	pa;
-	int	pb;
-	int	ra;
-	int	rb;
-	int	rr;
-	int	rra;
-	int	rrb;
-	int	rrr;
-}	t_rotations;
-
 int		main(int argc, char **argv);
 void	exit_statement_and_free(t_push *stack_a);
 
@@ -59,15 +44,10 @@ t_push	*create_linked_list(int argc, char **argv, t_push *stack_a);
 
 //commands
 void	sa(t_push *ox2);
-void	pa(t_push *stack_a, t_push *stack_b);
+t_push	*pa(t_push *stack_a, t_push *stack_b);
 t_push	*pb(t_push *stack_a, t_push *stack_b);
-void	ra(t_push *stack_a);
-void	rb(t_push *stack_b);
-
-//commands
-t_push	*rra(t_push *stack_a);
-void	rrb(t_push *stack_b);
-t_push	*commands(t_push *stack_a, t_push *stack_b, int command);
+t_push	*r(t_push *stack);
+void	rr(t_push *stack);
 
 //libft
 t_push	*ft_lstlast_new(t_push *lst);
@@ -81,17 +61,18 @@ t_push *longest, int argc);
 void	sorting_back(t_push *stack_a, t_push *stack_b);
 
 //making instructions
-void	calculate_num_before(t_push *stack_a, \
-t_push	*stack_b, t_count *dif, int argc);
-int		fastest_route(int b_dif, t_push *stack_a);
+
 int	does_is_use_less_commands(t_push *stack_a, t_count *instructions);
 void	make_instructions(t_push *stack_a, t_push \
 *stack_b, t_count *instructions);
+int		fastest_route(int b_dif, t_push *stack_a);
+void	calculate_num_before(t_push *stack_a, \
+t_push	*stack_b, t_count *dif, int argc);
 void	set_commands(t_push *stack_a, t_count *instructions);
 
 void	print_lists(t_push *stack_a, t_push *stack_b);
 void	initialize_instructions_struct(t_count *instructions);
-void	check_if_route_shorter(t_push *stack_a, t_push *stack_b, \
+int		check_and_update_instructions(t_push *stack_a, t_push *stack_b, \
 t_count *instructions);
 
 //executes instructions
