@@ -35,7 +35,7 @@ void	initialize_instructions_struct(t_count *instructions)
 	instructions->bg_ra = 1000;
 	instructions->lw_ra = 1000;
 	instructions->b = 1000;
-	instructions->rrr = 1000;
+	instructions->rr = 1000;
 	instructions->stack_b_pos = 0;
 	instructions->stack_a_pos = 0;
 }
