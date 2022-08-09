@@ -4,6 +4,20 @@
 // clear && make re && ./push_swap
 //["1", "4", "12", "2", "10", "6", "9", "13", "3", "11", "7", "15"],
 
+void	print_lists(t_push *stack_a, t_push *stack_b)
+{
+	while (stack_a)
+	{
+		ft_printf("a checking from last =   %d\n", stack_a->num);
+		stack_a = stack_a->prev;
+	}
+	while (stack_b)
+	{
+		ft_printf("b checking from last =   %d\n", stack_b->num);
+		stack_b = stack_b->prev;
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_push	*stack_a;

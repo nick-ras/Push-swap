@@ -1,19 +1,5 @@
 #include "../push_swap.h"
 
-void	print_lists(t_push *stack_a, t_push *stack_b)
-{
-	while (stack_a)
-	{
-		ft_printf("a checking from last =   %d\n", stack_a->num);
-		stack_a = stack_a->prev;
-	}
-	while (stack_b)
-	{
-		ft_printf("b checking from last =   %d\n", stack_b->num);
-		stack_b = stack_b->prev;
-	}
-}
-
 void	make_instructions(t_push *stack_a, t_push *stack_b, \
 t_count *instructions)
 {
@@ -28,8 +14,7 @@ t_count *instructions)
 	{
 		ft_printf("start outer\n");
 		stack_a = first;
-		instructions->stack_a_pos = fastest_route \
-		(instructions->stack_b_pos, stack_b);
+		instructions->stack_a_pos = instructions->stack_b_pos;
 		while (stack_a->prev)
 		{
 			check_if_route_shorter(stack_a, stack_b, instructions);
@@ -68,16 +53,42 @@ t_count *instructions)
 		return ;
 	//finding smallet difference + checking rotations needed
 	if (b_minus_a < instructions->lw && b_minus_a > 0 && \
-	fastest_route(length_list(stack_a) - instructions->stack_b_pos, stack_a) \
-		+ instructions->stack_b_pos < instructions->lw_ra)
+	does_is_use_less_commands(stack_a, instructions))
 	{
 		instructions->lw = b_minus_a;
-		instructions->lw_ra = fastest_route(instructions->stack_a_pos, stack_a);
-		instructions->rrr = fastest_route(instructions->stack_b_pos, stack_b);
+		set_commands(stack_a, instructions);
 	}
 }
 
+//will set new rotation
+void	set_commands(t_push *stack_a, t_count *instructions)
+{
+	int	modulo;
+	int	ra_or_rra;
+
+	modulo = instructions->stack_a_pos % length_list(stack_a);
+	ra_or_rra = -length_list(stack_a) + modulo;
+	instructions->lw_ra = ra_or_rra;
+}
+
 //will determine if the fastest way is to do ra og rra (reverse)
+int	does_is_use_less_commands(t_push *stack_a, t_count *instructions)
+{
+	int	modulo;
+	int	ra_or_rra;
+	//SET RRR!!!
+	modulo = instructions->stack_a_pos % length_list(stack_a);
+	if (modulo > length_list(stack_a) / 2)
+	{
+		instructions->rr = instructions->stack_a_pos - \
+		instructions->stack_b_pos;
+		ra_or_rra = -length_list(stack_a) + modulo;
+	}
+	if (ra_or_rra < instructions->lw_ra)
+		return (1);
+	return (0);
+}
+
 int	fastest_route(int rotations, t_push *stack_a)
 {
 	int	length;
