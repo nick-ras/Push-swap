@@ -31,7 +31,8 @@ typedef struct counter_list
 
 int		main(int argc, char **argv);
 int		length_list(t_push *lst);
-int	absolute_value(int value);
+int		absolute_value(int value);
+void	final_rotations(t_push *stack_a, t_count	*final_instructions);
 
 void	exit_statement_and_free(t_push *stack_a);
 //checks
@@ -56,29 +57,33 @@ t_push	*ft_lstnew_new(char *content, t_push *stack_a);
 
 
 //make longest increasing subsequence and sorting pipeline
-void	make_lis(t_push *stack_a);
+t_push	*make_lis(t_push *stack_a);
 t_push	*find_last_in_sequence(t_push *stack_a);
-void	sorting_pipeline(t_push *stack_a, \
+void	*set_subsequent(t_push *outer, t_push *inner, void *longest);
+
+//sorting
+void	push_out_and_in(t_push *stack_a, \
 t_push *longest, int argc);
 void	sorting_back(t_push *stack_a, t_push *stack_b);
 
 
 //making instructions
 
-int	does_is_use_less_commands(t_push *stack_a, t_count *instructions);
+int		does_is_use_less_commands(t_push *stack_a, t_count *instructions);
 void	make_instructions(t_push *stack_a, t_push \
 *stack_b, t_count *instructions);
 int		fastest_route(int b_dif, t_push *stack_a);
 void	calculate_num_before(t_push *stack_a, \
 t_push	*stack_b, t_count *dif, int argc);
-void	set_commands(t_push *stack_a, t_count *instructions);
+void	set_commands(t_push *stack_a, t_push *stack_b, t_count *instructions);
 
 void	print_lists(t_push *stack_a, t_push *stack_b);
 void	initialize_instructions_struct(t_count *instructions);
-int		check_and_update_instructions(t_push *stack_a, t_push *stack_b, \
+void	final_initialize_instructions_struct(t_count *instructions);
+int		make_instructions_subfunction(t_push *stack_a, t_push *stack_b, \
 t_count *instructions);
 
-//executes instructions
+//executes instructions, return stack_b last
 t_push	*execute_instructions(t_push *last_main, \
 t_push *stack_b, t_count *instructions);
 

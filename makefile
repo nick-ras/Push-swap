@@ -18,9 +18,9 @@ CFLAGS = -Wall -Wextra -Werror -g3
 RM = rm -rf
 
 SRC_FILES	= main.c instructions.c make_lists.c \
-			longst_incr_subs.c checks.c \
+			push_out_and_in.c checks.c \
 			commands_push.c commands_rotate.c \
-			libft_changed.c put_back.c exit.c
+			libft_changed.c helpers.c calculate_lis.c
 
 OBJ_FILES	= ${SRC_FILES:.c=.o}
 SRC			= $(addprefix $(SRC_DIR),$(SRC_FILES))

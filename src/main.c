@@ -4,50 +4,57 @@
 // clear && make re && ./push_swap
 //["1", "4", "12", "2", "10", "6", "9", "13", "3", "11", "7", "15"],
 
-void	print_lists(t_push *stack_a, t_push *stack_b)
-{
-	while (stack_a)
-	{
-		ft_printf("a checking from last =   %d\n", stack_a->num);
-		stack_a = stack_a->prev;
-	}
-	while (stack_b)
-	{
-		ft_printf("b checking from last =   %d\n", stack_b->num);
-		stack_b = stack_b->prev;
-	}
-}
-
-int	absolute_value(int value)
-{
-	if (value < 0)
-		return (-value);
-	else
-		return (value);
-}
-
 int	main(int argc, char **argv)
 {
 	t_push	*stack_a;
-	t_push	*longest;
+	t_push	*ptr_last_lis;
 
 	stack_a = NULL;
-	longest = NULL;
+	ptr_last_lis = NULL;
 	ft_printf("argc: %d\n", argc);
 	check_if_small_or_big(argc);
-
 	stack_a = create_linked_list(argc, argv, stack_a);
 	check_multiples(stack_a);
 
 	if (argc <= 5)
 		write(1, "small\n", 6);
-	ft_printf("Beginning main loop\n");
-	make_lis(stack_a);
-
-	// finds last number in LIS
-	longest = find_last_in_sequence(stack_a);
+	ptr_last_lis = make_lis(stack_a);
 
 	// rotates and pushed numbers
-	sorting_pipeline (stack_a, longest, argc);
+	push_out_and_in (stack_a, ptr_last_lis, argc);
 	ft_printf("\nend of main!\n");
+}
+
+void	final_rotations(t_push *stack_a, t_count *final_instructions)
+{
+	int		lowest;
+	t_push	*lowest_ptr;
+	t_push	*tmp;
+	int		rotations;
+	t_push	*tmp_count;
+
+	lowest = __INT_MAX__;
+	tmp = ft_lstlast_new(stack_a);
+	while (tmp)
+	{
+		if (tmp->num < lowest)
+		{
+			lowest = tmp->num;
+			lowest_ptr = tmp;
+		}
+		tmp = tmp->prev;
+	}
+	rotations = 0;
+	tmp_count = ft_lstlast_new(stack_a);
+	while (tmp_count->prev)
+	{
+		rotations++;
+		if (tmp_count == lowest_ptr)
+			break ;
+		tmp_count = tmp_count->prev;
+	}
+	final_initialize_instructions_struct(final_instructions);
+	final_instructions->lw_ra = fastest_route(rotations, stack_a);
+	execute_instructions(stack_a, NULL, final_instructions);
+	print_lists(stack_a, NULL);
 }
