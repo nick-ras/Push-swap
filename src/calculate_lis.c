@@ -1,5 +1,4 @@
 #include "../push_swap.h"
-
 t_push	*make_lis(t_push *stack_a)
 {
 	t_push	*outer;

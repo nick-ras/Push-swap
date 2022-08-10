@@ -10,13 +10,12 @@ void	push_out_and_in(t_push *stack_a, t_push *ptr_lis_last, int argc)
 	i = 0;
 	while (i < argc - 1)
 	{
-		if (stack_b)
+		if (stack_b) //delete
 			stack_b = ft_lstlast_new(stack_b);
 		if (stack_a->num == ptr_lis_last->num)
 		{
 			if (ptr_lis_last->subs)
 				ptr_lis_last = ptr_lis_last->subs;
-			
 			stack_a = r(stack_a);
 		}
 		else
