@@ -18,7 +18,7 @@ t_count *instructions)
 	initialize_instructions_struct(instructions);
 	while (stack_b)
 	{
-		ft_printf("start outer\n");
+		ft_printf("start outer  %d\n", stack_b->num);
 		stack_a = ft_lstlast_new(stack_a); //always start at last
 		instructions->stack_a_pos = instructions->stack_b_pos;
 		while (stack_a->prev) //from last
@@ -28,11 +28,11 @@ t_count *instructions)
 			stack_a = stack_a->prev;
 			instructions->stack_a_pos++;
 		}
-		ft_printf("b %d\n", stack_b->num);
 		stack_b = stack_b->prev;
 		instructions->stack_b_pos++;
 	}
 }
+
 
 //you could throw it into two dif function depending if its plus or minus
 int	check_and_update_instructions(t_push *stack_a, t_push *stack_b, \
@@ -44,11 +44,8 @@ t_count *instructions)
 	if (b_minus_a < 1)
 		return (0);
 	if (b_minus_a < instructions->lw && \
-	fastest_route(instructions->stack_a_pos - instructions->stack_b_pos, \
-	stack_a) < instructions->lw_ra)
-	{
+	absolute_value(fastest_route(instructions->stack_a_pos - instructions->stack_b_pos, stack_a) < absolute_value(instructions->lw_ra))) //hpdnter plus og minus
 		return (1);
-	}
 	return (0);
 }
 

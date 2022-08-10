@@ -18,6 +18,14 @@ void	print_lists(t_push *stack_a, t_push *stack_b)
 	}
 }
 
+int	absolute_value(int value)
+{
+	if (value < 0)
+		return (-value);
+	else
+		return (value);
+}
+
 int	main(int argc, char **argv)
 {
 	t_push	*stack_a;

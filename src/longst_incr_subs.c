@@ -57,25 +57,24 @@ void	sorting_pipeline(t_push *stack_a, t_push *longest, int argc)
 	i = 0;
 	while (i < argc - 1)
 	{
-		stack_a = ft_lstlast_new(stack_a);
-		if(stack_b)
+		if (stack_b)
 			stack_b = ft_lstlast_new(stack_b);
 		if (!stack_a->prev)
 			break ;
-		if (stack_a->num == longest->num)  // rotated a
+		if (stack_a->num == longest->num)
 		{
 			if (longest->subs)
 				longest = longest->subs;
 			ft_printf("abc ra = %d \n", stack_a->num);
 			stack_a = r(stack_a);
 		}
-		else    // pushed to b
+		else
 		{
 			ft_printf("abc pb = %d \n", stack_a->num);
 			if (!stack_b)
 			{
 				stack_a = stack_a->prev;
-				stack_b = pb(stack_a, stack_b);
+				stack_b = pb_first_push(stack_a, stack_b);
 			}
 			else
 				stack_a = pb(stack_a, stack_b);

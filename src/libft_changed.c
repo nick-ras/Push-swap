@@ -1,21 +1,5 @@
 #include "../push_swap.h"
 
-int	length_list(t_push *lst)
-{
-	int		i;
-
-	if (!lst)
-		return (0);
-	lst = ft_lstlast_new(lst);
-	i = 1;
-	while (lst->prev)
-	{
-		i++;
-		lst = lst->prev;
-	}
-	return (i);
-}
-
 t_push	*ft_lstlast_new(t_push *lst)
 {
 

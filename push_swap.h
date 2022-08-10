@@ -30,28 +30,30 @@ typedef struct counter_list
 }	t_count;
 
 int		main(int argc, char **argv);
-void	exit_statement_and_free(t_push *stack_a);
+int		length_list(t_push *lst);
+int	absolute_value(int value);
 
+void	exit_statement_and_free(t_push *stack_a);
 //checks
 void	check_multiples(t_push *first);
 void	check_if_small_or_big(int argc);
 int		sort_check(t_push *stack_a, t_push *stack_b);
 int		numbers_in_order(t_push *first);
 
-t_push	*ft_lstnew_new(char *content, t_push *stack_a);
-int		length_list(t_push *lst);
 t_push	*create_linked_list(int argc, char **argv, t_push *stack_a);
 
 //commands
-void	sa(t_push *ox2);
 t_push	*pa(t_push *stack_a, t_push *stack_b);
 t_push	*pb(t_push *stack_a, t_push *stack_b);
+t_push	*pb_first_push(t_push *stack_a, t_push *stack_b);
 t_push	*r(t_push *stack);
-void	rr(t_push *stack);
+t_push	*rr(t_push *stack);
 
 //libft
 t_push	*ft_lstlast_new(t_push *lst);
 int		ft_atoi_push(char *str, t_push *stack_a);
+t_push	*ft_lstnew_new(char *content, t_push *stack_a);
+
 
 //make longest increasing subsequence and sorting pipeline
 void	make_lis(t_push *stack_a);
@@ -59,6 +61,7 @@ t_push	*find_last_in_sequence(t_push *stack_a);
 void	sorting_pipeline(t_push *stack_a, \
 t_push *longest, int argc);
 void	sorting_back(t_push *stack_a, t_push *stack_b);
+
 
 //making instructions
 
