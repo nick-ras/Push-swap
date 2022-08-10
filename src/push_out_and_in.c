@@ -38,10 +38,8 @@ int argc)
 void	sorting_back(t_push *stack_a, t_push *stack_b)
 {
 	t_count	*instructions;
-	int		ii;
 
 	instructions = malloc(sizeof(t_count));
-	ii = 0;
 	while (stack_b)
 	{
 		printf("sorting one number now\n");
@@ -50,10 +48,8 @@ void	sorting_back(t_push *stack_a, t_push *stack_b)
 		make_instructions(stack_a, stack_b, instructions);
 		stack_b = execute_instructions(stack_a, stack_b, instructions);
 		print_lists(stack_a, stack_b);
-		ii++;
 	}
 	final_rotations(stack_a, instructions);
-	
 }
 
 t_push	*execute_instructions(t_push *stack_a,t_push *stack_b, \
@@ -67,7 +63,6 @@ t_count *instructions)
 		stack_a = r(stack_a);
 		stack_b = r(stack_b);
 		instructions->rr--;
-
 	}
 	while (instructions->rr < 0)
 	{
@@ -87,9 +82,6 @@ t_count *instructions)
 		instructions->lw_ra++;
 	}
 	if (stack_b)
-	{
-		stack_b = ft_lstlast_new(stack_b);
 		return (pa(stack_a, stack_b));
-	}
-	return (stack_a);
+	return (NULL);
 }

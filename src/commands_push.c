@@ -6,8 +6,6 @@ t_push	*pa(t_push *stack_a, t_push *stack_b)
 	t_push	*prev_b;
 
 	stack_a = ft_lstlast_new(stack_a);
-	if (stack_b)
-		stack_b = ft_lstlast_new(stack_b);
 	if (stack_b->prev)
 	{
 		prev_b = stack_b->prev;

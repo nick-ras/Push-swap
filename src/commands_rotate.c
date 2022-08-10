@@ -6,12 +6,8 @@ t_push	*r(t_push *last)
 	t_push	*sec_last;
 	t_push	*first;
 
-	//stash
-	// if (length_list(last) < 2)
-	// {
-	// 	printf("length list in r not 2\n"); //change to returning last later
-	// 	exit (1);
-	// }
+	if (length_list(last) < 2)
+		return (last); //analyse
 	last = ft_lstlast_new(last);
 	first = last;
 	while (first->prev)
@@ -32,10 +28,7 @@ t_push	*rr(t_push *last)
 	t_push	*first;
 
 	if (length_list(last) < 2)
-	{
-		printf("length list in rr not 2\n");
-		exit (1);
-	}
+		return (last); //analyse
 	last = ft_lstlast_new(last);
 	first = last;
 	while (first->prev)
