@@ -1,17 +1,17 @@
 #include "../push_swap.h"
 
 // pushes leftovers to b, subfunctions(sorting_back) puts back
-void	push_out_and_in(t_push *stack_a, t_push *ptr_lis_last, int argc)
+void	push_out_and_in(t_push *stack_a, t_push *ptr_lis_last, \
+int argc)
 {
 	int		i;
 	t_push	*stack_b;
+
 	stack_a = ft_lstlast_new(stack_a);
 	stack_b = NULL;
 	i = 0;
 	while (i < argc - 1)
 	{
-		if (stack_b) //delete
-			stack_b = ft_lstlast_new(stack_b);
 		if (stack_a->num == ptr_lis_last->num)
 		{
 			if (ptr_lis_last->subs)
@@ -56,7 +56,8 @@ void	sorting_back(t_push *stack_a, t_push *stack_b)
 	
 }
 
-t_push	*execute_instructions(t_push *stack_a,t_push *stack_b, t_count *instructions)
+t_push	*execute_instructions(t_push *stack_a,t_push *stack_b, \
+t_count *instructions)
 {
 
 	stack_a = ft_lstlast_new(stack_a);
