@@ -46,7 +46,13 @@ void	sorting_back(t_push *stack_a, t_push *stack_b)
 		stack_a = ft_lstlast_new(stack_a);
 		stack_b = ft_lstlast_new(stack_b);
 		make_instructions(stack_a, stack_b, instructions);
-		stack_b = execute_instructions(stack_a, stack_b, instructions);
+		if (absolute_value(instructions->ra_bg) + absolute_value(instructions->rr_bg) < absolute_value(instructions->ra) + absolute_value(instructions->rr))
+		{
+			stack_b = execute_instructions_bg(stack_a, stack_b, instructions);
+			instructions->bg_exec = 0;
+		}
+		else
+			stack_b = execute_instructions(stack_a, stack_b, instructions);
 		print_lists(stack_a, stack_b);
 	}
 	final_rotations(stack_a, instructions);

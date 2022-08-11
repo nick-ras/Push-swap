@@ -21,9 +21,13 @@ typedef struct counter_list
 	int	stack_a_pos;
 	int	stack_b_pos;
 	int	lowest;
+	int	bg_exec;
 	int	dif;
+	int	dif_bg;
 	int	ra;
 	int	rr;
+	int	ra_bg;
+	int	rr_bg;
 }	t_count;
 
 int		main(int argc, char **argv);
@@ -73,6 +77,8 @@ int		fastest_route(int b_dif, t_push *stack_a);
 void	calculate_num_before(t_push *stack_a, \
 t_push	*stack_b, t_count *dif, int argc);
 void	set_commands(t_push *stack_a, t_push *stack_b, t_count *instructions);
+void	set_commands_bg(t_push *stack_a, t_push *stack_b, \
+t_count *instructions);
 
 void	print_lists(t_push *stack_a, t_push *stack_b);
 void	initialize_instructions_struct(t_count *instructions);
