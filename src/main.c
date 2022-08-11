@@ -54,7 +54,7 @@ void	final_rotations(t_push *stack_a, t_count *final_instructions)
 		tmp_count = tmp_count->prev;
 	}
 	final_initialize_instructions_struct(final_instructions);
-	final_instructions->lw_ra = fastest_route(rotations, stack_a);
+	final_instructions->ra = fastest_route(rotations, stack_a);
 	execute_instructions(stack_a, NULL, final_instructions);
 	print_lists(stack_a, NULL);
 }

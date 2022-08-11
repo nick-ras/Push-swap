@@ -20,13 +20,10 @@ typedef struct counter_list
 {
 	int	stack_a_pos;
 	int	stack_b_pos;
-	int	b; //??
-	int	lw;
-	int	lw_ra;
-	int	bg;
-	int	bg_ra;
+	int	lowest;
+	int	dif;
+	int	ra;
 	int	rr;
-	//all most be used with fastest_route
 }	t_count;
 
 int		main(int argc, char **argv);
@@ -80,7 +77,7 @@ void	set_commands(t_push *stack_a, t_push *stack_b, t_count *instructions);
 void	print_lists(t_push *stack_a, t_push *stack_b);
 void	initialize_instructions_struct(t_count *instructions);
 void	final_initialize_instructions_struct(t_count *instructions);
-int		make_instructions_subfunction(t_push *stack_a, t_push *stack_b, \
+void	make_instructions_subfunction(t_push *stack_a, t_push *stack_b, \
 t_count *instructions);
 
 //executes instructions, return stack_b last
