@@ -51,37 +51,3 @@ void	sorting_back(t_push *stack_a, t_push *stack_b)
 	}
 	final_rotations(stack_a, instructions);
 }
-
-t_push	*execute_instructions(t_push *stack_a,t_push *stack_b, \
-t_count *instructions)
-{
-
-	stack_a = ft_lstlast_new(stack_a);
-	stack_b = ft_lstlast_new(stack_b);
-	while (instructions->rr > 0)
-	{
-		stack_a = r(stack_a);
-		stack_b = r(stack_b);
-		instructions->rr--;
-	}
-	while (instructions->rr < 0)
-	{
-		stack_a = rr(stack_a);
-		stack_b = rr(stack_b);
-		instructions->rr++;
-
-	}
-	while (instructions->lw_ra > 0)
-	{
-		stack_a = r(stack_a);
-		instructions->lw_ra--;
-	}
-	while (instructions->lw_ra < 0)
-	{
-		stack_a = rr(stack_a);
-		instructions->lw_ra++;
-	}
-	if (stack_b)
-		return (pa(stack_a, stack_b));
-	return (NULL);
-}
