@@ -22,33 +22,3 @@ int	main(int argc, char **argv)
 	push_out_and_in (stack_a, ptr_last_lis, argc);
 	ft_printf("\nend of main!\n");
 }
-
-// void	final_rotations(t_push *stack_a, t_count *final_instructions)
-// {
-// 	t_push	*tmp;
-// 	int		rotations;
-// 	t_push	*tmp_count;
-	
-// 	tmp = ft_lstlast_new(stack_a);
-// 	while (tmp)
-// 	{
-// 		if (tmp->num < final_instructions->lowest)
-// 		{
-// 			final_instructions->lowest = tmp->num;
-// 			final_instructions->lowest_ptr = tmp;
-// 		}
-// 		tmp = tmp->prev;
-// 	}
-// 	rotations = 0;
-// 	tmp_count = ft_lstlast_new(stack_a);
-// 	while (tmp_count->prev)
-// 	{
-// 		rotations++;
-// 		if (tmp_count == final_instructions->lowest_ptr)
-// 			break ;
-// 		tmp_count = tmp_count->prev;
-// 	}
-// 	final_initialize_instructions_struct(final_instructions);
-// 	final_instructions->ra = fastest_route(rotations, stack_a);
-// 	execute_instructions(stack_a, NULL, final_instructions);
-// }

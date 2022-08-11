@@ -54,5 +54,8 @@ void	sorting_back(t_push *stack_a, t_push *stack_b)
 			stack_b = execute_instructions(stack_a, stack_b, instructions);
 		print_lists(stack_a, stack_b);
 	}
-	//final_rotations(stack_a, instructions);
+	free(stack_a);
+	free(instructions);
+	stack_a = NULL;
+	instructions = NULL;
 }

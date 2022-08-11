@@ -33,7 +33,6 @@ typedef struct counter_list
 int		main(int argc, char **argv);
 int		length_list(t_push *lst);
 int		absolute_value(int value);
-void	final_rotations(t_push *stack_a, t_count	*final_instructions);
 
 void	exit_statement_and_free(t_push *stack_a);
 //checks

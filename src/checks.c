@@ -24,12 +24,11 @@ void	check_multiples(t_push *first)
 
 void	check_if_small_or_big(int argc)
 {
-	if (argc > 1000 || argc < 2)
+	if (argc >= 500 || argc <= 6)
 	{
 		write(1, "argc too big or small!\n", 23);
 		exit (1);
 	}
-
 }
 
 int	sort_check(t_push *stack_a, t_push *stack_b)
