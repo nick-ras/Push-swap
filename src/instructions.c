@@ -4,9 +4,8 @@ void	make_instructions(t_push *stack_a, t_push *stack_b, \
 t_count *instructions)
 {
 	t_push	*tmp_a;
-	
-	tmp_a = stack_a;
 
+	tmp_a = stack_a;
 	initialize_instructions_struct(instructions);
 	while (stack_b)
 	{
@@ -18,8 +17,9 @@ t_count *instructions)
 			stack_a = stack_a->prev;
 			instructions->stack_a_pos++;
 		}
+		if (stack_b->prev)
+			instructions->stack_b_pos++;
 		stack_b = stack_b->prev;
-		instructions->stack_b_pos++;
 	}
 }
 
@@ -32,7 +32,7 @@ t_count *instructions)
 	a_min_b = stack_a->num - stack_b->num;
 	if (a_min_b < 0)
 	{
-		if (absolute_value(a_min_b) < instructions->dif)
+		if (a_min_b > instructions->dif)
 		{
 			if (absolute_value(fastest_route(instructions->stack_a_pos \
 			- instructions->stack_b_pos, stack_a) \
@@ -42,7 +42,7 @@ t_count *instructions)
 	}
 	else if (a_min_b > 0)
 	{
-		if (absolute_value(a_min_b) < instructions->dif)
+		if (a_min_b < instructions->dif_bg)
 		{
 			if (absolute_value(fastest_route(instructions->stack_a_pos + 1 \
 			- instructions->stack_b_pos, stack_a) \
@@ -68,7 +68,7 @@ void	set_commands(t_push *stack_a, t_push *stack_b, t_count *instructions)
 {
 	instructions->ra = fastest_route(instructions->stack_a_pos \
 	- instructions->stack_b_pos, stack_a);
-	instructions->dif = stack_b->num - stack_a->num;
+	instructions->dif = stack_a->num - stack_b->num;
 	instructions->rr = instructions->stack_b_pos;
 }
 
@@ -76,9 +76,8 @@ void	set_commands_bg(t_push *stack_a, t_push *stack_b, t_count *instructions)
 {
 	instructions->ra_bg = fastest_route(instructions->stack_a_pos + 1 \
 	- instructions->stack_b_pos, stack_a);
-	instructions->dif_bg = stack_b->num - stack_a->num;
+	instructions->dif_bg = stack_a->num - stack_b->num;
 	instructions->rr_bg = instructions->stack_b_pos;
-	instructions->bg_exec = 1;
 }
 
 t_push	*execute_instructions(t_push *stack_a, t_push *stack_b, \
@@ -114,27 +113,27 @@ t_count *instructions)
 t_push	*execute_instructions_bg(t_push *stack_a, t_push *stack_b, \
 t_count *instructions)
 {
-	while (instructions->rr > 0)
+	while (instructions->rr_bg > 0)
 	{
 		stack_a = r(stack_a);
 		stack_b = r(stack_b);
-		instructions->rr--;
+		instructions->rr_bg--;
 	}
-	while (instructions->rr < 0)
+	while (instructions->rr_bg < 0)
 	{
 		stack_a = rr(stack_a);
 		stack_b = rr(stack_b);
-		instructions->rr++;
+		instructions->rr_bg++;
 	}
-	while (instructions->ra > 0)
+	while (instructions->ra_bg > 0)
 	{
 		stack_a = r(stack_a);
-		instructions->ra--;
+		instructions->ra_bg--;
 	}
-	while (instructions->ra < 0)
+	while (instructions->ra_bg < 0)
 	{
 		stack_a = rr(stack_a);
-		instructions->ra++;
+		instructions->ra_bg++;
 	}
 	if (stack_b)
 		return (pa(stack_a, stack_b));

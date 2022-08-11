@@ -18,16 +18,16 @@ typedef struct s_push
 
 typedef struct counter_list
 {
-	int	stack_a_pos;
-	int	stack_b_pos;
-	int	lowest;
-	int	bg_exec;
-	int	dif;
-	int	dif_bg;
-	int	ra;
-	int	rr;
-	int	ra_bg;
-	int	rr_bg;
+	int		stack_a_pos;
+	int		stack_b_pos;
+	int		dif;
+	int		dif_bg;
+	int		ra;
+	int		rr;
+	int		ra_bg;
+	int		rr_bg;
+	t_push	*lowest_ptr;
+	int		lowest;
 }	t_count;
 
 int		main(int argc, char **argv);
@@ -56,7 +56,6 @@ t_push	*ft_lstlast_new(t_push *lst);
 int		ft_atoi_push(char *str, t_push *stack_a);
 t_push	*ft_lstnew_new(char *content, t_push *stack_a);
 
-
 //make longest increasing subsequence and sorting pipeline
 t_push	*make_lis(t_push *stack_a);
 t_push	*find_last_in_sequence(t_push *stack_a);
@@ -67,9 +66,7 @@ void	push_out_and_in(t_push *stack_a, \
 t_push *longest, int argc);
 void	sorting_back(t_push *stack_a, t_push *stack_b);
 
-
 //making instructions
-
 int		does_is_use_less_commands(t_push *stack_a, t_count *instructions);
 void	make_instructions(t_push *stack_a, t_push \
 *stack_b, t_count *instructions);
@@ -89,5 +86,7 @@ t_count *instructions);
 //executes instructions, return stack_b last
 t_push	*execute_instructions(t_push *last_main, \
 t_push *stack_b, t_count *instructions);
+t_push	*execute_instructions_bg(t_push *stack_a, t_push *stack_b, \
+t_count *instructions);
 
 #endif
