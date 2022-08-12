@@ -25,6 +25,7 @@ t_push	*pb_first_push(t_push *stack_a, t_push *stack_b)
 {
 	t_push	*prev_a;
 
+	write(1, "pb\n", 3);
 	stack_a = ft_lstlast_new(stack_a);
 	if (!stack_a->prev)
 		return (stack_b);
@@ -33,7 +34,6 @@ t_push	*pb_first_push(t_push *stack_a, t_push *stack_b)
 	stack_a->prev = NULL;
 	stack_b = stack_a;
 	return (stack_b);
-	write(1, "pb\n", 3);
 }
 
 ////pushes last a to b, and returns new last stack a
@@ -42,6 +42,7 @@ t_push	*pb(t_push *stack_a, t_push *stack_b)
 	t_push	*prev_a;
 
 	stack_a = ft_lstlast_new(stack_a);
+	write(1, "pb\n", 3);
 	if (!stack_a->prev)
 		return (stack_a);
 	stack_b = ft_lstlast_new(stack_b);
@@ -49,6 +50,5 @@ t_push	*pb(t_push *stack_a, t_push *stack_b)
 	prev_a->next = NULL;
 	stack_b->next = stack_a;
 	stack_a->prev = stack_b;
-	write(1, "pb\n", 3);
 	return (prev_a);
 }

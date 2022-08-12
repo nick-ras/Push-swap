@@ -85,29 +85,29 @@ t_count *instructions)
 {
 	while (instructions->rr > 0)
 	{
+		write(1, "rr\n", 3);
 		stack_a = r(stack_a);
 		stack_b = r(stack_b);
-		write(1, "rr\n", 3);
 		instructions->rr--;
 	}
 	while (instructions->rr < 0)
 	{
+		write(1, "rrr\n", 4);
 		stack_a = rr(stack_a);
 		stack_b = rr(stack_b);
-		write(1, "rrr\n", 4);
 		instructions->rr++;
 	}
 	while (instructions->ra > 0)
 	{
+		write(1, "ra\n", 3);
 		stack_a = r(stack_a);
 		instructions->ra--;
-		write(1, "ra\n", 3);
 	}
 	while (instructions->ra < 0)
 	{
+		write(1, "rra\n", 4);
 		stack_a = rr(stack_a);
 		instructions->ra++;
-		write(1, "rra\n", 4);
 	}
 	if (stack_b)
 		return (pa(stack_a, stack_b));
@@ -119,23 +119,27 @@ t_count *instructions)
 {
 	while (instructions->rr_bg > 0)
 	{
+		write(1, "rr\n", 3);
 		stack_a = r(stack_a);
 		stack_b = r(stack_b);
 		instructions->rr_bg--;
 	}
 	while (instructions->rr_bg < 0)
 	{
+		write(1, "rrr\n", 4);
 		stack_a = rr(stack_a);
 		stack_b = rr(stack_b);
 		instructions->rr_bg++;
 	}
 	while (instructions->ra_bg > 0)
 	{
+		write(1, "ra\n", 3);
 		stack_a = r(stack_a);
 		instructions->ra_bg--;
 	}
 	while (instructions->ra_bg < 0)
 	{
+		write(1, "rra\n", 4);
 		stack_a = rr(stack_a);
 		instructions->ra_bg++;
 	}

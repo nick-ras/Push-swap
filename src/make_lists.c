@@ -15,6 +15,7 @@ t_push	*ft_lstnew_new(char *content, t_push *stack_a)
 	new->num = ft_atoi_push(content, stack_a);
 	new->len = 1;
 	new->subs = NULL;
+	new->index = -1;
 	return (new);
 }
 

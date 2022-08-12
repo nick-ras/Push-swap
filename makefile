@@ -30,7 +30,7 @@ OBJ			= $(addprefix $(OBJ_DIR),$(OBJ_FILES))
 
 $(NAME): $(OBJ) $(LIBFTPRINTF_A)
 	@$(CC) -o $(NAME) $^
-	@echo "code has been compiled!"
+
 #targets : prerequisites
 #	      instructions
 ## i gcc OBJ_FILES because it has all files in right
@@ -47,10 +47,10 @@ all: $(NAME)
 clean:
 # make -C $(LIBFT_PATH) clean
 # make -C $(PRINTF_PATH) clean
-	$(RM) $(OBJ_DIR)
+	@$(RM) $(OBJ_DIR)
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 # $(RM) $(LIBFT_A)
 # $(RM) $(LIBFTPRINTF_A)
 

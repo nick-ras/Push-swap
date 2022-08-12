@@ -16,13 +16,13 @@ int	length_list(t_push *lst)
 	return (i);
 }
 
-/* void	print_lists(t_push *stack_a, t_push *stack_b)
+void	print_lists(t_push *stack_a, t_push *stack_b)
 {
 	stack_a = ft_lstlast_new(stack_a);
 	stack_b = ft_lstlast_new(stack_b);
 	while (stack_a)
 	{
-		ft_printf("a checking from last =   %d\n", stack_a->num);
+		ft_printf("a checking from last =   %d index %d\n", stack_a->num, stack_a->index);
 		stack_a = stack_a->prev;
 	}
 	while (stack_b)
@@ -30,7 +30,7 @@ int	length_list(t_push *lst)
 		ft_printf("b checking from last =   %d\n", stack_b->num);
 		stack_b = stack_b->prev;
 	}
-} */
+}
 
 int	absolute_value(int value)
 {

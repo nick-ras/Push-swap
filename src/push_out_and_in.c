@@ -7,16 +7,19 @@ int argc)
 	int		i;
 	t_push	*stack_b;
 
-	stack_a = ft_lstlast_new(stack_a);
 	stack_b = NULL;
 	i = 0;
 	while (i < argc - 1)
 	{
-		if (stack_a->num == ptr_lis_last->num)
+		if (ptr_lis_last)
 		{
-			if (ptr_lis_last->subs)
-				ptr_lis_last = ptr_lis_last->subs;
-			stack_a = r(stack_a);
+			if (stack_a->num == ptr_lis_last->num)
+			{
+				if (ptr_lis_last->subs)
+					ptr_lis_last = ptr_lis_last->subs;
+				write(1, "ra\n", 3);
+				stack_a = r(stack_a);
+			}
 		}
 		else
 		{
@@ -51,6 +54,7 @@ void	sorting_back(t_push *stack_a, t_push *stack_b)
 		else
 			stack_b = execute_instructions(stack_a, stack_b, instructions);
 	}
+	//print_lists(stack_a, NULL);
 	free(stack_a);
 	free(instructions);
 	stack_a = NULL;

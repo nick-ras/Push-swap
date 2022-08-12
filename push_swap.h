@@ -11,6 +11,7 @@ typedef struct s_push
 {
 	int				num;
 	int				len;
+	int				index;
 	struct s_push	*prev;
 	struct s_push	*next;
 	struct s_push	*subs;
@@ -31,10 +32,13 @@ typedef struct counter_list
 }	t_count;
 
 int		main(int argc, char **argv);
+void	indexing(t_push *stack_a, int argc);
+
+//helpers
 int		length_list(t_push *lst);
 int		absolute_value(int value);
-
 void	exit_statement_and_free(t_push *stack_a);
+
 //checks
 void	check_multiples(t_push *first);
 void	check_if_small_or_big(int argc);
