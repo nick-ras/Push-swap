@@ -7,7 +7,7 @@ t_push	*r(t_push *last)
 	t_push	*first;
 
 	if (length_list(last) < 2)
-		return (last); //analyse
+		return (last);
 	last = ft_lstlast_new(last);
 	first = last;
 	while (first->prev)
@@ -17,7 +17,6 @@ t_push	*r(t_push *last)
 	first->prev = last;
 	last->next = first;
 	last->prev = NULL;
-	ft_printf("commands r, top = %d \n", sec_last->num);
 	return (sec_last);
 }
 
@@ -28,7 +27,7 @@ t_push	*rr(t_push *last)
 	t_push	*first;
 
 	if (length_list(last) < 2)
-		return (last); //analyse
+		return (last);
 	last = ft_lstlast_new(last);
 	first = last;
 	while (first->prev)
@@ -38,6 +37,5 @@ t_push	*rr(t_push *last)
 	first->prev = last;
 	new_first->prev = NULL;
 	first->next = NULL;
-	ft_printf("commands r, top = %d \n", first->num);
 	return (first);
 }

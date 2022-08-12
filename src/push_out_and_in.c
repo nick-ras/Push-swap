@@ -30,7 +30,6 @@ int argc)
 		}
 		i++;
 	}
-	print_lists(stack_a, stack_b);
 	sorting_back(stack_a, stack_b);
 }
 
@@ -42,7 +41,6 @@ void	sorting_back(t_push *stack_a, t_push *stack_b)
 	instructions = malloc(sizeof(t_count));
 	while (stack_b)
 	{
-		printf("sorting one number now\n");
 		stack_a = ft_lstlast_new(stack_a);
 		stack_b = ft_lstlast_new(stack_b);
 		make_instructions(stack_a, stack_b, instructions);
@@ -52,7 +50,6 @@ void	sorting_back(t_push *stack_a, t_push *stack_b)
 			stack_b = execute_instructions_bg(stack_a, stack_b, instructions);
 		else
 			stack_b = execute_instructions(stack_a, stack_b, instructions);
-		print_lists(stack_a, stack_b);
 	}
 	free(stack_a);
 	free(instructions);

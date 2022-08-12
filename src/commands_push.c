@@ -16,7 +16,7 @@ t_push	*pa(t_push *stack_a, t_push *stack_b)
 	stack_a->next = stack_b;
 	stack_b->prev = stack_a;
 	stack_b->next = NULL;
-	ft_printf("commands pa = %d \n", stack_b->num);
+	write(1, "pa\n", 3);
 	return (prev_b);
 }
 
@@ -33,7 +33,7 @@ t_push	*pb_first_push(t_push *stack_a, t_push *stack_b)
 	stack_a->prev = NULL;
 	stack_b = stack_a;
 	return (stack_b);
-	ft_printf("commands pb = %d \n", stack_a->num);
+	write(1, "pb\n", 3);
 }
 
 ////pushes last a to b, and returns new last stack a
@@ -49,6 +49,6 @@ t_push	*pb(t_push *stack_a, t_push *stack_b)
 	prev_a->next = NULL;
 	stack_b->next = stack_a;
 	stack_a->prev = stack_b;
-	ft_printf("commands pb = %d \n", stack_a->num);
+	write(1, "pb\n", 3);
 	return (prev_a);
 }
