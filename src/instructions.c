@@ -3,23 +3,23 @@
 void	make_instructions(t_push *stack_a, t_push *stack_b, \
 t_count *instructions)
 {
-	t_push	*tmp_a;
+	t_push	*first;
 
-	tmp_a = stack_a;
 	initialize_instructions_struct(instructions);
+	first = stack_a;
 	while (stack_b)
 	{
-		stack_a = ft_lstlast_new(tmp_a);
+		stack_a = first;
 		instructions->stack_a_pos = 0;
 		while (stack_a)
 		{
 			make_instructions_subfunction(stack_a, stack_b, instructions);
-			stack_a = stack_a->prev;
+			stack_a = stack_a->next;
 			instructions->stack_a_pos++;
 		}
-		if (stack_b->prev)
+		if (stack_b->next)
 			instructions->stack_b_pos++;
-		stack_b = stack_b->prev;
+		stack_b = stack_b->next;
 	}
 }
 
@@ -33,22 +33,12 @@ t_count *instructions)
 	if (a_min_b < 0)
 	{
 		if (a_min_b > instructions->dif)
-		{
-			if (absolute_value(fastest_route(instructions->stack_a_pos \
-			- instructions->stack_b_pos, stack_a) \
-			< absolute_value(instructions->ra)))
-				set_commands(stack_a, stack_b, instructions);
-		}
+			set_commands(stack_a, stack_b, instructions);
 	}
 	else if (a_min_b > 0)
 	{
 		if (a_min_b < instructions->dif_bg)
-		{
-			if (absolute_value(fastest_route(instructions->stack_a_pos + 1 \
-			- instructions->stack_b_pos, stack_a) \
-			< absolute_value(instructions->ra)))
-				set_commands_bg(stack_a, stack_b, instructions);
-		}
+			set_commands_bg(stack_a, stack_b, instructions);
 	}
 }
 
@@ -66,7 +56,7 @@ int	fastest_route(int rotations, t_push *stack_a)
 
 void	set_commands(t_push *stack_a, t_push *stack_b, t_count *instructions)
 {
-	instructions->ra = fastest_route(instructions->stack_a_pos \
+	instructions->ra = fastest_route(instructions->stack_a_pos + 1 \
 	- instructions->stack_b_pos, stack_a);
 	instructions->dif = stack_a->num - stack_b->num;
 	instructions->rr = instructions->stack_b_pos;
@@ -74,7 +64,7 @@ void	set_commands(t_push *stack_a, t_push *stack_b, t_count *instructions)
 
 void	set_commands_bg(t_push *stack_a, t_push *stack_b, t_count *instructions)
 {
-	instructions->ra_bg = fastest_route(instructions->stack_a_pos + 1 \
+	instructions->ra_bg = fastest_route(instructions->stack_a_pos \
 	- instructions->stack_b_pos, stack_a);
 	instructions->dif_bg = stack_a->num - stack_b->num;
 	instructions->rr_bg = instructions->stack_b_pos;

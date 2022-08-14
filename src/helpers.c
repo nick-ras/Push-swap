@@ -18,17 +18,23 @@ int	length_list(t_push *lst)
 
 void	print_lists(t_push *stack_a, t_push *stack_b)
 {
-	stack_a = ft_lstlast_new(stack_a);
-	stack_b = ft_lstlast_new(stack_b);
+	
 	while (stack_a)
 	{
-		ft_printf("a checking from last =   %d index %d\n", stack_a->num, stack_a->index);
-		stack_a = stack_a->prev;
+		ft_printf("a = %d index %d", stack_a->num, \
+		stack_a->index);
+		stack_a = stack_a->next;
+		if (stack_b)
+		{
+			ft_printf("  b = %d", stack_b->num);
+			stack_b = stack_b->next;
+		}
+		ft_printf("\n");
 	}
 	while (stack_b)
 	{
-		ft_printf("b checking from last =   %d\n", stack_b->num);
-		stack_b = stack_b->prev;
+		ft_printf("                 b = %d\n", stack_b->num);
+		stack_b = stack_b->next;
 	}
 }
 

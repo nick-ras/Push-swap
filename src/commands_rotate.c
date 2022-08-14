@@ -1,41 +1,35 @@
 #include "../push_swap.h"
 
 //rotates stack a, and gives new last link
-t_push	*r(t_push *last)
+t_push	*r(t_push *first)
 {
-	t_push	*sec_last;
-	t_push	*first;
+	t_push	*second;
+	t_push	*last;
 
-	if (length_list(last) < 2)
-		return (last);
-	last = ft_lstlast_new(last);
-	first = last;
-	while (first->prev)
-		first = first->prev;
-	sec_last = last->prev;
-	sec_last->next = NULL;
-	first->prev = last;
+	if (length_list(first) < 2)
+		return (first);
+	last = ft_lstlast_new(first);
+	second = first->next;
+	second->prev = NULL;
 	last->next = first;
-	last->prev = NULL;
-	return (sec_last);
+	first->prev = last;
+	first->next = NULL;
+	return (second);
 }
 
 //reverse rotates, returns new last
-t_push	*rr(t_push *last)
+t_push	*rr(t_push *first)
 {
-	t_push	*new_first;
-	t_push	*first;
+	t_push	*sec_last;
+	t_push	*last;
 
-	if (length_list(last) < 2)
-		return (last);
-	last = ft_lstlast_new(last);
-	first = last;
-	while (first->prev)
-		first = first->prev;
-	new_first = first->next;
+	if (length_list(first) < 2)
+		return (first);
+	last = ft_lstlast_new(first);
+	sec_last = last->prev;
+	sec_last->next = NULL;
 	last->next = first;
+	last->prev = NULL;
 	first->prev = last;
-	new_first->prev = NULL;
-	first->next = NULL;
-	return (first);
+	return (last);
 }

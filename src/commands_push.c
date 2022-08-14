@@ -1,54 +1,69 @@
 #include "../push_swap.h"
 
-///pushes last b to a, returns stack_b_prev
+//swap first two of a
+t_push	*sa(t_push *stack_a)
+{
+	t_push	*next_1;
+	t_push	*next_2;
+
+	next_1 = stack_a->next;
+	if (next_1->next)
+	{
+		next_2 = next_1->next;
+		stack_a->next = next_2;
+		next_2->prev = stack_a;
+	}
+	next_1->next = stack_a;
+	stack_a->prev = next_1;
+	next_1->prev = NULL;
+	write(1, "pa\n", 3);
+	return (next_1);
+}
+
+///pushes last b to a, returns stack_b_next
 t_push	*pa(t_push *stack_a, t_push *stack_b)
 {
-	t_push	*prev_b;
+	t_push	*second_b;
 
-	stack_a = ft_lstlast_new(stack_a);
-	if (stack_b->prev)
-	{
-		prev_b = stack_b->prev;
-		prev_b->next = NULL;
-	}
-	else
-		prev_b = NULL;
-	stack_a->next = stack_b;
-	stack_b->prev = stack_a;
-	stack_b->next = NULL;
 	write(1, "pa\n", 3);
-	return (prev_b);
+	if (stack_b->next)
+	{
+		second_b = stack_b->next;
+		second_b->prev = NULL;
+	}
+	else 
+		second_b = NULL;
+	stack_b->next = stack_a;
+	stack_a->prev = stack_b;
+	return (second_b);
 }
 
 //pushes last a to b (when stack b is NULL), and return stack b
 t_push	*pb_first_push(t_push *stack_a, t_push *stack_b)
 {
-	t_push	*prev_a;
+	t_push	*second;
 
 	write(1, "pb\n", 3);
-	stack_a = ft_lstlast_new(stack_a);
-	if (!stack_a->prev)
-		return (stack_b);
-	prev_a = stack_a->prev;
-	prev_a->next = NULL;
-	stack_a->prev = NULL;
+	if (!stack_a->next)
+		return (stack_a);
+	second = stack_a->next;
+	second->prev = NULL;
 	stack_b = stack_a;
+	stack_b->next= NULL;
 	return (stack_b);
 }
 
 ////pushes last a to b, and returns new last stack a
 t_push	*pb(t_push *stack_a, t_push *stack_b)
 {
-	t_push	*prev_a;
+	t_push	*second;
 
-	stack_a = ft_lstlast_new(stack_a);
-	write(1, "pb\n", 3);
-	if (!stack_a->prev)
+	if (!stack_a->next)
 		return (stack_a);
-	stack_b = ft_lstlast_new(stack_b);
-	prev_a = stack_a->prev;
-	prev_a->next = NULL;
-	stack_b->next = stack_a;
-	stack_a->prev = stack_b;
-	return (prev_a);
+	write(1, "pb\n", 3);
+	second = stack_a->next;
+	second->prev = NULL;
+	stack_a->next = stack_b;
+	stack_b->prev = stack_a;
+	return (stack_a);
 }

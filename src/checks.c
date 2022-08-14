@@ -13,7 +13,6 @@ void	check_multiples(t_push *first)
 		{
 			if (inner_up->num == outer->num)
 			{
-				write(1, "Error\n", 6);
 				exit_statement_and_free(first);
 			}
 			inner_up = inner_up->next;
@@ -24,28 +23,8 @@ void	check_multiples(t_push *first)
 
 void	check_if_small_or_big(int argc)
 {
-	if (argc >= 500 || argc <= 1)
+	if (argc >= 500 || argc <= 2)
 		exit (1);
-}
-
-int	sort_check(t_push *stack_a, t_push *stack_b)
-{
-	t_push	*next_nb;
-
-	if (stack_b)
-		return (1);
-	next_nb = stack_a;
-	while (next_nb->prev)
-		next_nb = next_nb->prev;
-	stack_a = next_nb;
-	while (stack_a->next)
-	{
-		next_nb = stack_a->next;
-		if (stack_a->num > next_nb->num)
-			return (1);
-		stack_a = stack_a->next;
-	}
-	return (0);
 }
 
 // check if order is correct
@@ -62,4 +41,21 @@ int	numbers_in_order(t_push *first)
 		first = first->next;
 	}
 	return (0);
+}
+
+int	sort_check(t_push *stack_a, int argc)
+{
+	t_push	*next_nb;
+
+	if (argc < 2)
+		return (0);
+	while (stack_a->next)
+	{
+		next_nb = stack_a->next;
+		if (stack_a->num > next_nb->num)
+			return (1);
+		stack_a = next_nb;
+	}
+	//print_lists(stack_a, NULL);
+	exit (0);
 }
