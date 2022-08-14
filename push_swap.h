@@ -61,11 +61,10 @@ int		ft_atoi_push(char *str, t_push *stack_a);
 t_push	*ft_lstnew_new(char *content, t_push *stack_a);
 
 //make longest increasing subsequence and sorting pipeline
-t_push	*make_lis(t_push *stack_a, t_push *ptr_last_lis);
-void	clean_lis(t_push *stack_a, t_push *ptr_last_lis);
+void	make_lis(t_push *stack_a);
+void	clean_lis(t_push *stack_a);
 t_push	*check_2_at_top(t_push *stack, int argc);
 t_push	*find_last_in_sequence(t_push *stack_a);
-void	*set_subsequent(t_push *outer, t_push *inner, void *longest);
 
 //sorting
 void	push_out_and_in(t_push *stack_a, int argc);
