@@ -56,10 +56,10 @@ int	fastest_route(int rotations, t_push *stack_a)
 
 void	set_commands(t_push *stack_a, t_push *stack_b, t_count *instructions)
 {
+	instructions->rr = fastest_route(instructions->stack_b_pos, stack_b);
 	instructions->ra = fastest_route(instructions->stack_a_pos + 1 \
-	- instructions->stack_b_pos, stack_a);
+	- fastest_route(instructions->stack_b_pos, stack_b), stack_a);
 	instructions->dif = stack_a->num - stack_b->num;
-	instructions->rr = instructions->stack_b_pos;
 }
 
 void	set_commands_bg(t_push *stack_a, t_push *stack_b, t_count *instructions)

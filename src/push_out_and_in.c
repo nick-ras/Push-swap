@@ -42,10 +42,10 @@ void	sorting_back(t_push *stack_a, t_push *stack_b)
 	t_count	*instructions;
 
 	instructions = malloc(sizeof(t_count));
-	if (stack_b)
-		print_lists(stack_a, stack_b);
-	else
-		print_lists(stack_a, NULL);
+	// if (stack_b)
+	// 	print_lists(stack_a, stack_b);
+	// else
+	// 	print_lists(stack_a, NULL);
 	while (stack_b)
 	{
 		make_instructions(stack_a, stack_b, instructions);

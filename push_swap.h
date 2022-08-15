@@ -63,7 +63,7 @@ t_push	*ft_lstnew_new(char *content, t_push *stack_a);
 //make longest increasing subsequence and sorting pipeline
 void	make_lis(t_push *stack_a);
 void	clean_lis(t_push *stack_a);
-t_push	*check_2_at_top(t_push *stack, int argc);
+t_push	*check_2_at_top(t_push *stack);
 t_push	*find_last_in_sequence(t_push *stack_a);
 
 //sorting
@@ -82,7 +82,7 @@ void	set_commands_bg(t_push *stack_a, t_push *stack_b, \
 t_count *instructions);
 
 void	print_lists(t_push *stack_a, t_push *stack_b);
-void	initialize_instructions_struct(t_count *instructions);
+void	initialize_instructions_struct(t_count *instructions);void	initialize_same_stack(t_count *instructions);
 void	final_initialize_instructions_struct(t_count *instructions);
 void	make_instructions_subfunction(t_push *stack_a, t_push *stack_b, \
 t_count *instructions);

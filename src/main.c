@@ -14,7 +14,7 @@ int	main(int argc, char **argv)
 	stack_a = create_linked_list(argc, argv, stack_a);
 	check_multiples(stack_a);
 	indexing(stack_a, argc);
-	stack_a = check_2_at_top(stack_a, argc);
+	stack_a = check_2_at_top(stack_a);
 	sort_check(stack_a, argc);
 	make_lis(stack_a);
 	push_out_and_in (stack_a, argc);

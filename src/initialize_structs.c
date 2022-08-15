@@ -13,6 +13,11 @@ void	initialize_instructions_struct(t_count *instructions)
 	instructions->stack_a_pos = 0;
 }
 
+void	initialize_same_stack(t_count *instructions)
+{
+	instructions->ra = 0;
+}
+
 void	final_initialize_instructions_struct(t_count *instructions)
 {
 	instructions->dif = 2147483647;
