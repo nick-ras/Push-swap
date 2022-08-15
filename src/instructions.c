@@ -70,6 +70,7 @@ void	set_commands_bg(t_push *stack_a, t_push *stack_b, t_count *instructions)
 	instructions->rr_bg = instructions->stack_b_pos;
 }
 
+//if stack b, it returns first in stack b, otherwise first in stack a
 t_push	*execute_instructions(t_push *stack_a, t_push *stack_b, \
 t_count *instructions)
 {
@@ -101,7 +102,7 @@ t_count *instructions)
 	}
 	if (stack_b)
 		return (pa(stack_a, stack_b));
-	return (NULL);
+	return (stack_a);
 }
 
 t_push	*execute_instructions_bg(t_push *stack_a, t_push *stack_b, \

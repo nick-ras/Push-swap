@@ -30,9 +30,9 @@ int	ft_atoi_push(char *str, t_push *stack_a)
 	while (str[i] != '\0' && str[i] <= '9' && str[i] >= '0')
 	{
 		if (number > 2147483648 && sign == -1)
-			exit_statement_and_free(stack_a);
+			exit_statement_and_free(stack_a, 1);
 		if (number > 2147483647 && sign == 1)
-			exit_statement_and_free(stack_a);
+			exit_statement_and_free(stack_a, 1);
 		number = number * 10 + (str[i] - '0');
 		i++;
 	}

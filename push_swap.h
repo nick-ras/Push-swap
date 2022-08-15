@@ -38,14 +38,15 @@ t_push	*create_linked_list(int argc, char **argv, t_push *stack_a);
 //helpers
 int		length_list(t_push *lst);
 int		absolute_value(int value);
-void	exit_statement_and_free(t_push *stack_a);
+void	exit_statement_and_free(t_push *stack_a, int i);
 
 //checks
 void	check_multiples(t_push *first);
 void	check_if_small_or_big(int argc);
-int		sort_check(t_push *stack_a, int argc);
+void	sort_check(t_push *stack_a, t_count *instructions);
 int		numbers_in_order(t_push *first);
-
+void	print_lists(t_push *stack_a, t_push *stack_b);
+void	sort_low_to_high(t_push *stack, t_count	*instr_2);
 
 //commands
 t_push	*sa(t_push *stack_a);
@@ -74,6 +75,8 @@ void	sorting_back(t_push *stack_a, t_push *stack_b);
 int		does_is_use_less_commands(t_push *stack_a, t_count *instructions);
 void	make_instructions(t_push *stack_a, t_push \
 *stack_b, t_count *instructions);
+void	make_instructions_subfunction(t_push *stack_a, t_push *stack_b, \
+t_count *instructions);
 int		fastest_route(int b_dif, t_push *stack_a);
 void	calculate_num_before(t_push *stack_a, \
 t_push	*stack_b, t_count *dif, int argc);
@@ -81,11 +84,9 @@ void	set_commands(t_push *stack_a, t_push *stack_b, t_count *instructions);
 void	set_commands_bg(t_push *stack_a, t_push *stack_b, \
 t_count *instructions);
 
-void	print_lists(t_push *stack_a, t_push *stack_b);
-void	initialize_instructions_struct(t_count *instructions);void	initialize_same_stack(t_count *instructions);
+void	initialize_instructions_struct(t_count *instructions);
+void	initialize_same_stack(t_count *instructions);
 void	final_initialize_instructions_struct(t_count *instructions);
-void	make_instructions_subfunction(t_push *stack_a, t_push *stack_b, \
-t_count *instructions);
 
 //executes instructions, return stack_b last
 t_push	*execute_instructions(t_push *last_main, \

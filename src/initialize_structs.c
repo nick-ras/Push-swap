@@ -15,6 +15,7 @@ void	initialize_instructions_struct(t_count *instructions)
 
 void	initialize_same_stack(t_count *instructions)
 {
+	instructions->stack_a_pos = 0;
 	instructions->ra = 0;
 }
 

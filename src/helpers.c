@@ -45,7 +45,7 @@ int	absolute_value(int value)
 		return (value);
 }
 
-void	exit_statement_and_free(t_push *stack_a)
+void	exit_statement_and_free(t_push *stack_a, int i)
 {
 	t_push	*del;
 
@@ -57,6 +57,30 @@ void	exit_statement_and_free(t_push *stack_a)
 		free(del);
 		del = NULL;
 	}
-	write(1, "Error\n", 6);
-	exit(1);
+	if (i == 1)
+	{
+		write(1, "Error\n", 6);
+		exit(1);
+	}
+	else
+		exit (0);
+}
+
+void	sort_low_to_high(t_push *stack, t_count	*instr_2)
+{
+	t_push	*first;
+
+	first = stack;
+	instr_2->ra = 0;
+	while (stack)
+	{
+		if (stack->index == 0)
+			break ;
+		stack = stack->next;
+		instr_2->ra++;
+	}
+	instr_2->ra = fastest_route(instr_2->ra, stack);
+	first = execute_instructions(first, NULL, instr_2);
+	print_lists(first, NULL);
+	exit_statement_and_free(stack, 0);
 }

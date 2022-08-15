@@ -58,39 +58,3 @@ void	clean_lis(t_push *stack_a)
 		stack_a = stack_a->prev;
 	}
 }
-
-t_push	*check_2_at_top(t_push *stack)
-{
-	t_push	*current;
-	t_push	*next_one;
-	t_count	*same_stack;
-	int		i;
-
-	i = 0;
-	same_stack = malloc(sizeof(t_count));
-	while (i < 10)
-	{
-		initialize_same_stack(same_stack);
-		current = stack;
-		while (stack->next)
-		{
-			next_one = current->next;
-			if ((current->index == next_one->index + 1 \
-			&& fastest_route(same_stack->ra, stack) > -4) \
-			|| (fastest_route(same_stack->ra, stack) < 4 \
-			&& current->index == next_one->index + 1))
-			{
-				execute_instructions(stack, NULL, same_stack);
-				current = sa(current);
-				while (current->prev)
-					current = current->prev;
-				same_stack->ra = 0;
-			}
-			current = current->next;
-		}
-		same_stack->ra++;
-		i++;
-	}
-	return (stack);
-}
-
