@@ -51,6 +51,7 @@ int	fastest_route(int rotations, t_push *stack_a)
 		rotations = -length + rotations;
 	if (rotations > length / 2 && rotations < 0)
 		rotations = length + rotations;
+		
 	return (rotations);
 }
 

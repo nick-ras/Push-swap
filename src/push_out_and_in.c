@@ -83,6 +83,17 @@ t_push	*check_2_at_top(t_push *stack)
 		while (current->next)
 		{
 			next_one = current->next;
+
+
+			if (current->index == ft_lstlast_new(current)->index - 1)
+			{
+				instructions_2->ra = -1;
+				stack = execute_instructions(stack, NULL, instructions_2);
+				stack = sa(stack);
+				break ;
+			}
+
+
 			if ((current->index == next_one->index + 1 \
 			&& fastest_route(instructions_2->stack_a_pos, stack) > -4) \
 			|| (fastest_route(instructions_2->stack_a_pos, stack) < 4 \
