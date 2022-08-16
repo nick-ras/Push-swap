@@ -86,15 +86,14 @@ t_push	*check_2_at_top(t_push *stack)
 			if ((current->index == next_one->index + 1 \
 			&& fastest_route(instructions_2->stack_a_pos, stack) > -4) \
 			|| (fastest_route(instructions_2->stack_a_pos, stack) < 4 \
-			&& current->index == next_one->index + 1)) //maybe i < 4 / length_list(stack_a)
+			&& current->index == next_one->index + 1))
 			{
 				instructions_2->ra = fastest_route(instructions_2->stack_a_pos, stack);
 				stack = execute_instructions(stack, NULL, instructions_2);
 				current = sa(current);
 				stack = current;
 			}
-			print_lists(stack, NULL);
-			ft_printf("i = %d\n\n", i);
+			//print_lists(stack, NULL);
 			instructions_2->stack_a_pos++;
 			sort_check(current, instructions_2);
 			current = current->next;
@@ -102,5 +101,7 @@ t_push	*check_2_at_top(t_push *stack)
 		instructions_2->stack_a_pos = 0;
 		i++;
 	}
+	free(instructions_2);
+	instructions_2 = NULL;
 	return (stack);
 }

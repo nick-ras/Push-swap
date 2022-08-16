@@ -60,6 +60,6 @@ void	sort_check(t_push *stack_a, t_count *instructions_2)
 		stack_a = next_nb;
 	}
 	sort_low_to_high(first, instructions_2);
-	print_lists(stack_a, NULL);
+	//print_lists(stack_a, NULL);
 	exit_statement_and_free(stack_a, 0);
 }

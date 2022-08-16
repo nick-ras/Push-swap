@@ -33,6 +33,7 @@ typedef struct counter_list
 
 int		main(int argc, char **argv);
 void	indexing(t_push *stack_a, int argc);
+int		highest_index(t_push *stack);
 t_push	*create_linked_list(int argc, char **argv, t_push *stack_a);
 
 //helpers

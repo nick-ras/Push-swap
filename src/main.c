@@ -46,3 +46,17 @@ void	indexing(t_push *stack_a, int argc)
 		i--;
 	}
 }
+
+int	highest_index(t_push *stack)
+{
+	int		tmp;
+
+	tmp = -2147483648;
+	while (stack)
+	{
+		if (stack->num >= tmp)
+			tmp = stack->num;
+		stack = stack->next;
+	}
+	return (tmp);
+}

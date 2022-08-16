@@ -13,10 +13,12 @@ t_push	*sa(t_push *stack_a)
 		stack_a->next = next_2;
 		next_2->prev = stack_a;
 	}
+	else
+		stack_a->next = NULL;
+	next_1->prev = NULL;
 	next_1->next = stack_a;
 	stack_a->prev = next_1;
-	next_1->prev = NULL;
-	write(1, "pa\n", 3);
+	write(1, "sa\n", 3);
 	return (next_1);
 }
 

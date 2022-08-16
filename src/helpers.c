@@ -18,10 +18,10 @@ int	length_list(t_push *lst)
 
 void	print_lists(t_push *stack_a, t_push *stack_b)
 {
+	ft_printf("list\n");
 	while (stack_a)
 	{
-		ft_printf("a = %d index %d", stack_a->num, \
-		stack_a->index);
+		ft_printf("a = %d index %d", stack_a->num, stack_a->index);
 		stack_a = stack_a->next;
 		if (stack_b)
 		{
@@ -81,6 +81,6 @@ void	sort_low_to_high(t_push *stack, t_count	*instr_2)
 	}
 	instr_2->ra = fastest_route(instr_2->ra, stack);
 	first = execute_instructions(first, NULL, instr_2);
-	print_lists(first, NULL);
+	//print_lists(first, NULL);
 	exit_statement_and_free(stack, 0);
 }
