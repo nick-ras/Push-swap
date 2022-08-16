@@ -4,6 +4,7 @@
 // clear && make re && ./push_swap
 //["1", "4", "12", "2", "10", "6", "9", "13", "3", "11", "7", "15"],
 //ARG="4 1"; ./push_swap $ARG | ./checker_linux $ARG
+// nået til "4 1 3 6 5 7 8";
 
 int	main(int argc, char **argv)
 {
@@ -14,49 +15,9 @@ int	main(int argc, char **argv)
 	stack_a = create_linked_list(argc, argv, stack_a);
 	check_multiples(stack_a);
 	indexing(stack_a, argc);
-	stack_a = check_2_at_top(stack_a);
+	if (argc <= 15)
+		stack_a = check_2_at_top(stack_a);
 	make_lis(stack_a);
 	push_out_and_in (stack_a, argc);
-}
 
-void	indexing(t_push *stack_a, int argc)
-{
-	int		i;
-	int		tmp;
-	t_push	*first;
-	t_push	*tmp_ptr;
-
-	first = stack_a;
-	i = argc - 2;
-	tmp = 0;
-	while (i >= 0)
-	{
-		stack_a = first;
-		tmp = 0;
-		while (stack_a)
-		{
-			if (stack_a->num >= tmp && stack_a->index == -1)
-			{
-				tmp = stack_a->num;
-				tmp_ptr = stack_a;
-			}
-			stack_a = stack_a->next;
-		}
-		tmp_ptr->index = i;
-		i--;
-	}
-}
-
-int	highest_index(t_push *stack)
-{
-	int		tmp;
-
-	tmp = -2147483648;
-	while (stack)
-	{
-		if (stack->num >= tmp)
-			tmp = stack->num;
-		stack = stack->next;
-	}
-	return (tmp);
 }

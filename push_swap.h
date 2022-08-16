@@ -32,30 +32,24 @@ typedef struct counter_list
 }	t_count;
 
 int		main(int argc, char **argv);
-void	indexing(t_push *stack_a, int argc);
-int		highest_index(t_push *stack);
 t_push	*create_linked_list(int argc, char **argv, t_push *stack_a);
 
 //helpers
 int		length_list(t_push *lst);
 int		absolute_value(int value);
 void	exit_statement_and_free(t_push *stack_a, int i);
+void	indexing(t_push *stack_a, int argc);
+t_push	*find_lowest_index(t_push *stack);
+int		highest_index(t_push *stack);
+t_push	*go_to_first(t_push *stack);
 
 //checks
 void	check_multiples(t_push *first);
 void	check_if_small_or_big(int argc);
 void	sort_check(t_push *stack_a, t_count *instructions);
+int		sort_check_while_pb(t_push *stack_a);
 int		numbers_in_order(t_push *first);
 void	print_lists(t_push *stack_a, t_push *stack_b);
-void	sort_low_to_high(t_push *stack, t_count	*instr_2);
-
-//commands
-t_push	*sa(t_push *stack_a);
-t_push	*pa(t_push *stack_a, t_push *stack_b);
-t_push	*pb(t_push *stack_a, t_push *stack_b);
-t_push	*pb_first_push(t_push *stack_a, t_push *stack_b);
-t_push	*r(t_push *stack);
-t_push	*rr(t_push *stack);
 
 //libft
 t_push	*ft_lstlast_new(t_push *lst);
@@ -65,12 +59,14 @@ t_push	*ft_lstnew_new(char *content, t_push *stack_a);
 //make longest increasing subsequence and sorting pipeline
 void	make_lis(t_push *stack_a);
 void	clean_lis(t_push *stack_a);
-t_push	*check_2_at_top(t_push *stack);
 t_push	*find_last_in_sequence(t_push *stack_a);
 
-//sorting
+//sorting and using commands
 void	push_out_and_in(t_push *stack_a, int argc);
 void	sorting_back(t_push *stack_a, t_push *stack_b);
+t_push	*check_first_and_last(t_push *stack, t_count *instr_2);
+t_push	*check_2_at_top(t_push *stack);
+void	sort_low_to_high(t_push *stack, t_count	*instr_2);
 
 //making instructions
 int		does_is_use_less_commands(t_push *stack_a, t_count *instructions);
@@ -85,14 +81,22 @@ void	set_commands(t_push *stack_a, t_push *stack_b, t_count *instructions);
 void	set_commands_bg(t_push *stack_a, t_push *stack_b, \
 t_count *instructions);
 
-void	initialize_instructions_struct(t_count *instructions);
-void	initialize_same_stack(t_count *instructions);
-void	final_initialize_instructions_struct(t_count *instructions);
-
 //executes instructions, return stack_b last
 t_push	*execute_instructions(t_push *last_main, \
 t_push *stack_b, t_count *instructions);
 t_push	*execute_instructions_bg(t_push *stack_a, t_push *stack_b, \
 t_count *instructions);
 
+//initialize
+void	initialize_instructions_struct(t_count *instructions);
+void	initialize_same_stack(t_count *instructions);
+void	final_initialize_instructions_struct(t_count *instructions);
+
+//commands
+t_push	*sa(t_push *stack_a);
+t_push	*pa(t_push *stack_a, t_push *stack_b);
+t_push	*pb(t_push *stack_a, t_push *stack_b);
+t_push	*pb_first_push(t_push *stack_a, t_push *stack_b);
+t_push	*r(t_push *stack);
+t_push	*rr(t_push *stack);
 #endif

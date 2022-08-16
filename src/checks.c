@@ -48,6 +48,8 @@ void	sort_check(t_push *stack_a, t_count *instructions_2)
 	t_push	*next_nb;
 	t_push	*first;
 
+	while (stack_a->prev)
+		stack_a = stack_a->prev;
 	first = stack_a;
 	while (stack_a->next)
 	{
@@ -60,6 +62,23 @@ void	sort_check(t_push *stack_a, t_count *instructions_2)
 		stack_a = next_nb;
 	}
 	sort_low_to_high(first, instructions_2);
-	//print_lists(stack_a, NULL);
-	exit_statement_and_free(stack_a, 0);
+}
+
+int	sort_check_while_pb(t_push *stack_a)
+{
+	t_push	*next_nb;
+
+	while (stack_a->prev)
+		stack_a = stack_a->prev;
+	while (stack_a->next)
+	{
+		next_nb = stack_a->next;
+		if (stack_a->index + 1 != next_nb->index)
+		{
+			if (next_nb != find_lowest_index(go_to_first(stack_a)))
+				return (0);
+		}
+		stack_a = next_nb;
+	}
+	return (1);
 }

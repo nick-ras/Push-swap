@@ -66,21 +66,68 @@ void	exit_statement_and_free(t_push *stack_a, int i)
 		exit (0);
 }
 
-void	sort_low_to_high(t_push *stack, t_count	*instr_2)
+void	indexing(t_push *stack_a, int argc)
 {
+	int		i;
+	int		tmp;
 	t_push	*first;
+	t_push	*tmp_ptr;
 
-	first = stack;
-	instr_2->ra = 0;
+	first = stack_a;
+	i = argc - 2;
+	tmp = 0;
+	while (i >= 0)
+	{
+		stack_a = first;
+		tmp = 0;
+		while (stack_a)
+		{
+			if (stack_a->num >= tmp && stack_a->index == -1)
+			{
+				tmp = stack_a->num;
+				tmp_ptr = stack_a;
+			}
+			stack_a = stack_a->next;
+		}
+		tmp_ptr->index = i;
+		i--;
+	}
+}
+
+t_push	*find_lowest_index(t_push *stack)
+{
+	int	i;
+	t_push	*lowest;
+
+	i = 2147483647;
+
 	while (stack)
 	{
-		if (stack->index == 0)
-			break ;
+		if (stack->index <= i)
+			lowest = stack; 
 		stack = stack->next;
-		instr_2->ra++;
 	}
-	instr_2->ra = fastest_route(instr_2->ra, stack);
-	first = execute_instructions(first, NULL, instr_2);
-	//print_lists(first, NULL);
-	exit_statement_and_free(stack, 0);
+	return (lowest);
 }
+
+int	highest_index(t_push *stack)
+{
+	int		tmp;
+
+	tmp = -2147483648;
+	while (stack)
+	{
+		if (stack->num >= tmp)
+			tmp = stack->num;
+		stack = stack->next;
+	}
+	return (tmp);
+}
+
+t_push	*go_to_first(t_push *stack)
+{
+	while (stack->prev)
+		stack = stack->prev;
+	return (stack);
+}
+
