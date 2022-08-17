@@ -19,9 +19,11 @@ int	length_list(t_push *lst)
 void	print_lists(t_push *stack_a, t_push *stack_b)
 {
 	ft_printf("list\n");
+	while(stack_a->prev)
+		stack_a = stack_a->prev;
 	while (stack_a)
 	{
-		ft_printf("a = %d index %d", stack_a->num, stack_a->index);
+		ft_printf("a = %d index %d index_tmp %d subs %d", stack_a->num, stack_a->index, stack_a->index_tmp, stack_a->subs);
 		stack_a = stack_a->next;
 		if (stack_b)
 		{
@@ -30,14 +32,17 @@ void	print_lists(t_push *stack_a, t_push *stack_b)
 		}
 		ft_printf("\n");
 	}
-	while (stack_b)
+	if (stack_b)
 	{
-		ft_printf("            b = %d\n", stack_b->num);
-		stack_b = stack_b->next;
+		while (stack_b)
+		{
+			ft_printf("            b = %d\n", stack_b->num);
+			stack_b = stack_b->next;
+		}
 	}
 }
 
-int	absolute_value(int value)
+int	abs_val(int value)
 {
 	if (value < 0)
 		return (-value);
@@ -66,31 +71,29 @@ void	exit_statement_and_free(t_push *stack_a, int i)
 		exit (0);
 }
 
-void	indexing(t_push *stack_a, int argc)
+void	indexing(t_push *stack_a, int length, int all_numbers)
 {
-	int		i;
 	int		tmp;
 	t_push	*first;
 	t_push	*tmp_ptr;
 
 	first = stack_a;
-	i = argc - 2;
-	tmp = 0;
-	while (i >= 0)
+	while (length--)
 	{
 		stack_a = first;
-		tmp = 0;
+		tmp = -2147483648;
 		while (stack_a)
 		{
-			if (stack_a->num >= tmp && stack_a->index == -1)
+			if (stack_a->num > tmp && stack_a->index == -1)
 			{
 				tmp = stack_a->num;
 				tmp_ptr = stack_a;
 			}
 			stack_a = stack_a->next;
 		}
-		tmp_ptr->index = i;
-		i--;
+		if (all_numbers == 1)
+			tmp_ptr->index = length;
+		tmp_ptr->index_tmp = length;
 	}
 }
 

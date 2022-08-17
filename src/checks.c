@@ -23,7 +23,7 @@ void	check_multiples(t_push *first)
 
 void	check_if_small_or_big(int argc)
 {
-	if (argc >= 500 || argc <= 2)
+	if (argc > 500 || argc <= 2)
 		exit (1);
 }
 
@@ -54,7 +54,7 @@ void	sort_check(t_push *stack_a, t_count *instructions_2)
 	while (stack_a->next)
 	{
 		next_nb = stack_a->next;
-		if (stack_a->index + 1 != next_nb->index)
+		if (stack_a->num >= next_nb->num)
 		{
 			if (next_nb->index != 0)
 				return ;

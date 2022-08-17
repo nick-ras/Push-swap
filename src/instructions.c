@@ -51,7 +51,6 @@ int	fastest_route(int rotations, t_push *stack_a)
 		rotations = -length + rotations;
 	if (rotations > length / 2 && rotations < 0)
 		rotations = length + rotations;
-		
 	return (rotations);
 }
 
@@ -65,10 +64,10 @@ void	set_commands(t_push *stack_a, t_push *stack_b, t_count *instructions)
 
 void	set_commands_bg(t_push *stack_a, t_push *stack_b, t_count *instructions)
 {
-	instructions->ra_bg = fastest_route(instructions->stack_a_pos \
-	- instructions->stack_b_pos, stack_a);
+	instructions->ra_bg = fastest_route(instructions->stack_a_pos, stack_a) \
+	- fastest_route(instructions->stack_b_pos, stack_b);
 	instructions->dif_bg = stack_a->num - stack_b->num;
-	instructions->rr_bg = instructions->stack_b_pos;
+	instructions->rr_bg = fastest_route(instructions->stack_b_pos, stack_b);
 }
 
 //if stack b, it returns first in stack b, otherwise first in stack a
@@ -106,36 +105,10 @@ t_count *instructions)
 	return (stack_a);
 }
 
-t_push	*execute_instructions_bg(t_push *stack_a, t_push *stack_b, \
-t_count *instructions)
+t_push	*execute_stack_a(t_push *stack, t_count *instr_2)
 {
-	while (instructions->rr_bg > 0)
-	{
-		write(1, "rr\n", 3);
-		stack_a = r(stack_a);
-		stack_b = r(stack_b);
-		instructions->rr_bg--;
-	}
-	while (instructions->rr_bg < 0)
-	{
-		write(1, "rrr\n", 4);
-		stack_a = rr(stack_a);
-		stack_b = rr(stack_b);
-		instructions->rr_bg++;
-	}
-	while (instructions->ra_bg > 0)
-	{
-		write(1, "ra\n", 3);
-		stack_a = r(stack_a);
-		instructions->ra_bg--;
-	}
-	while (instructions->ra_bg < 0)
-	{
-		write(1, "rra\n", 4);
-		stack_a = rr(stack_a);
-		instructions->ra_bg++;
-	}
-	if (stack_b)
-		return (pa(stack_a, stack_b));
-	return (NULL);
+	instr_2->ra = fastest_route(instr_2->stack_a_pos, go_to_first(stack));
+	stack = execute_instructions(go_to_first(stack), NULL, instr_2);
+	stack = sa(stack);
+	return (stack);
 }

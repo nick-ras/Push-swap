@@ -9,15 +9,16 @@
 int	main(int argc, char **argv)
 {
 	t_push	*stack_a;
+	t_count	*instr_2;
 
+	instr_2 = malloc(sizeof(t_count));
 	stack_a = NULL;
 	check_if_small_or_big(argc);
 	stack_a = create_linked_list(argc, argv, stack_a);
 	check_multiples(stack_a);
-	indexing(stack_a, argc);
-	if (argc <= 15)
-		stack_a = check_2_at_top(stack_a);
+	indexing(stack_a, length_list(stack_a), 1);
+	//print_lists(stack_a, NULL);
+	stack_a = use_sa(stack_a, instr_2);
 	make_lis(stack_a);
-	push_out_and_in (stack_a, argc);
-
+	push_out_and_in (stack_a, argc, instr_2);
 }

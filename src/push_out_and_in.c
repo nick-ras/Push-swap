@@ -1,7 +1,7 @@
 #include "../push_swap.h"
 
 // pushes leftovers to b, subfunctions(sorting_back) puts back
-void	push_out_and_in(t_push *stack_a, int argc)
+void	push_out_and_in(t_push *stack_a, int argc, t_count *instr_2)
 {
 	int		i;
 	t_push	*stack_b;
@@ -9,9 +9,9 @@ void	push_out_and_in(t_push *stack_a, int argc)
 
 	stack_b = NULL;
 	i = 0;
+	//print_lists(stack_a, stack_b);
 	while (i < argc - 1)
 	{
-		print_lists(stack_a, stack_b);
 		if (sort_check_while_pb(stack_a))
 			break ;
 		if (stack_a->subs)
@@ -33,79 +33,69 @@ void	push_out_and_in(t_push *stack_a, int argc)
 				stack_a = tmp;
 			}
 		}
+		//print_lists(stack_a, stack_b);
 		i++;
 	}
-	//print_lists(stack_a, stack_b);
-	sorting_back(stack_a, stack_b);
+	sorting_back(stack_a, stack_b, instr_2);
 }
 
 //sorting leftover numbers (stack b) back into stack a
-void	sorting_back(t_push *stack_a, t_push *stack_b)
+void	sorting_back(t_push *stack_a, t_push *stack_b, t_count *instr_2)
 {
-	t_count	*instr_2;
-
-	instr_2 = malloc(sizeof(t_count));
-	// if (stack_b)
-	// 	print_lists(stack_a, stack_b);
-	// else
-	// 	print_lists(stack_a, NULL);
+	initialize_instructions_struct(instr_2);
+	//print_lists(stack_a, stack_b);
 	while (stack_b)
 	{
 		make_instructions(stack_a, stack_b, instr_2);
-		if (absolute_value(instr_2->ra_bg) + absolute_value(instr_2->rr_bg) \
-		< absolute_value(instr_2->ra) + absolute_value(instr_2->rr))
-			stack_b = execute_instructions_bg(stack_a, stack_b, instr_2);
-		else
+		if (abs_val(instr_2->ra_bg) + abs_val(instr_2->rr_bg) \
+		< abs_val(instr_2->ra) + abs_val(instr_2->rr))
+		{
+			instr_2->ra = instr_2->ra_bg;
+			instr_2->rr = instr_2->rr_bg;
 			stack_b = execute_instructions(stack_a, stack_b, instr_2);
+		}
+		else
+		{
+			stack_b = execute_instructions(stack_a, stack_b, instr_2);
+		}
 		while (stack_a->prev)
 			stack_a = stack_a->prev;
-		/* if (stack_b)
-			print_lists(stack_a, stack_b);
-		else
-			print_lists(stack_a, NULL); */
+		//print_lists(stack_a, stack_b);
 	}
-	free(stack_a);
-	free(instr_2);
-	stack_a = NULL;
-	instr_2 = NULL;
+	sort_low_to_high(stack_a, instr_2);
 }
 
-t_push	*check_2_at_top(t_push *stack)
+t_push	*use_sa(t_push *stack, t_count *instr_2)
 {
 	t_push	*next_one;
-	t_count	*instr_2;
 	int		i;
 
 	i = 0;
-	instr_2 = malloc(sizeof(t_count));
-	while (i < 10)
+	while (i < (length_list(stack) / 2))
 	{
+		sort_check(go_to_first(stack), instr_2);
+		//print_lists(stack, NULL);
 		initialize_same_stack(instr_2);
-		stack = check_first_and_last(go_to_first(stack), instr_2);
+		stack = sa_first_and_last(go_to_first(stack), instr_2);
 		while (stack->next)
 		{
+			//print_lists(stack, NULL);
 			next_one = stack->next;
-			if ((stack->index == next_one->index + 1 \
-			&& absolute_value(fastest_route(instr_2->stack_a_pos, stack) > 4) && stack->index == next_one->index + 1))
-			{
-				instr_2->ra = fastest_route(instr_2->stack_a_pos, go_to_first(stack));
-				stack = execute_instructions(go_to_first(stack), NULL, instr_2);
-				stack = sa(stack);
-			}
+			if ((stack->index == next_one->index + 1 && abs_val(fastest_route(instr_2->stack_a_pos, stack) < 3 + length_list(stack) / 5)))
+				execute_stack_a(stack, instr_2);
 			instr_2->stack_a_pos++;
-			print_lists(go_to_first(stack), NULL);
+			////print_lists(go_to_first(stack), NULL);
 			sort_check(go_to_first(stack), instr_2);
 			stack = stack->next;
 		}
 		instr_2->stack_a_pos = 0;
 		i++;
 	}
-	free(instr_2);
-	instr_2 = NULL;
+	//print_lists(stack, NULL);
 	return (go_to_first(stack));
 }
 
-t_push	*check_first_and_last(t_push *stack, t_count *instr_2)
+t_push	*sa_first_and_last(t_push *stack, t_count *instr_2)
 {
 	while (stack->index == ft_lstlast_new(stack)->index - 1)
 	{
@@ -113,6 +103,7 @@ t_push	*check_first_and_last(t_push *stack, t_count *instr_2)
 		stack = execute_instructions(stack, NULL, instr_2);
 		stack = sa(stack);
 	}
+	initialize_same_stack(instr_2);
 	return (stack);
 }
 
@@ -131,6 +122,9 @@ void	sort_low_to_high(t_push *stack, t_count	*instr_2)
 	}
 	instr_2->ra = fastest_route(instr_2->ra, stack);
 	first = execute_instructions(first, NULL, instr_2);
-	//print_lists(first, NULL);
+	////print_lists(first, NULL);
+	free(instr_2);
+	instr_2 = NULL;
+	print_lists(first, NULL);
 	exit_statement_and_free(stack, 0);
 }

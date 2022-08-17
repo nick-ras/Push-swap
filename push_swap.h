@@ -12,6 +12,7 @@ typedef struct s_push
 	int				num;
 	int				len;
 	int				index;
+	int				index_tmp;
 	struct s_push	*prev;
 	struct s_push	*next;
 	struct s_push	*subs;
@@ -36,9 +37,9 @@ t_push	*create_linked_list(int argc, char **argv, t_push *stack_a);
 
 //helpers
 int		length_list(t_push *lst);
-int		absolute_value(int value);
+int		abs_val(int value);
 void	exit_statement_and_free(t_push *stack_a, int i);
-void	indexing(t_push *stack_a, int argc);
+void	indexing(t_push *stack_a, int length, int all_numbers);
 t_push	*find_lowest_index(t_push *stack);
 int		highest_index(t_push *stack);
 t_push	*go_to_first(t_push *stack);
@@ -62,10 +63,10 @@ void	clean_lis(t_push *stack_a);
 t_push	*find_last_in_sequence(t_push *stack_a);
 
 //sorting and using commands
-void	push_out_and_in(t_push *stack_a, int argc);
-void	sorting_back(t_push *stack_a, t_push *stack_b);
-t_push	*check_first_and_last(t_push *stack, t_count *instr_2);
-t_push	*check_2_at_top(t_push *stack);
+void	push_out_and_in(t_push *stack_a, int argc, t_count *instr_2);
+void	sorting_back(t_push *stack_a, t_push *stack_b, t_count *instr_2);
+t_push	*sa_first_and_last(t_push *stack, t_count *instr_2);
+t_push	*use_sa(t_push *stack, t_count *instr_2);
 void	sort_low_to_high(t_push *stack, t_count	*instr_2);
 
 //making instructions
@@ -84,8 +85,7 @@ t_count *instructions);
 //executes instructions, return stack_b last
 t_push	*execute_instructions(t_push *last_main, \
 t_push *stack_b, t_count *instructions);
-t_push	*execute_instructions_bg(t_push *stack_a, t_push *stack_b, \
-t_count *instructions);
+t_push	*execute_stack_a(t_push *stack, t_count *instr_2);
 
 //initialize
 void	initialize_instructions_struct(t_count *instructions);
