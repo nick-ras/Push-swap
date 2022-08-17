@@ -1,15 +1,13 @@
 #include "../push_swap.h"
 
 // pushes leftovers to b, subfunctions(sorting_back) puts back
-void	push_out_and_in(t_push *stack_a, int argc, t_count *instr_2)
+void	push_out_and_in(t_push *stack_a, int argc, \
+t_push *stack_b, t_count *instr_2)
 {
 	int		i;
-	t_push	*stack_b;
 	t_push	*tmp;
 
-	stack_b = NULL;
 	i = 0;
-	//print_lists(stack_a, stack_b);
 	while (i < argc - 1)
 	{
 		if (sort_check_while_pb(stack_a))
@@ -34,7 +32,6 @@ void	push_out_and_in(t_push *stack_a, int argc, t_count *instr_2)
 				stack_a = tmp;
 			}
 		}
-		//print_lists(stack_a, stack_b);
 		i++;
 	}
 	sorting_back(stack_a, stack_b, instr_2);
@@ -100,8 +97,7 @@ t_push	*use_swap(t_push *stack, t_count *instr_2, int a_or_b)
 
 t_push	*sa_first_and_last(t_push *stack, t_count *instr_2)
 {
-	indexing(stack, length_list(stack), 0);
-	while (stack->index_tmp == ft_lstlast_new(stack)->index_tmp - 1)
+	while (stack->index == ft_lstlast_new(stack)->index - 1)
 	{
 		instr_2->ra = -1;
 		stack = execute_instructions(stack, NULL, instr_2);
@@ -126,7 +122,6 @@ void	sort_low_to_high(t_push *stack, t_count	*instr_2)
 	}
 	instr_2->ra = fastest_route(instr_2->ra, stack);
 	first = execute_instructions(first, NULL, instr_2);
-	////print_lists(first, NULL);
 	free(instr_2);
 	instr_2 = NULL;
 	//print_lists(first, NULL);

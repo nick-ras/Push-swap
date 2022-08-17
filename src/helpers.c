@@ -16,31 +16,31 @@ int	length_list(t_push *lst)
 	return (i);
 }
 
-void	print_lists(t_push *stack_a, t_push *stack_b)
-{
-	ft_printf("list\n");
-	while(stack_a->prev)
-		stack_a = stack_a->prev;
-	while (stack_a)
-	{
-		ft_printf("a = %d index %d index_tmp %d subs %d", stack_a->num, stack_a->index, stack_a->index_tmp, stack_a->subs);
-		stack_a = stack_a->next;
-		if (stack_b)
-		{
-			ft_printf("  b = %d", stack_b->num);
-			stack_b = stack_b->next;
-		}
-		ft_printf("\n");
-	}
-	if (stack_b)
-	{
-		while (stack_b)
-		{
-			ft_printf("            b = %d\n", stack_b->num);
-			stack_b = stack_b->next;
-		}
-	}
-}
+// void	print_lists(t_push *stack_a, t_push *stack_b)
+// {
+// 	ft_printf("list\n");
+// 	while (stack_a->prev)
+// 		stack_a = stack_a->prev;
+// 	while (stack_a)
+// 	{
+// 		ft_printf("a = %d index %d index_tmp %d subs %d", stack_a->num, stack_a->index, stack_a->index_tmp, stack_a->subs);
+// 		stack_a = stack_a->next;
+// 		if (stack_b)
+// 		{
+// 			ft_printf("  b = %d", stack_b->num);
+// 			stack_b = stack_b->next;
+// 		}
+// 		ft_printf("\n");
+// 	}
+// 	if (stack_b)
+// 	{
+// 		while (stack_b)
+// 		{
+// 			ft_printf("            b = %d\n", stack_b->num);
+// 			stack_b = stack_b->next;
+// 		}
+// 	}
+// }
 
 int	abs_val(int value)
 {
@@ -96,41 +96,3 @@ void	indexing(t_push *stack_a, int length, int all_numbers)
 		tmp_ptr->index_tmp = length;
 	}
 }
-
-t_push	*find_lowest_index(t_push *stack)
-{
-	int	i;
-	t_push	*lowest;
-
-	i = 2147483647;
-
-	while (stack)
-	{
-		if (stack->index <= i)
-			lowest = stack; 
-		stack = stack->next;
-	}
-	return (lowest);
-}
-
-int	highest_index(t_push *stack)
-{
-	int		tmp;
-
-	tmp = -2147483648;
-	while (stack)
-	{
-		if (stack->num >= tmp)
-			tmp = stack->num;
-		stack = stack->next;
-	}
-	return (tmp);
-}
-
-t_push	*go_to_first(t_push *stack)
-{
-	while (stack->prev)
-		stack = stack->prev;
-	return (stack);
-}
-

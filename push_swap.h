@@ -63,7 +63,7 @@ void	clean_lis(t_push *stack_a);
 t_push	*find_last_in_sequence(t_push *stack_a);
 
 //sorting and using commands
-void	push_out_and_in(t_push *stack_a, int argc, t_count *instr_2);
+void	push_out_and_in(t_push *stack_a, int argc, t_push *stack_b, t_count *instr_2);
 void	sorting_back(t_push *stack_a, t_push *stack_b, t_count *instr_2);
 t_push	*sa_first_and_last(t_push *stack, t_count *instr_2);
 t_push	*use_swap(t_push *stack, t_count *instr_2, int a_or_b);
@@ -86,6 +86,7 @@ t_count *instructions);
 t_push	*execute_instructions(t_push *last_main, \
 t_push *stack_b, t_count *instructions);
 t_push	*execute_stack(t_push *stack, t_count *instr_2, int a_or_b);
+t_push	*rotate_a(t_push *stack_a, t_count *instructions);
 
 //initialize
 void	initialize_instructions_struct(t_count *instructions);

@@ -9,8 +9,10 @@
 int	main(int argc, char **argv)
 {
 	t_push	*stack_a;
+	t_push	*stack_b;
 	t_count	*instr_2;
 
+	stack_b = NULL;
 	instr_2 = malloc(sizeof(t_count));
 	stack_a = NULL;
 	check_if_small_or_big(argc);
@@ -20,5 +22,5 @@ int	main(int argc, char **argv)
 	//print_lists(stack_a, NULL);
 	stack_a = use_swap(stack_a, instr_2, 0);
 	make_lis(stack_a);
-	push_out_and_in (stack_a, argc, instr_2);
+	push_out_and_in (stack_a, argc, stack_b, instr_2);
 }

@@ -17,10 +17,10 @@ CFLAGS = -Wall -Wextra -Werror -g3
 
 RM = rm -rf
 
-SRC_FILES	= main.c instructions.c make_lists.c \
+SRC_FILES	= main.c instructions.c instructions2.c make_lists.c \
 			push_out_and_in.c checks.c \
 			commands_push.c commands_rotate.c \
-			libft_changed.c helpers.c lis.c \
+			libft_changed.c helpers.c helpers2.c lis.c \
 			initialize_structs.c
 
 OBJ_FILES	= ${SRC_FILES:.c=.o}

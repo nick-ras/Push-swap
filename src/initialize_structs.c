@@ -1,4 +1,3 @@
-
 #include "../push_swap.h"
 
 void	initialize_instructions_struct(t_count *instructions)

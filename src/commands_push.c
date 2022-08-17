@@ -54,7 +54,7 @@ t_push	*pa(t_push *stack_a, t_push *stack_b)
 		second_b = stack_b->next;
 		second_b->prev = NULL;
 	}
-	else 
+	else
 		second_b = NULL;
 	stack_b->next = stack_a;
 	stack_a->prev = stack_b;
@@ -72,7 +72,7 @@ t_push	*pb_first_push(t_push *stack_a, t_push *stack_b)
 	second = stack_a->next;
 	second->prev = NULL;
 	stack_b = stack_a;
-	stack_b->next= NULL;
+	stack_b->next = NULL;
 	return (stack_b);
 }
 
