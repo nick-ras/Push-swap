@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 	check_multiples(stack_a);
 	indexing(stack_a, length_list(stack_a), 1);
 	//print_lists(stack_a, NULL);
-	stack_a = use_sa(stack_a, instr_2);
+	stack_a = use_swap(stack_a, instr_2, 0);
 	make_lis(stack_a);
 	push_out_and_in (stack_a, argc, instr_2);
 }

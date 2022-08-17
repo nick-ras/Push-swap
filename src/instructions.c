@@ -105,10 +105,13 @@ t_count *instructions)
 	return (stack_a);
 }
 
-t_push	*execute_stack_a(t_push *stack, t_count *instr_2)
+t_push	*execute_stack(t_push *stack, t_count *instr_2, int a_or_b)
 {
 	instr_2->ra = fastest_route(instr_2->stack_a_pos, go_to_first(stack));
 	stack = execute_instructions(go_to_first(stack), NULL, instr_2);
-	stack = sa(stack);
+	if (a_or_b == 0)
+		stack = sa(stack);
+	else
+		stack = sb(stack);
 	return (stack);
 }

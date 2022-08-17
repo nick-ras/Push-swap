@@ -22,6 +22,27 @@ t_push	*sa(t_push *stack_a)
 	return (next_1);
 }
 
+t_push	*sb(t_push *stack_a)
+{
+	t_push	*next_1;
+	t_push	*next_2;
+
+	next_1 = stack_a->next;
+	if (next_1->next)
+	{
+		next_2 = next_1->next;
+		stack_a->next = next_2;
+		next_2->prev = stack_a;
+	}
+	else
+		stack_a->next = NULL;
+	next_1->prev = NULL;
+	next_1->next = stack_a;
+	stack_a->prev = next_1;
+	write(1, "sb\n", 3);
+	return (next_1);
+}
+
 ///pushes last b to a, returns stack_b_next
 t_push	*pa(t_push *stack_a, t_push *stack_b)
 {

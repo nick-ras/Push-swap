@@ -66,7 +66,7 @@ t_push	*find_last_in_sequence(t_push *stack_a);
 void	push_out_and_in(t_push *stack_a, int argc, t_count *instr_2);
 void	sorting_back(t_push *stack_a, t_push *stack_b, t_count *instr_2);
 t_push	*sa_first_and_last(t_push *stack, t_count *instr_2);
-t_push	*use_sa(t_push *stack, t_count *instr_2);
+t_push	*use_swap(t_push *stack, t_count *instr_2, int a_or_b);
 void	sort_low_to_high(t_push *stack, t_count	*instr_2);
 
 //making instructions
@@ -85,7 +85,7 @@ t_count *instructions);
 //executes instructions, return stack_b last
 t_push	*execute_instructions(t_push *last_main, \
 t_push *stack_b, t_count *instructions);
-t_push	*execute_stack_a(t_push *stack, t_count *instr_2);
+t_push	*execute_stack(t_push *stack, t_count *instr_2, int a_or_b);
 
 //initialize
 void	initialize_instructions_struct(t_count *instructions);
@@ -94,6 +94,7 @@ void	final_initialize_instructions_struct(t_count *instructions);
 
 //commands
 t_push	*sa(t_push *stack_a);
+t_push	*sb(t_push *stack_a);
 t_push	*pa(t_push *stack_a, t_push *stack_b);
 t_push	*pb(t_push *stack_a, t_push *stack_b);
 t_push	*pb_first_push(t_push *stack_a, t_push *stack_b);

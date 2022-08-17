@@ -30,6 +30,7 @@ void	push_out_and_in(t_push *stack_a, int argc, t_count *instr_2)
 			else
 			{
 				stack_b = pb(stack_a, stack_b);
+				stack_b = use_swap(stack_b, instr_2, 1);
 				stack_a = tmp;
 			}
 		}
@@ -65,7 +66,7 @@ void	sorting_back(t_push *stack_a, t_push *stack_b, t_count *instr_2)
 	sort_low_to_high(stack_a, instr_2);
 }
 
-t_push	*use_sa(t_push *stack, t_count *instr_2)
+t_push	*use_swap(t_push *stack, t_count *instr_2, int a_or_b)
 {
 	t_push	*next_one;
 	int		i;
@@ -73,7 +74,8 @@ t_push	*use_sa(t_push *stack, t_count *instr_2)
 	i = 0;
 	while (i < (length_list(stack) / 2))
 	{
-		sort_check(go_to_first(stack), instr_2);
+		if (a_or_b == 0)
+			sort_check(go_to_first(stack), instr_2);
 		//print_lists(stack, NULL);
 		initialize_same_stack(instr_2);
 		stack = sa_first_and_last(go_to_first(stack), instr_2);
@@ -82,10 +84,11 @@ t_push	*use_sa(t_push *stack, t_count *instr_2)
 			//print_lists(stack, NULL);
 			next_one = stack->next;
 			if ((stack->index == next_one->index + 1 && abs_val(fastest_route(instr_2->stack_a_pos, stack) < 3 + length_list(stack) / 5)))
-				execute_stack_a(stack, instr_2);
+				execute_stack(stack, instr_2, a_or_b);
 			instr_2->stack_a_pos++;
 			////print_lists(go_to_first(stack), NULL);
-			sort_check(go_to_first(stack), instr_2);
+			if (a_or_b == 0)
+				sort_check(go_to_first(stack), instr_2);
 			stack = stack->next;
 		}
 		instr_2->stack_a_pos = 0;
@@ -97,7 +100,8 @@ t_push	*use_sa(t_push *stack, t_count *instr_2)
 
 t_push	*sa_first_and_last(t_push *stack, t_count *instr_2)
 {
-	while (stack->index == ft_lstlast_new(stack)->index - 1)
+	indexing(stack, length_list(stack), 0);
+	while (stack->index_tmp == ft_lstlast_new(stack)->index_tmp - 1)
 	{
 		instr_2->ra = -1;
 		stack = execute_instructions(stack, NULL, instr_2);
@@ -125,6 +129,6 @@ void	sort_low_to_high(t_push *stack, t_count	*instr_2)
 	////print_lists(first, NULL);
 	free(instr_2);
 	instr_2 = NULL;
-	print_lists(first, NULL);
+	//print_lists(first, NULL);
 	exit_statement_and_free(stack, 0);
 }
