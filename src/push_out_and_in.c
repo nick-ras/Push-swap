@@ -124,6 +124,6 @@ void	sort_low_to_high(t_push *stack, t_count	*instr_2)
 	first = execute_instructions(first, NULL, instr_2);
 	free(instr_2);
 	instr_2 = NULL;
-	//print_lists(first, NULL);
+	print_lists(first, NULL);
 	exit_statement_and_free(stack, 0);
 }

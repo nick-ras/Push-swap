@@ -16,31 +16,31 @@ int	length_list(t_push *lst)
 	return (i);
 }
 
-// void	print_lists(t_push *stack_a, t_push *stack_b)
-// {
-// 	ft_printf("list\n");
-// 	while (stack_a->prev)
-// 		stack_a = stack_a->prev;
-// 	while (stack_a)
-// 	{
-// 		ft_printf("a = %d index %d index_tmp %d subs %d", stack_a->num, stack_a->index, stack_a->index_tmp, stack_a->subs);
-// 		stack_a = stack_a->next;
-// 		if (stack_b)
-// 		{
-// 			ft_printf("  b = %d", stack_b->num);
-// 			stack_b = stack_b->next;
-// 		}
-// 		ft_printf("\n");
-// 	}
-// 	if (stack_b)
-// 	{
-// 		while (stack_b)
-// 		{
-// 			ft_printf("            b = %d\n", stack_b->num);
-// 			stack_b = stack_b->next;
-// 		}
-// 	}
-// }
+void	print_lists(t_push *stack_a, t_push *stack_b)
+{
+	ft_printf("list\n");
+	while (stack_a->prev)
+		stack_a = stack_a->prev;
+	while (stack_a)
+	{
+		ft_printf("a = %d index %d index_tmp %d subs %d", stack_a->num, stack_a->index, stack_a->index_tmp, stack_a->subs);
+		stack_a = stack_a->next;
+		if (stack_b)
+		{
+			ft_printf("  b = %d", stack_b->num);
+			stack_b = stack_b->next;
+		}
+		ft_printf("\n");
+	}
+	if (stack_b)
+	{
+		while (stack_b)
+		{
+			ft_printf("            b = %d\n", stack_b->num);
+			stack_b = stack_b->next;
+		}
+	}
+}
 
 int	abs_val(int value)
 {
