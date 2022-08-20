@@ -76,6 +76,7 @@ t_push	*use_swap(t_push *stack, t_count *instr_2, int a_or_b)
 		//print_lists(stack, NULL);
 		initialize_same_stack(instr_2);
 		stack = sa_first_and_last(go_to_first(stack), instr_2);
+		//try smth with small stacks
 		while (stack->next)
 		{
 			//print_lists(stack, NULL);
@@ -86,6 +87,7 @@ t_push	*use_swap(t_push *stack, t_count *instr_2, int a_or_b)
 			////print_lists(go_to_first(stack), NULL);
 			if (a_or_b == 0)
 				sort_check(go_to_first(stack), instr_2);
+			if (stack->next)
 			stack = stack->next;
 		}
 		instr_2->stack_a_pos = 0;
@@ -124,6 +126,6 @@ void	sort_low_to_high(t_push *stack, t_count	*instr_2)
 	first = execute_instructions(first, NULL, instr_2);
 	free(instr_2);
 	instr_2 = NULL;
-	print_lists(first, NULL);
+	//print_lists(first, NULL);
 	exit_statement_and_free(stack, 0);
 }
