@@ -11,6 +11,8 @@ t_count *instructions)
 	{
 		stack_a = first;
 		instructions->stack_a_pos = 0;
+		instructions->dif = -2147483648;
+		instructions->dif_bg = 2147483647;
 		while (stack_a)
 		{
 			make_instructions_subfunction(stack_a, stack_b, instructions);

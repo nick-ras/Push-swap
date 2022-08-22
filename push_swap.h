@@ -40,14 +40,16 @@ int		length_list(t_push *lst);
 int		abs_val(int value);
 void	exit_statement_and_free(t_push *stack_a, int i);
 void	indexing(t_push *stack_a, int length, int all_numbers);
-t_push	*find_lowest_index(t_push *stack);
+void	indexing_partial(t_push *stack_a, int length);
+t_push	*lowest_index(t_push *stack);
 int		highest_index(t_push *stack);
 t_push	*go_to_first(t_push *stack);
 
 //checks
 void	check_multiples(t_push *first);
 void	check_if_small_or_big(int argc);
-void	sort_check(t_push *stack_a, t_count *instructions);
+void	sort_check(t_push *stack_a, t_count *instructions, int argc);
+int		sort_check_partial(t_push *stack_a);
 int		sort_check_while_pb(t_push *stack_a);
 int		numbers_in_order(t_push *first);
 void	print_lists(t_push *stack_a, t_push *stack_b);
@@ -63,10 +65,12 @@ void	clean_lis(t_push *stack_a);
 t_push	*find_last_in_sequence(t_push *stack_a);
 
 //sorting and using commands
+t_push	*sa_first_and_last(t_push *stack, t_count *instr_2);
+t_push	*use_sa(t_push *stack, t_count *instr_2, int argc);
+t_push	*use_sa_5(t_push *stack, t_count *instr_2);
+void	five_numbers(t_push *stack_a, t_push *stack_b, t_count *instr_2);
 void	push_out_and_in(t_push *stack_a, int argc, t_count *instr_2);
 void	sorting_back(t_push *stack_a, t_push *stack_b, t_count *instr_2);
-t_push	*sa_first_and_last(t_push *stack, t_count *instr_2);
-t_push	*use_sa(t_push *stack, t_count *instr_2);
 void	sort_low_to_high(t_push *stack, t_count	*instr_2);
 
 //making instructions

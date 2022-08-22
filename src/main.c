@@ -10,15 +10,33 @@ int	main(int argc, char **argv)
 {
 	t_push	*stack_a;
 	t_count	*instr_2;
+	t_push	*stack_b;
 
+	stack_b = NULL;
 	instr_2 = malloc(sizeof(t_count));
 	stack_a = NULL;
 	check_if_small_or_big(argc);
 	stack_a = create_linked_list(argc, argv, stack_a);
 	check_multiples(stack_a);
 	indexing(stack_a, length_list(stack_a), 1);
-	//print_lists(stack_a, NULL);
-	stack_a = use_sa(stack_a, instr_2);
+	if (argc <= 4)
+		use_sa(stack_a, instr_2, argc);
+	if (argc <= 6)
+		five_numbers(stack_a, stack_b, instr_2);
 	make_lis(stack_a);
 	push_out_and_in (stack_a, argc, instr_2);
+}
+
+void	five_numbers(t_push *stack_a, t_push *stack_b, t_count *instr_2)
+{
+	t_push	*tmp;
+
+	tmp = stack_a->next;
+	stack_b = pb_first_push(stack_a, stack_b);
+	stack_a = tmp;
+	tmp = stack_a->next;
+	stack_b = pb(stack_a, stack_b);
+	stack_a = tmp;
+	use_sa_5(stack_a, instr_2);
+	sorting_back(stack_a, stack_b, instr_2);
 }

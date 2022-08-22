@@ -89,17 +89,49 @@ void	indexing(t_push *stack_a, int length, int all_numbers)
 				tmp = stack_a->num;
 				tmp_ptr = stack_a;
 			}
+			if (stack_a->next == NULL)
+				break ;
 			stack_a = stack_a->next;
 		}
 		if (all_numbers == 1)
 			tmp_ptr->index = length;
+	}
+}
+
+void	indexing_partial(t_push *stack_a, int length)
+{
+	int		tmp;
+	t_push	*first;
+	t_push	*tmp_ptr;
+
+	first = stack_a;
+	while (stack_a)
+	{
+		stack_a->index_tmp = -1;
+		stack_a = stack_a->next;
+	}
+	while (length--)
+	{
+		stack_a = first;
+		tmp = -2147483648;
+		while (stack_a)
+		{
+			if (stack_a->num > tmp && stack_a->index_tmp == -1)
+			{
+				tmp = stack_a->num;
+				tmp_ptr = stack_a;
+			}
+			if (stack_a->next == NULL)
+				break ;
+			stack_a = stack_a->next;
+		}
 		tmp_ptr->index_tmp = length;
 	}
 }
 
-t_push	*find_lowest_index(t_push *stack)
+t_push	*lowest_index(t_push *stack)
 {
-	int	i;
+	int		i;
 	t_push	*lowest;
 
 	i = 2147483647;
