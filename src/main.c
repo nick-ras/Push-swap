@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nickras <nickras@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/22 17:44:41 by nickras           #+#    #+#             */
+/*   Updated: 2022/08/22 17:44:43 by nickras          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
 // clear && gcc -g main.c -Llibft_for_push_swap -lft && ./a.out 1 2 3 4 5 1
@@ -34,9 +46,12 @@ void	five_numbers(t_push *stack_a, t_push *stack_b, t_count *instr_2)
 	tmp = stack_a->next;
 	stack_b = pb_first_push(stack_a, stack_b);
 	stack_a = tmp;
-	tmp = stack_a->next;
-	stack_b = pb(stack_a, stack_b);
-	stack_a = tmp;
-	use_sa_5(stack_a, instr_2);
+	if (length_list(stack_a) == 4)
+	{
+		tmp = stack_a->next;
+		stack_b = pb(stack_a, stack_b);
+		stack_a = tmp;
+	}
+	stack_a = use_sa_5(stack_a, instr_2);
 	sorting_back(stack_a, stack_b, instr_2);
 }

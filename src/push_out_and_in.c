@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_out_and_in.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nickras <nickras@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/22 17:44:48 by nickras           #+#    #+#             */
+/*   Updated: 2022/08/22 17:45:07 by nickras          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
 t_push	*use_sa(t_push *stack, t_count *instr_2, int argc)
@@ -24,10 +36,9 @@ t_push	*use_sa_5(t_push *stack, t_count *instr_2)
 	t_push	*next_one;
 	int		length;
 
+	stack = go_to_first(stack);
 	length = length_list(stack);
 	indexing_partial(stack, length);
-
-	stack = go_to_first(stack);
 	while (stack->next)
 	{
 		next_one = stack->next;
@@ -35,17 +46,18 @@ t_push	*use_sa_5(t_push *stack, t_count *instr_2)
 			stack = sa_first_and_last(go_to_first(stack), instr_2);
 		if (stack->index_tmp == next_one->index_tmp + 1)
 			execute_stack_a(stack, instr_2);
-		sort_check_partial(go_to_first(stack));
+		if (sort_check_partial(go_to_first(stack)))
+			break ;
 		instr_2->stack_a_pos++;
 		stack = stack->next;
 	}
-	return (go_to_first(stack));
 	return (go_to_first(stack));
 }
 
 t_push	*sa_first_and_last(t_push *stack, t_count *instr_2)
 {
-	if (stack->index + 1 == ft_lstlast_new(stack)->index)
+	if (stack->index + 1 == ft_lstlast_new(stack)->index \
+	|| stack->index_tmp + 1 == ft_lstlast_new(stack)->index_tmp)
 	{
 		instr_2->ra = -1;
 		instr_2->rr = 0;
