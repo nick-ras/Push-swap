@@ -113,7 +113,7 @@ void	sorting_back(t_push *stack_a, t_push *stack_b, t_count *instr_2)
 	initialize_instructions_struct(instr_2);
 	while (stack_b)
 	{
-	  print_lists(stack_a, stack_b);
+	  //print_lists(stack_a, stack_b);
 		make_instructions(stack_a, stack_b, instr_2);
 		if (abs_val(instr_2->ra_bg) + abs_val(instr_2->rr_bg) \
 		< abs_val(instr_2->ra) + abs_val(instr_2->rr))
@@ -149,6 +149,6 @@ void	sort_low_to_high(t_push *stack, t_count	*instr_2)
 	first = execute_instructions(first, NULL, instr_2);
 	free(instr_2);
 	instr_2 = NULL;
-	print_lists(first, NULL);
+	//print_lists(first, NULL);
 	exit_statement_and_free(stack, 0);
 }
