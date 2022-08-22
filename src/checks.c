@@ -43,26 +43,28 @@ int	numbers_in_order(t_push *first)
 	return (0);
 }
 
-void	sort_check(t_push *stack_a, t_count *instructions_2, int argc)
+void	sort_check_3(t_push *stack_a, t_count *instructions_2, int argc)
 {
 	t_push	*next_nb;
-	t_push	*first;
 
-	while (stack_a->prev)
-		stack_a = stack_a->prev;
-	first = stack_a;
+	stack_a = go_to_first(stack_a);
 	while (stack_a->next)
 	{
 		next_nb = stack_a->next;
-		if (stack_a->num > next_nb->num)
+		if (stack_a->index + 1 !=  next_nb->index)
 		{
-			if (next_nb->index != 0)
+			if (stack_a->index == highest_index(stack_a))
+			{
+				if (next_nb->index != 0)
+					return ;
+			}
+			else
 				return ;
 		}
 		stack_a = next_nb;
 	}
 	if (argc - 1 == length_list(stack_a))
-		sort_low_to_high(first, instructions_2);
+		sort_low_to_high(stack_a, instructions_2);
 }
 
 int	sort_check_partial(t_push *stack_a)
@@ -73,11 +75,12 @@ int	sort_check_partial(t_push *stack_a)
 	{
 		next_nb = stack_a->next;
 		if (stack_a->num > next_nb->num)
-			return (0);
-		if (stack_a->index_tmp == highest_index(stack_a))
 		{
-			if (next_nb->index_tmp != 0)
-				return (0);
+			if (stack_a->index_tmp == highest_index(stack_a))
+			{
+				if (next_nb->index_tmp != 0)
+					return (0);
+			}
 		}
 		stack_a = next_nb;
 	}

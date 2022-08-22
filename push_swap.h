@@ -52,7 +52,7 @@ t_push	*go_to_first(t_push *stack);
 //checks
 void	check_multiples(t_push *first);
 void	check_if_small_or_big(int argc);
-void	sort_check(t_push *stack_a, t_count *instructions, int argc);
+void	sort_check_3(t_push *stack_a, t_count *instructions, int argc);
 int		sort_check_partial(t_push *stack_a);
 int		sort_check_while_pb(t_push *stack_a);
 int		numbers_in_order(t_push *first);

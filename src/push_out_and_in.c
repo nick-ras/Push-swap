@@ -6,17 +6,19 @@ t_push	*use_sa(t_push *stack, t_count *instr_2, int argc)
 	int		i;
 
 	i = 0;
-	while (i < (length_list(stack) / 2))
+	while (i < 3)
 	{
-		sort_check(go_to_first(stack), instr_2, argc);
+		sort_check_3(stack, instr_2, argc);
+		stack = go_to_first(stack);
 		while (stack->next)
 		{
-			stack = sa_first_and_last(go_to_first(stack), instr_2);
 			next_one = stack->next;
-			if ((stack->index == next_one->index + 1 && abs_val(fastest_route(instr_2->stack_a_pos, stack) < 3 + length_list(stack) / 5)))
+			if (stack->index != next_one->index + 1)
+				stack = sa_first_and_last(go_to_first(stack), instr_2);
+			if (stack->index == next_one->index + 1)
 				execute_stack_a(stack, instr_2);
+			sort_check_3(go_to_first(stack), instr_2, argc);
 			instr_2->stack_a_pos++;
-			sort_check(go_to_first(stack), instr_2, argc);
 			stack = stack->next;
 		}
 		instr_2->stack_a_pos = 0;
@@ -136,6 +138,7 @@ void	sort_low_to_high(t_push *stack, t_count	*instr_2)
 {
 	t_push	*first;
 
+	stack = go_to_first(stack);
 	first = stack;
 	instr_2->ra = 0;
 	while (stack)
