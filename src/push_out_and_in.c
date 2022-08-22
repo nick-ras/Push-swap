@@ -3,26 +3,18 @@
 t_push	*use_sa(t_push *stack, t_count *instr_2, int argc)
 {
 	t_push	*next_one;
-	int		i;
 
-	i = 0;
-	while (i < 3)
+	stack = go_to_first(stack);
+	while (stack->next)
 	{
-		sort_check_3(stack, instr_2, argc);
-		stack = go_to_first(stack);
-		while (stack->next)
-		{
-			next_one = stack->next;
-			if (stack->index != next_one->index + 1)
-				stack = sa_first_and_last(go_to_first(stack), instr_2);
-			if (stack->index == next_one->index + 1)
-				execute_stack_a(stack, instr_2);
-			sort_check_3(go_to_first(stack), instr_2, argc);
-			instr_2->stack_a_pos++;
-			stack = stack->next;
-		}
-		instr_2->stack_a_pos = 0;
-		i++;
+		next_one = stack->next;
+		if (stack->index != next_one->index + 1)
+			stack = sa_first_and_last(go_to_first(stack), instr_2);
+		if (stack->index == next_one->index + 1)
+			execute_stack_a(stack, instr_2);
+		sort_check_3(go_to_first(stack), instr_2, argc);
+		instr_2->stack_a_pos++;
+		stack = stack->next;
 	}
 	return (go_to_first(stack));
 }
@@ -30,31 +22,24 @@ t_push	*use_sa(t_push *stack, t_count *instr_2, int argc)
 t_push	*use_sa_5(t_push *stack, t_count *instr_2)
 {
 	t_push	*next_one;
-	int		i;
 	int		length;
 
 	length = length_list(stack);
-	i = 0;
 	indexing_partial(stack, length);
-	while (i < (length_list(stack) / 2))
+
+	stack = go_to_first(stack);
+	while (stack->next)
 	{
-		if (sort_check_partial(go_to_first(stack)))
-			break ;
-		while (stack->next)
-		{
+		next_one = stack->next;
+		if (stack->index_tmp != next_one->index_tmp + 1)
 			stack = sa_first_and_last(go_to_first(stack), instr_2);
-			next_one = stack->next;
-			if ((stack->index_tmp == next_one->index_tmp + 1 && abs_val(fastest_route(instr_2->stack_a_pos, stack) < 3 + length_list(stack) / 5)))
-			{
-				execute_stack_a(stack, instr_2);
-				break ;
-			}
-			instr_2->stack_a_pos++;
-			stack = stack->next;
-		}
-		instr_2->stack_a_pos = 0;
-		i++;
+		if (stack->index_tmp == next_one->index_tmp + 1)
+			execute_stack_a(stack, instr_2);
+		sort_check_partial(go_to_first(stack));
+		instr_2->stack_a_pos++;
+		stack = stack->next;
 	}
+	return (go_to_first(stack));
 	return (go_to_first(stack));
 }
 
@@ -63,6 +48,7 @@ t_push	*sa_first_and_last(t_push *stack, t_count *instr_2)
 	if (stack->index + 1 == ft_lstlast_new(stack)->index)
 	{
 		instr_2->ra = -1;
+		instr_2->rr = 0;
 		stack = execute_instructions(stack, NULL, instr_2);
 		stack = sa(stack);
 	}

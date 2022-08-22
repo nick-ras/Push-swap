@@ -6,6 +6,7 @@ t_push	*sa(t_push *stack_a)
 	t_push	*next_1;
 	t_push	*next_2;
 
+	stack_a = go_to_first(stack_a);
 	next_1 = stack_a->next;
 	if (next_1->next)
 	{

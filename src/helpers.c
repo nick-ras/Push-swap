@@ -153,8 +153,8 @@ int	highest_index(t_push *stack)
 	tmp = -2147483648;
 	while (stack)
 	{
-		if (stack->num >= tmp)
-			tmp = stack->num;
+		if (stack->index >= tmp)
+			tmp = stack->index;
 		stack = stack->next;
 	}
 	return (tmp);

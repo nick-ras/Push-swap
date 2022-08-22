@@ -53,12 +53,9 @@ void	sort_check_3(t_push *stack_a, t_count *instructions_2, int argc)
 		next_nb = stack_a->next;
 		if (stack_a->index + 1 !=  next_nb->index)
 		{
-			if (stack_a->index == highest_index(stack_a))
-			{
-				if (next_nb->index != 0)
-					return ;
-			}
-			else
+			if (stack_a->index != 2)
+				return ;
+			if (next_nb->index != 0)
 				return ;
 		}
 		stack_a = next_nb;
@@ -71,16 +68,16 @@ int	sort_check_partial(t_push *stack_a)
 {
 	t_push	*next_nb;
 
+	stack_a = go_to_first(stack_a);
 	while (stack_a->next)
 	{
 		next_nb = stack_a->next;
-		if (stack_a->num > next_nb->num)
+		if (stack_a->index_tmp + 1 != next_nb->index_tmp)
 		{
-			if (stack_a->index_tmp == highest_index(stack_a))
-			{
-				if (next_nb->index_tmp != 0)
-					return (0);
-			}
+			if (stack_a->index_tmp != 2)
+				return (0);
+			if (next_nb->index_tmp != 0)
+				return (0);
 		}
 		stack_a = next_nb;
 	}
