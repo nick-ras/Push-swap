@@ -23,7 +23,7 @@ void	check_multiples(t_push *first)
 
 void	check_if_small_or_big(int argc)
 {
-	if (argc > 500 || argc <= 2)
+	if (argc > 520 || argc <= 2)
 		exit (1);
 }
 
