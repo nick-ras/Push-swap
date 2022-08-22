@@ -19,8 +19,9 @@ int	length_list(t_push *lst)
 void	print_lists(t_push *stack_a, t_push *stack_b)
 {
 	ft_printf("list\n");
-	while(stack_a->prev)
-		stack_a = stack_a->prev;
+	stack_a = go_to_first(stack_a);
+	if (stack_b)
+		stack_b = go_to_first(stack_b);
 	while (stack_a)
 	{
 		ft_printf("a = %d index %d index_tmp %d subs %d", stack_a->num, stack_a->index, stack_a->index_tmp, stack_a->subs);

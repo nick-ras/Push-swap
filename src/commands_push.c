@@ -27,13 +27,14 @@ t_push	*pa(t_push *stack_a, t_push *stack_b)
 {
 	t_push	*second_b;
 
+	stack_a = go_to_first(stack_a);
 	write(1, "pa\n", 3);
 	if (stack_b->next)
 	{
 		second_b = stack_b->next;
 		second_b->prev = NULL;
 	}
-	else 
+	else
 		second_b = NULL;
 	stack_b->next = stack_a;
 	stack_a->prev = stack_b;

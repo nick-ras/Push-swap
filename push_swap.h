@@ -25,9 +25,13 @@ typedef struct counter_list
 	int		dif;
 	int		dif_bg;
 	int		ra;
+	int		ra_tmp;
 	int		rr;
+	int		rr_tmp;
 	int		ra_bg;
+	int		ra_bg_tmp;
 	int		rr_bg;
+	int		rr_bg_tmp;
 	t_push	*lowest_ptr;
 	int		lowest;
 }	t_count;

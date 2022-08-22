@@ -19,6 +19,18 @@ t_count *instructions)
 			stack_a = stack_a->next;
 			instructions->stack_a_pos++;
 		}
+		if (abs_val(instructions->ra_tmp) + abs_val(instructions->rr_tmp) \
+		< abs_val(instructions->ra) + abs_val(instructions->rr))
+		{
+			instructions->ra = instructions->ra_tmp;
+			instructions->rr = instructions->rr_tmp;
+		}
+		if (abs_val(instructions->ra_bg_tmp) + abs_val(instructions->rr_bg_tmp) \
+		< abs_val(instructions->ra_bg) + abs_val(instructions->rr_bg))
+		{
+			instructions->ra_bg = instructions->ra_bg_tmp;
+			instructions->rr_bg = instructions->rr_bg_tmp;
+		}
 		if (stack_b->next)
 			instructions->stack_b_pos++;
 		stack_b = stack_b->next;
@@ -58,18 +70,18 @@ int	fastest_route(int rotations, t_push *stack_a)
 
 void	set_commands(t_push *stack_a, t_push *stack_b, t_count *instructions)
 {
-	instructions->rr = fastest_route(instructions->stack_b_pos, stack_b);
-	instructions->ra = fastest_route(instructions->stack_a_pos + 1 \
+	instructions->rr_tmp = fastest_route(instructions->stack_b_pos, stack_b);
+	instructions->ra_tmp = fastest_route(instructions->stack_a_pos + 1 \
 	- fastest_route(instructions->stack_b_pos, stack_b), stack_a);
 	instructions->dif = stack_a->num - stack_b->num;
 }
 
 void	set_commands_bg(t_push *stack_a, t_push *stack_b, t_count *instructions)
 {
-	instructions->ra_bg = fastest_route(instructions->stack_a_pos, stack_a) \
+	instructions->ra_bg_tmp = fastest_route(instructions->stack_a_pos, stack_a) \
 	- fastest_route(instructions->stack_b_pos, stack_b);
 	instructions->dif_bg = stack_a->num - stack_b->num;
-	instructions->rr_bg = fastest_route(instructions->stack_b_pos, stack_b);
+	instructions->rr_bg_tmp = fastest_route(instructions->stack_b_pos, stack_b);
 }
 
 //if stack b, it returns first in stack b, otherwise first in stack a
