@@ -56,7 +56,7 @@ void	sort_check_3(t_push *stack_a, t_count *instructions, int argc);
 int		sort_check_partial(t_push *stack_a);
 int		sort_check_while_pb(t_push *stack_a);
 int		numbers_in_order(t_push *first);
-void	print_lists(t_push *stack_a, t_push *stack_b);
+//void	print_lists(t_push *stack_a, t_push *stack_b);
 
 //libft
 t_push	*ft_lstlast_new(t_push *lst);

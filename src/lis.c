@@ -6,7 +6,7 @@
 /*   By: nickras <nickras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:44:37 by nickras           #+#    #+#             */
-/*   Updated: 2022/08/22 17:44:40 by nickras          ###   ########.fr       */
+/*   Updated: 2022/08/23 09:26:03 by nickras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,4 @@ void	clean_lis(t_push *stack_a)
 			stack_a->subs = NULL;
 		stack_a = stack_a->prev;
 	}
-	//print_lists(tmp, NULL);
 }

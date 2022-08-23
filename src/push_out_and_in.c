@@ -6,7 +6,7 @@
 /*   By: nickras <nickras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:44:48 by nickras           #+#    #+#             */
-/*   Updated: 2022/08/22 17:45:07 by nickras          ###   ########.fr       */
+/*   Updated: 2022/08/23 09:27:09 by nickras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void	push_out_and_in(t_push *stack_a, int argc, t_count *instr_2)
 
 	stack_b = NULL;
 	i = 0;
-	//print_lists(stack_a, stack_b);
 	while (i < argc - 1)
 	{
 		if (sort_check_while_pb(stack_a))
@@ -101,7 +100,6 @@ void	push_out_and_in(t_push *stack_a, int argc, t_count *instr_2)
 				stack_a = tmp;
 			}
 		}
-		//print_lists(stack_a, stack_b);
 		i++;
 	}
 	sorting_back(go_to_first(stack_a), stack_b, instr_2);
@@ -113,7 +111,6 @@ void	sorting_back(t_push *stack_a, t_push *stack_b, t_count *instr_2)
 	initialize_instructions_struct(instr_2);
 	while (stack_b)
 	{
-	  //print_lists(stack_a, stack_b);
 		make_instructions(stack_a, stack_b, instr_2);
 		if (abs_val(instr_2->ra_bg) + abs_val(instr_2->rr_bg) \
 		< abs_val(instr_2->ra) + abs_val(instr_2->rr))
@@ -129,27 +126,4 @@ void	sorting_back(t_push *stack_a, t_push *stack_b, t_count *instr_2)
 		stack_a = go_to_first(stack_a);
 	}
 	sort_low_to_high(stack_a, instr_2);
-}
-
-
-void	sort_low_to_high(t_push *stack, t_count	*instr_2)
-{
-	t_push	*first;
-
-	stack = go_to_first(stack);
-	first = stack;
-	instr_2->ra = 0;
-	while (stack)
-	{
-		if (stack->index == 0)
-			break ;
-		stack = stack->next;
-		instr_2->ra++;
-	}
-	instr_2->ra = fastest_route(instr_2->ra, stack);
-	first = execute_instructions(first, NULL, instr_2);
-	free(instr_2);
-	instr_2 = NULL;
-	//print_lists(first, NULL);
-	exit_statement_and_free(stack, 0);
 }

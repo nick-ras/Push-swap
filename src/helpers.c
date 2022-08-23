@@ -6,7 +6,7 @@
 /*   By: nickras <nickras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:44:22 by nickras           #+#    #+#             */
-/*   Updated: 2022/08/22 17:44:26 by nickras          ###   ########.fr       */
+/*   Updated: 2022/08/23 09:28:55 by nickras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	length_list(t_push *lst)
 	return (i);
 }
 
-void	print_lists(t_push *stack_a, t_push *stack_b)
+/* void	print_lists(t_push *stack_a, t_push *stack_b)
 {
 	ft_printf("list\n");
 	stack_a = go_to_first(stack_a);
@@ -53,7 +53,7 @@ void	print_lists(t_push *stack_a, t_push *stack_b)
 			stack_b = stack_b->next;
 		}
 	}
-}
+} */
 
 int	abs_val(int value)
 {
@@ -110,72 +110,3 @@ void	indexing(t_push *stack_a, int length, int all_numbers)
 			tmp_ptr->index = length;
 	}
 }
-
-void	indexing_partial(t_push *stack_a, int length)
-{
-	int		tmp;
-	t_push	*first;
-	t_push	*tmp_ptr;
-
-	first = stack_a;
-	while (stack_a)
-	{
-		stack_a->index_tmp = -1;
-		stack_a = stack_a->next;
-	}
-	while (length--)
-	{
-		stack_a = first;
-		tmp = -2147483648;
-		while (stack_a)
-		{
-			if (stack_a->num > tmp && stack_a->index_tmp == -1)
-			{
-				tmp = stack_a->num;
-				tmp_ptr = stack_a;
-			}
-			if (stack_a->next == NULL)
-				break ;
-			stack_a = stack_a->next;
-		}
-		tmp_ptr->index_tmp = length;
-	}
-}
-
-t_push	*lowest_index(t_push *stack)
-{
-	int		i;
-	t_push	*lowest;
-
-	i = 2147483647;
-
-	while (stack)
-	{
-		if (stack->index <= i)
-			lowest = stack; 
-		stack = stack->next;
-	}
-	return (lowest);
-}
-
-int	highest_index(t_push *stack)
-{
-	int		tmp;
-
-	tmp = -2147483648;
-	while (stack)
-	{
-		if (stack->index >= tmp)
-			tmp = stack->index;
-		stack = stack->next;
-	}
-	return (tmp);
-}
-
-t_push	*go_to_first(t_push *stack)
-{
-	while (stack->prev)
-		stack = stack->prev;
-	return (stack);
-}
-
