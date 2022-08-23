@@ -6,7 +6,7 @@
 /*   By: nickras <nickras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 09:25:10 by nickras           #+#    #+#             */
-/*   Updated: 2022/08/23 09:25:13 by nickras          ###   ########.fr       */
+/*   Updated: 2022/08/23 10:18:54 by nickras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,14 @@ t_count *instructions)
 		stack_b = rr(stack_b);
 		instructions->rr++;
 	}
+	stack_a = execute_ra(stack_a, instructions);
+	if (stack_b)
+		return (pa(stack_a, stack_b));
+	return (stack_a);
+}
+
+t_push	*execute_ra(t_push *stack_a, t_count *instructions)
+{
 	while (instructions->ra > 0)
 	{
 		write(1, "ra\n", 3);
@@ -58,8 +66,6 @@ t_count *instructions)
 		stack_a = rr(stack_a);
 		instructions->ra++;
 	}
-	if (stack_b)
-		return (pa(stack_a, stack_b));
 	return (stack_a);
 }
 

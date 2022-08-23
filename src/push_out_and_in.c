@@ -6,7 +6,7 @@
 /*   By: nickras <nickras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:44:48 by nickras           #+#    #+#             */
-/*   Updated: 2022/08/23 09:27:09 by nickras          ###   ########.fr       */
+/*   Updated: 2022/08/23 10:15:56 by nickras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,15 +71,13 @@ t_push	*sa_first_and_last(t_push *stack, t_count *instr_2)
 // pushes leftovers to b, subfunctions(sorting_back) puts back
 void	push_out_and_in(t_push *stack_a, int argc, t_count *instr_2)
 {
-	int		i;
 	t_push	*stack_b;
 	t_push	*tmp;
 
 	stack_b = NULL;
-	i = 0;
-	while (i < argc - 1)
+	while (argc > 1)
 	{
-		if (sort_check_while_pb(stack_a))
+		if (sort_check_partial(stack_a))
 			break ;
 		if (stack_a->subs)
 		{
@@ -90,17 +88,12 @@ void	push_out_and_in(t_push *stack_a, int argc, t_count *instr_2)
 		{
 			tmp = stack_a->next;
 			if (!stack_b)
-			{
 				stack_b = pb_first_push(stack_a, stack_b);
-				stack_a = tmp;
-			}
 			else
-			{
 				stack_b = pb(stack_a, stack_b);
-				stack_a = tmp;
-			}
+			stack_a = tmp;
 		}
-		i++;
+		argc--;
 	}
 	sorting_back(go_to_first(stack_a), stack_b, instr_2);
 }
@@ -111,7 +104,7 @@ void	sorting_back(t_push *stack_a, t_push *stack_b, t_count *instr_2)
 	initialize_instructions_struct(instr_2);
 	while (stack_b)
 	{
-		make_instructions(stack_a, stack_b, instr_2);
+		make_instructions(stack_a, go_to_first(stack_a), stack_b, instr_2);
 		if (abs_val(instr_2->ra_bg) + abs_val(instr_2->rr_bg) \
 		< abs_val(instr_2->ra) + abs_val(instr_2->rr))
 		{

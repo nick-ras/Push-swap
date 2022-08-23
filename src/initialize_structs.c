@@ -6,10 +6,9 @@
 /*   By: nickras <nickras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:44:27 by nickras           #+#    #+#             */
-/*   Updated: 2022/08/22 17:44:29 by nickras          ###   ########.fr       */
+/*   Updated: 2022/08/23 10:17:47 by nickras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../push_swap.h"
 
@@ -43,4 +42,11 @@ void	final_initialize_instructions_struct(t_count *instructions)
 	instructions->stack_b_pos = 0;
 	instructions->stack_a_pos = 0;
 	instructions->lowest = -2147483648;
+}
+
+void	extra_initialization(t_count *instr)
+{
+		instr->stack_a_pos = 0;
+		instr->dif = -2147483648;
+		instr->dif_bg = 2147483647;
 }

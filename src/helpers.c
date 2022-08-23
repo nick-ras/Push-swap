@@ -6,7 +6,7 @@
 /*   By: nickras <nickras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:44:22 by nickras           #+#    #+#             */
-/*   Updated: 2022/08/23 09:28:55 by nickras          ###   ########.fr       */
+/*   Updated: 2022/08/23 10:20:37 by nickras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,32 +28,31 @@ int	length_list(t_push *lst)
 	return (i);
 }
 
-/* void	print_lists(t_push *stack_a, t_push *stack_b)
-{
-	ft_printf("list\n");
-	stack_a = go_to_first(stack_a);
-	if (stack_b)
-		stack_b = go_to_first(stack_b);
-	while (stack_a)
-	{
-		ft_printf("a = %d index %d index_tmp %d subs %d", stack_a->num, stack_a->index, stack_a->index_tmp, stack_a->subs);
-		stack_a = stack_a->next;
-		if (stack_b)
-		{
-			ft_printf("  b = %d", stack_b->num);
-			stack_b = stack_b->next;
-		}
-		ft_printf("\n");
-	}
-	if (stack_b)
-	{
-		while (stack_b)
-		{
-			ft_printf("            b = %d\n", stack_b->num);
-			stack_b = stack_b->next;
-		}
-	}
-} */
+// void	print_lists(t_push *stack_a, t_push *stack_b)
+// {
+// 	ft_printf("list\n");
+// 	stack_a = go_to_first(stack_a);
+// 	if (stack_b)
+// 		stack_b = go_to_first(stack_b);
+// 	while (stack_a)
+// 	{
+// 		stack_a = stack_a->next;
+// 		if (stack_b)
+// 		{
+// 			ft_printf("  b = %d", stack_b->num);
+// 			stack_b = stack_b->next;
+// 		}
+// 		ft_printf("\n");
+// 	}
+// 	if (stack_b)
+// 	{
+// 		while (stack_b)
+// 		{
+// 			ft_printf("            b = %d\n", stack_b->num);
+// 			stack_b = stack_b->next;
+// 		}
+// 	}
+// }
 
 int	abs_val(int value)
 {
@@ -84,7 +83,7 @@ void	exit_statement_and_free(t_push *stack_a, int i)
 		exit (0);
 }
 
-void	indexing(t_push *stack_a, int length, int all_numbers)
+void	indexing(t_push *stack_a, int length)
 {
 	int		tmp;
 	t_push	*first;
@@ -106,7 +105,6 @@ void	indexing(t_push *stack_a, int length, int all_numbers)
 				break ;
 			stack_a = stack_a->next;
 		}
-		if (all_numbers == 1)
-			tmp_ptr->index = length;
+		tmp_ptr->index = length;
 	}
 }

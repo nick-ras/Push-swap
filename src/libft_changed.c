@@ -6,7 +6,7 @@
 /*   By: nickras <nickras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:44:33 by nickras           #+#    #+#             */
-/*   Updated: 2022/08/22 17:44:35 by nickras          ###   ########.fr       */
+/*   Updated: 2022/08/23 10:18:43 by nickras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 t_push	*ft_lstlast_new(t_push *lst)
 {
-
 	if (!lst)
 		return (NULL);
 	while (lst->next)

@@ -1,71 +1,64 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   instructions.c                                     :+:      :+:    :+:   */
+/*   instr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nickras <nickras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:44:30 by nickras           #+#    #+#             */
-/*   Updated: 2022/08/23 09:24:51 by nickras          ###   ########.fr       */
+/*   Updated: 2022/08/23 09:43:58 by nickras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	make_instructions(t_push *stack_a, t_push *stack_b, \
-t_count *instructions)
+void	make_instructions(t_push *stack_a, t_push *first, t_push \
+*stack_b, t_count *instr)
 {
-	t_push	*first;
-
-	initialize_instructions_struct(instructions);
-	first = stack_a;
+	initialize_instructions_struct(instr);
 	while (stack_b)
 	{
 		stack_a = first;
-		instructions->stack_a_pos = 0;
-		instructions->dif = -2147483648;
-		instructions->dif_bg = 2147483647;
+		extra_initialization(instr);
 		while (stack_a)
+			stack_a = make_instructions_subfunction(stack_a, stack_b, instr);
+		if (abs_val(instr->ra_tmp) + abs_val(instr->rr_tmp) \
+		< abs_val(instr->ra) + abs_val(instr->rr))
 		{
-			make_instructions_subfunction(stack_a, stack_b, instructions);
-			stack_a = stack_a->next;
-			instructions->stack_a_pos++;
+			instr->ra = instr->ra_tmp;
+			instr->rr = instr->rr_tmp;
 		}
-		if (abs_val(instructions->ra_tmp) + abs_val(instructions->rr_tmp) \
-		< abs_val(instructions->ra) + abs_val(instructions->rr))
+		if (abs_val(instr->ra_bg_tmp) + abs_val(instr->rr_bg_tmp) \
+		< abs_val(instr->ra_bg) + abs_val(instr->rr_bg))
 		{
-			instructions->ra = instructions->ra_tmp;
-			instructions->rr = instructions->rr_tmp;
-		}
-		if (abs_val(instructions->ra_bg_tmp) + abs_val(instructions->rr_bg_tmp) \
-		< abs_val(instructions->ra_bg) + abs_val(instructions->rr_bg))
-		{
-			instructions->ra_bg = instructions->ra_bg_tmp;
-			instructions->rr_bg = instructions->rr_bg_tmp;
+			instr->ra_bg = instr->ra_bg_tmp;
+			instr->rr_bg = instr->rr_bg_tmp;
 		}
 		if (stack_b->next)
-			instructions->stack_b_pos++;
+			instr->stack_b_pos++;
 		stack_b = stack_b->next;
 	}
 }
 
 //you could throw it into two dif function depending if its plus or minus
-void	make_instructions_subfunction(t_push *stack_a, t_push *stack_b, \
-t_count *instructions)
+t_push	*make_instructions_subfunction(t_push *stack_a, t_push *stack_b, \
+t_count *instr)
 {
 	int	a_min_b;
 
 	a_min_b = stack_a->num - stack_b->num;
 	if (a_min_b < 0)
 	{
-		if (a_min_b > instructions->dif)
-			set_commands(stack_a, stack_b, instructions);
+		if (a_min_b > instr->dif)
+			set_commands(stack_a, stack_b, instr);
 	}
 	else if (a_min_b > 0)
 	{
-		if (a_min_b < instructions->dif_bg)
-			set_commands_bg(stack_a, stack_b, instructions);
+		if (a_min_b < instr->dif_bg)
+			set_commands_bg(stack_a, stack_b, instr);
 	}
+	instr->stack_a_pos++;
+	return (stack_a->next);
 }
 
 int	fastest_route(int rotations, t_push *stack_a)

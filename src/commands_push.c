@@ -6,7 +6,7 @@
 /*   By: nickras <nickras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:44:16 by nickras           #+#    #+#             */
-/*   Updated: 2022/08/22 17:44:18 by nickras          ###   ########.fr       */
+/*   Updated: 2022/08/23 10:18:12 by nickras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ t_push	*pb_first_push(t_push *stack_a, t_push *stack_b)
 	second = stack_a->next;
 	second->prev = NULL;
 	stack_b = stack_a;
-	stack_b->next= NULL;
+	stack_b->next = NULL;
 	return (stack_b);
 }
 

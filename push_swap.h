@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nickras <nickras@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/23 10:16:46 by nickras           #+#    #+#             */
+/*   Updated: 2022/08/23 10:16:51 by nickras          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include <stdio.h>
@@ -43,9 +55,9 @@ t_push	*create_linked_list(int argc, char **argv, t_push *stack_a);
 int		length_list(t_push *lst);
 int		abs_val(int value);
 void	exit_statement_and_free(t_push *stack_a, int i);
-void	indexing(t_push *stack_a, int length, int all_numbers);
+void	indexing(t_push *stack_a, int length);
 void	indexing_partial(t_push *stack_a, int length);
-t_push	*lowest_index(t_push *stack);
+void	clear_partial_index(t_push *stack);
 int		highest_index(t_push *stack);
 t_push	*go_to_first(t_push *stack);
 
@@ -54,7 +66,6 @@ void	check_multiples(t_push *first);
 void	check_if_small_or_big(int argc);
 void	sort_check_3(t_push *stack_a, t_count *instructions, int argc);
 int		sort_check_partial(t_push *stack_a);
-int		sort_check_while_pb(t_push *stack_a);
 int		numbers_in_order(t_push *first);
 //void	print_lists(t_push *stack_a, t_push *stack_b);
 
@@ -79,9 +90,9 @@ void	sort_low_to_high(t_push *stack, t_count	*instr_2);
 
 //making instructions
 int		does_is_use_less_commands(t_push *stack_a, t_count *instructions);
-void	make_instructions(t_push *stack_a, t_push \
+void	make_instructions(t_push *stack_a, t_push *first, t_push \
 *stack_b, t_count *instructions);
-void	make_instructions_subfunction(t_push *stack_a, t_push *stack_b, \
+t_push	*make_instructions_subfunction(t_push *stack_a, t_push *stack_b, \
 t_count *instructions);
 int		fastest_route(int b_dif, t_push *stack_a);
 void	calculate_num_before(t_push *stack_a, \
@@ -94,9 +105,11 @@ t_count *instructions);
 t_push	*execute_instructions(t_push *last_main, \
 t_push *stack_b, t_count *instructions);
 t_push	*execute_stack_a(t_push *stack, t_count *instr_2);
+t_push	*execute_ra(t_push *stack_a, t_count *instructions);
 
 //initialize
 void	initialize_instructions_struct(t_count *instructions);
+void	extra_initialization(t_count *instr);
 void	initialize_same_stack(t_count *instructions);
 void	final_initialize_instructions_struct(t_count *instructions);
 

@@ -6,7 +6,7 @@
 /*   By: nickras <nickras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:44:41 by nickras           #+#    #+#             */
-/*   Updated: 2022/08/22 17:44:43 by nickras          ###   ########.fr       */
+/*   Updated: 2022/08/23 10:14:16 by nickras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int argc, char **argv)
 	check_if_small_or_big(argc);
 	stack_a = create_linked_list(argc, argv, stack_a);
 	check_multiples(stack_a);
-	indexing(stack_a, length_list(stack_a), 1);
+	indexing(stack_a, length_list(stack_a));
 	if (argc <= 4)
 		use_sa(stack_a, instr_2, argc);
 	if (argc <= 6)

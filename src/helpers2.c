@@ -6,7 +6,7 @@
 /*   By: nickras <nickras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 09:23:03 by nickras           #+#    #+#             */
-/*   Updated: 2022/08/23 09:27:43 by nickras          ###   ########.fr       */
+/*   Updated: 2022/08/23 10:20:52 by nickras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,7 @@ void	indexing_partial(t_push *stack_a, int length)
 	t_push	*tmp_ptr;
 
 	first = stack_a;
-	while (stack_a)
-	{
-		stack_a->index_tmp = -1;
-		stack_a = stack_a->next;
-	}
+	clear_partial_index(stack_a);
 	while (length--)
 	{
 		stack_a = first;
@@ -43,20 +39,14 @@ void	indexing_partial(t_push *stack_a, int length)
 	}
 }
 
-t_push	*lowest_index(t_push *stack)
+void	clear_partial_index(t_push *stack)
 {
-	int		i;
-	t_push	*lowest;
-
-	i = 2147483647;
-
+	stack = go_to_first(stack);
 	while (stack)
 	{
-		if (stack->index <= i)
-			lowest = stack; 
+		stack->index_tmp = -1;
 		stack = stack->next;
 	}
-	return (lowest);
 }
 
 int	highest_index(t_push *stack)
@@ -79,4 +69,3 @@ t_push	*go_to_first(t_push *stack)
 		stack = stack->prev;
 	return (stack);
 }
-
