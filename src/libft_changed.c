@@ -6,7 +6,7 @@
 /*   By: nickras <nickras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:44:33 by nickras           #+#    #+#             */
-/*   Updated: 2022/08/23 10:18:43 by nickras          ###   ########.fr       */
+/*   Updated: 2022/08/24 08:49:50 by nickras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_push	*ft_lstlast_new(t_push *lst)
 	return (lst);
 }
 
-int	ft_atoi_push(char *str, t_push *stack_a)
+int	ft_atoi_push(char *str, t_push *stack_a, t_count *instr_2)
 {
 	int			sign;
 	int			i;
@@ -40,10 +40,10 @@ int	ft_atoi_push(char *str, t_push *stack_a)
 	number = 0;
 	while (str[i] != '\0' && str[i] <= '9' && str[i] >= '0')
 	{
-		if (number > 2147483648 && sign == -1)
-			exit_statement_and_free(stack_a, 1);
+		if (number < -2147483648 && sign == -1)
+			exit_statement_and_free(stack_a, 1, instr_2);
 		if (number > 2147483647 && sign == 1)
-			exit_statement_and_free(stack_a, 1);
+			exit_statement_and_free(stack_a, 1, instr_2);
 		number = number * 10 + (str[i] - '0');
 		i++;
 	}

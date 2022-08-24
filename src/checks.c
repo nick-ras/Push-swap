@@ -6,13 +6,13 @@
 /*   By: nickras <nickras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:44:13 by nickras           #+#    #+#             */
-/*   Updated: 2022/08/23 09:21:40 by nickras          ###   ########.fr       */
+/*   Updated: 2022/08/24 08:52:13 by nickras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	check_multiples(t_push *first)
+void	check_multiples(t_push *first, t_count *instr_2)
 {
 	t_push	*outer;
 	t_push	*inner_up;
@@ -25,7 +25,9 @@ void	check_multiples(t_push *first)
 		{
 			if (inner_up->num == outer->num)
 			{
-				exit_statement_and_free(first, 1);
+				free(instr_2);
+				instr_2 = NULL;
+				exit_statement_and_free(first, 1, instr_2);
 			}
 			inner_up = inner_up->next;
 		}
@@ -33,10 +35,14 @@ void	check_multiples(t_push *first)
 	}
 }
 
-void	check_if_small_or_big(int argc)
+void	check_if_small_or_big(int argc, t_count *instr_2)
 {
 	if (argc > 520 || argc <= 2)
+	{
+		free(instr_2);
+		instr_2 = NULL;
 		exit (1);
+	}
 }
 
 // check if order is correct
@@ -80,6 +86,7 @@ int	sort_check_partial(t_push *stack_a)
 {
 	t_push	*next_nb;
 
+	indexing_partial(stack_a, length_list(stack_a));
 	stack_a = go_to_first(stack_a);
 	while (stack_a->next)
 	{

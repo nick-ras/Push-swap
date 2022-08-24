@@ -6,7 +6,7 @@
 /*   By: nickras <nickras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:44:22 by nickras           #+#    #+#             */
-/*   Updated: 2022/08/23 10:20:37 by nickras          ###   ########.fr       */
+/*   Updated: 2022/08/24 08:54:06 by nickras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,12 @@ int	abs_val(int value)
 		return (value);
 }
 
-void	exit_statement_and_free(t_push *stack_a, int i)
+void	exit_statement_and_free(t_push *stack_a, int i, t_count *instr_2)
 {
 	t_push	*del;
 
+	free(instr_2);
+	instr_2 = NULL;
 	stack_a = ft_lstlast_new(stack_a);
 	while (stack_a)
 	{
@@ -106,5 +108,7 @@ void	indexing(t_push *stack_a, int length)
 			stack_a = stack_a->next;
 		}
 		tmp_ptr->index = length;
+		tmp_ptr->index_tmp = -1;
+		tmp_ptr->subs = NULL;
 	}
 }

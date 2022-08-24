@@ -6,7 +6,7 @@
 /*   By: nickras <nickras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 09:25:10 by nickras           #+#    #+#             */
-/*   Updated: 2022/08/23 10:18:54 by nickras          ###   ########.fr       */
+/*   Updated: 2022/08/23 15:23:56 by nickras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	set_commands_bg(t_push *stack_a, t_push *stack_b, t_count *instructions)
 t_push	*execute_instructions(t_push *stack_a, t_push *stack_b, \
 t_count *instructions)
 {
+	stack_a = go_to_first(stack_a);
 	while (instructions->rr > 0)
 	{
 		write(1, "rr\n", 3);

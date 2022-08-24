@@ -6,7 +6,7 @@
 /*   By: nickras <nickras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 10:16:46 by nickras           #+#    #+#             */
-/*   Updated: 2022/08/23 10:16:51 by nickras          ###   ########.fr       */
+/*   Updated: 2022/08/24 08:55:23 by nickras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,14 @@ typedef struct counter_list
 }	t_count;
 
 int		main(int argc, char **argv);
-t_push	*create_linked_list(int argc, char **argv, t_push *stack_a);
+t_push	*create_linked_list(int argc, char **argv, t_push *stack_a, \
+t_count *instr_2);
+void	is_digits(char **argv);
 
 //helpers
 int		length_list(t_push *lst);
 int		abs_val(int value);
-void	exit_statement_and_free(t_push *stack_a, int i);
+void	exit_statement_and_free(t_push *stack_a, int i, t_count *instr_2);
 void	indexing(t_push *stack_a, int length);
 void	indexing_partial(t_push *stack_a, int length);
 void	clear_partial_index(t_push *stack);
@@ -62,8 +64,8 @@ int		highest_index(t_push *stack);
 t_push	*go_to_first(t_push *stack);
 
 //checks
-void	check_multiples(t_push *first);
-void	check_if_small_or_big(int argc);
+void	check_multiples(t_push *first, t_count *instr_2);
+void	check_if_small_or_big(int argc, t_count *instr_2);
 void	sort_check_3(t_push *stack_a, t_count *instructions, int argc);
 int		sort_check_partial(t_push *stack_a);
 int		numbers_in_order(t_push *first);
@@ -71,8 +73,8 @@ int		numbers_in_order(t_push *first);
 
 //libft
 t_push	*ft_lstlast_new(t_push *lst);
-int		ft_atoi_push(char *str, t_push *stack_a);
-t_push	*ft_lstnew_new(char *content, t_push *stack_a);
+int		ft_atoi_push(char *str, t_push *stack_a, t_count *instr_2);
+t_push	*ft_lstnew_new(char *content, t_push *stack_a, t_count *instr_2);
 
 //make longest increasing subsequence and sorting pipeline
 void	make_lis(t_push *stack_a);

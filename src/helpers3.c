@@ -6,7 +6,7 @@
 /*   By: nickras <nickras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 09:28:01 by nickras           #+#    #+#             */
-/*   Updated: 2022/08/23 09:47:00 by nickras          ###   ########.fr       */
+/*   Updated: 2022/08/24 08:54:57 by nickras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,5 @@ void	sort_low_to_high(t_push *stack, t_count	*instr_2)
 	first = execute_instructions(first, NULL, instr_2);
 	free(instr_2);
 	instr_2 = NULL;
-	exit_statement_and_free(stack, 0);
+	exit_statement_and_free(stack, 0, instr_2);
 }

@@ -15,6 +15,8 @@ OBJ_DIR = ./obj/
 
 CFLAGS = -Wall -Wextra -Werror -g3
 
+MAKE = make
+
 RM = rm -rf
 
 SRC_FILES	= main.c instructions.c make_lists.c \
@@ -45,16 +47,14 @@ all: $(NAME)
 # -C goes into directory
 
 clean:
-# make -C $(LIBFT_PATH) clean
-# make -C $(PRINTF_PATH) clean
 	@$(RM) $(OBJ_DIR)
 
 fclean: clean
 	@$(RM) $(NAME)
-# $(RM) $(LIBFT_A)
-# $(RM) $(LIBFTPRINTF_A)
+	@$(MAKE) fclean -C ./printf
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	$(MAKE) all -C ./printf
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -o $@ -c $^
 #-p will print rules and variable values

@@ -6,7 +6,7 @@
 /*   By: nickras <nickras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:44:27 by nickras           #+#    #+#             */
-/*   Updated: 2022/08/23 10:17:47 by nickras          ###   ########.fr       */
+/*   Updated: 2022/08/23 13:17:10 by nickras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,24 @@ void	initialize_instructions_struct(t_count *instructions)
 	instructions->rr_bg_tmp = 1000;
 	instructions->stack_b_pos = 0;
 	instructions->stack_a_pos = 0;
+	instructions->lowest = -2147483648;
 }
 
 void	initialize_same_stack(t_count *instructions)
 {
 	instructions->stack_a_pos = 0;
 	instructions->ra = 0;
+	instructions->dif = -0;
+	instructions->dif_bg = 0;
+	instructions->ra_tmp = 0;
+	instructions->rr = 0;
+	instructions->rr_tmp = 0;
+	instructions->ra_bg = 0;
+	instructions->ra_bg_tmp = 0;
+	instructions->rr_bg = 0;
+	instructions->rr_bg_tmp = 0;
+	instructions->stack_b_pos = 0;
+	instructions->lowest = -2147483648;
 }
 
 void	final_initialize_instructions_struct(t_count *instructions)
@@ -42,11 +54,18 @@ void	final_initialize_instructions_struct(t_count *instructions)
 	instructions->stack_b_pos = 0;
 	instructions->stack_a_pos = 0;
 	instructions->lowest = -2147483648;
+	instructions->dif_bg = 0;
+	instructions->ra_tmp = 0;
+	instructions->rr_tmp = 0;
+	instructions->ra_bg = 0;
+	instructions->ra_bg_tmp = 0;
+	instructions->rr_bg = 0;
+	instructions->rr_bg_tmp = 0;
 }
 
 void	extra_initialization(t_count *instr)
 {
-		instr->stack_a_pos = 0;
-		instr->dif = -2147483648;
-		instr->dif_bg = 2147483647;
+	instr->stack_a_pos = 0;
+	instr->dif = -2147483648;
+	instr->dif_bg = 2147483647;
 }
