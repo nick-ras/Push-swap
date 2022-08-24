@@ -6,7 +6,7 @@
 /*   By: nickras <nickras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:44:22 by nickras           #+#    #+#             */
-/*   Updated: 2022/08/24 08:54:06 by nickras          ###   ########.fr       */
+/*   Updated: 2022/08/24 09:49:38 by nickras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,6 @@ void	indexing(t_push *stack_a, int length)
 		tmp_ptr->index = length;
 		tmp_ptr->index_tmp = -1;
 		tmp_ptr->subs = NULL;
+		tmp_ptr->len = 1;
 	}
 }

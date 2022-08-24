@@ -6,7 +6,7 @@
 /*   By: nickras <nickras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:44:13 by nickras           #+#    #+#             */
-/*   Updated: 2022/08/24 08:52:13 by nickras          ###   ########.fr       */
+/*   Updated: 2022/08/24 10:36:41 by nickras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	numbers_in_order(t_push *first)
 	return (0);
 }
 
-void	sort_check_3(t_push *stack_a, t_count *instructions_2, int argc)
+void	sort_check_full(t_push *stack_a, t_count *instructions_2, int argc)
 {
 	t_push	*next_nb;
 

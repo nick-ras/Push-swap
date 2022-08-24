@@ -6,17 +6,17 @@
 /*   By: nickras <nickras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:44:48 by nickras           #+#    #+#             */
-/*   Updated: 2022/08/23 10:15:56 by nickras          ###   ########.fr       */
+/*   Updated: 2022/08/24 10:37:27 by nickras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-t_push	*use_sa(t_push *stack, t_count *instr_2, int argc)
+t_push	*sort_3_numbers(t_push *stack, t_count *instr_2, int argc)
 {
 	t_push	*next_one;
 
-	stack = go_to_first(stack);
+	reset_count_rotations(instr_2);
 	while (stack->next)
 	{
 		next_one = stack->next;
@@ -24,7 +24,7 @@ t_push	*use_sa(t_push *stack, t_count *instr_2, int argc)
 			stack = sa_first_and_last(go_to_first(stack), instr_2);
 		if (stack->index == next_one->index + 1)
 			execute_stack_a(stack, instr_2);
-		sort_check_3(go_to_first(stack), instr_2, argc);
+		sort_check_full(go_to_first(stack), instr_2, argc);
 		instr_2->stack_a_pos++;
 		stack = stack->next;
 	}
@@ -64,7 +64,7 @@ t_push	*sa_first_and_last(t_push *stack, t_count *instr_2)
 		stack = execute_instructions(stack, NULL, instr_2);
 		stack = sa(stack);
 	}
-	initialize_same_stack(instr_2);
+	reset_count_rotations(instr_2);
 	return (stack);
 }
 
@@ -113,9 +113,7 @@ void	sorting_back(t_push *stack_a, t_push *stack_b, t_count *instr_2)
 			stack_b = execute_instructions(stack_a, stack_b, instr_2);
 		}
 		else
-		{
 			stack_b = execute_instructions(stack_a, stack_b, instr_2);
-		}
 		stack_a = go_to_first(stack_a);
 	}
 	sort_low_to_high(stack_a, instr_2);

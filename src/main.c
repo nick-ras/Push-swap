@@ -6,7 +6,7 @@
 /*   By: nickras <nickras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:44:41 by nickras           #+#    #+#             */
-/*   Updated: 2022/08/24 08:36:56 by nickras          ###   ########.fr       */
+/*   Updated: 2022/08/24 10:19:05 by nickras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,17 @@ int	main(int argc, char **argv)
 	is_digits(argv);
 	stack_b = NULL;
 	instr_2 = malloc(sizeof(t_count));
+	reset_count_rotations(instr_2);
 	stack_a = NULL;
 	check_if_small_or_big(argc, instr_2);
 	stack_a = create_linked_list(argc, argv, stack_a, instr_2);
 	check_multiples(stack_a, instr_2);
 	indexing(stack_a, length_list(stack_a));
-	sort_check_3(stack_a, instr_2, argc);
+	sort_check_full(stack_a, instr_2, argc);
 	if (argc <= 4)
-		use_sa(stack_a, instr_2, argc);
+		sort_3_numbers(stack_a, instr_2, argc);
 	if (argc <= 6)
-		five_numbers(stack_a, stack_b, instr_2);
+		sort_five_numbers(stack_a, stack_b, instr_2);
 	make_lis(stack_a);
 	push_out_and_in (stack_a, argc, instr_2);
 }
@@ -64,7 +65,7 @@ void	is_digits(char **argv)
 	}
 }
 
-void	five_numbers(t_push *stack_a, t_push *stack_b, t_count *instr_2)
+void	sort_five_numbers(t_push *stack_a, t_push *stack_b, t_count *instr_2)
 {
 	t_push	*tmp;
 
