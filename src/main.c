@@ -6,7 +6,7 @@
 /*   By: nickras <nickras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:44:41 by nickras           #+#    #+#             */
-/*   Updated: 2022/08/24 10:19:05 by nickras          ###   ########.fr       */
+/*   Updated: 2022/08/25 14:02:42 by nickras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(int argc, char **argv)
 	t_push	*stack_b;
 
 	is_digits(argv);
+	is_not_only_minus(argv);
 	stack_b = NULL;
 	instr_2 = malloc(sizeof(t_count));
 	reset_count_rotations(instr_2);
@@ -58,6 +59,31 @@ void	is_digits(char **argv)
 			{
 				write(1, "Error\n", 6);
 				exit(1);
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+void	is_not_only_minus(char **argv)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while (argv[i])
+	{
+		j = 0;
+		while (argv[i][j])
+		{
+			if (argv[i][j] == '-')
+			{
+				if (!ft_isdigit(argv[i][j + 1]))
+				{
+					write(1, "Error\n", 6);
+					exit(1);
+				}
 			}
 			j++;
 		}

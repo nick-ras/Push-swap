@@ -6,7 +6,7 @@
 /*   By: nickras <nickras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:44:33 by nickras           #+#    #+#             */
-/*   Updated: 2022/08/24 10:31:22 by nickras          ###   ########.fr       */
+/*   Updated: 2022/08/25 14:06:34 by nickras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ft_atoi_push(char *str, t_push *new, t_count *instr_2)
 	number = 0;
 	while (str[i] != '\0' && str[i] <= '9' && str[i] >= '0')
 	{
-		if (number < -2147483648 && sign == -1)
+		if (number > 2147483648 && sign == -1)
 			exit_statement_and_free(new, 1, instr_2);
 		if (number > 2147483647 && sign == 1)
 			exit_statement_and_free(new, 1, instr_2);

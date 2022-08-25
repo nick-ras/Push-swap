@@ -6,7 +6,7 @@
 /*   By: nickras <nickras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:44:13 by nickras           #+#    #+#             */
-/*   Updated: 2022/08/24 10:36:41 by nickras          ###   ########.fr       */
+/*   Updated: 2022/08/25 13:57:00 by nickras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	check_multiples(t_push *first, t_count *instr_2)
 
 void	check_if_small_or_big(int argc, t_count *instr_2)
 {
-	if (argc > 520 || argc <= 2)
+	if (argc > 520 || argc <= 1)
 	{
 		free(instr_2);
 		instr_2 = NULL;

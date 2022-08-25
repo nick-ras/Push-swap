@@ -6,7 +6,7 @@
 /*   By: nickras <nickras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 10:16:46 by nickras           #+#    #+#             */
-/*   Updated: 2022/08/24 10:19:05 by nickras          ###   ########.fr       */
+/*   Updated: 2022/08/25 13:48:03 by nickras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int		main(int argc, char **argv);
 t_push	*create_linked_list(int argc, char **argv, t_push *stack_a, \
 t_count *instr_2);
 void	is_digits(char **argv);
+void	is_not_only_minus(char **argv);
 
 //helpers
 int		length_list(t_push *lst);
