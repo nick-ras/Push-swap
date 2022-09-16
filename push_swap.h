@@ -6,7 +6,7 @@
 /*   By: nickras <nickras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 10:16:46 by nickras           #+#    #+#             */
-/*   Updated: 2022/08/25 13:48:03 by nickras          ###   ########.fr       */
+/*   Updated: 2022/08/29 15:22:45 by nickras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <stddef.h>
-# include "./printf/ft_printf.h"
+# include "libftprintf/ft_printf.h"
 
 typedef struct s_push
 {
