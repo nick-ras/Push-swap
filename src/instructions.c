@@ -12,10 +12,10 @@
 
 #include "../push_swap.h"
 
-//calculates the amount of commands needed to push a number on stack b back to its
-//place on stack a, which is already sorted. It makes sure the stack a is still sorted
-//and its calucated the commands it need to put it before the closest bigger number
-//or commands needed to put it after the closest lower number.
+/* Calculates the amount of commands needed to push a number on stack b back to its
+place on stack a, which is already sorted. It makes sure the stack a is still sorted
+and its calculated the commands it need to put it before the closest bigger number
+or commands needed to put it after the closest lower number. */
 void	make_instructions(t_push *stack_a, t_push *first, t_push \
 *stack_b, t_count *instr)
 {

@@ -22,6 +22,8 @@ t_push	*ft_lstlast_new(t_push *lst)
 	return (lst);
 }
 
+//convert command line argument to a integer or exits program
+//if it were not possible
 int	ft_atoi_push(char *str, t_push *new, t_count *instr_2)
 {
 	int			sign;

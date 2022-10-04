@@ -12,6 +12,9 @@
 
 #include "../push_swap.h"
 
+
+//creates a new struct for the link list, and then convert command line argument to an integer
+//and puts it into the struct
 t_push	*ft_lstnew_new(char *content, t_push *stack_a, t_count *instr_2)
 {
 	t_push	*new;
@@ -33,6 +36,9 @@ t_push	*ft_lstnew_new(char *content, t_push *stack_a, t_count *instr_2)
 	return (new);
 }
 
+// This function uses subfunction to create a new struct and convert command line argument to 
+//an integer. It invokes subfunction as long as there is still more command line arguments to put into linked list.
+//It connects the current stack with the new struct so its a double linked lists
 t_push	*create_linked_list(int argc, \
 char **argv, t_push *stack_a, t_count *instr_2)
 {

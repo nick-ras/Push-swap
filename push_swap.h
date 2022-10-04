@@ -51,7 +51,7 @@ typedef struct counter_list
 int		main(int argc, char **argv);
 t_push	*create_linked_list(int argc, char **argv, t_push *stack_a, \
 t_count *instr_2);
-void	is_digits(char **argv);
+void	is_integers(char **argv);
 void	is_not_only_minus(char **argv);
 
 //helpers
@@ -114,7 +114,6 @@ t_push	*execute_ra(t_push *stack_a, t_count *instructions);
 void	initialize_instructions_struct(t_count *instructions);
 void	extra_initialization(t_count *instr);
 void	reset_count_rotations(t_count *instructions);
-void	final_initialize_instructions_struct(t_count *instructions);
 
 //commands
 t_push	*sa(t_push *stack_a);

@@ -12,8 +12,58 @@
 
 #include "../push_swap.h"
 
-//This function has several subfunction. It finds the fastest route for numbers on stack b to get sorted back to the right place in stack a.
-//IT 
+//check if command line arguments is integers
+void	is_integers(char **argv)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while (argv[i])
+	{
+		j = 0;
+		while (argv[i][j])
+		{
+			if (!ft_isdigit(argv[i][j]) && argv[i][j] != '-' \
+			&& argv[i][j] != 32)
+			{
+				write(1, "Error\n", 6);
+				exit(1);
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+//checks if command line argument is "-" which is not an integer
+void	is_not_only_minus(char **argv)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while (argv[i])
+	{
+		j = 0;
+		while (argv[i][j])
+		{
+			if (argv[i][j] == '-')
+			{
+				if (!ft_isdigit(argv[i][j + 1]))
+				{
+					write(1, "Error\n", 6);
+					exit(1);
+				}
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+//When everything is on stack a, and is sorted, it rotates linked list
+//until top of stack a is index 0
 void	sort_low_to_high(t_push *stack, t_count	*instr_2)
 {
 	t_push	*first;

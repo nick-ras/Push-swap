@@ -52,24 +52,7 @@ void	reset_count_rotations(t_count *instructions)
 	instructions->lowest = -2147483648;
 }
 
-//
-void	final_initialize_instructions_struct(t_count *instructions)
-{
-	instructions->dif = 2147483647;
-	instructions->ra = 0;
-	instructions->rr = 0;
-	instructions->stack_b_pos = 0;
-	instructions->stack_a_pos = 0;
-	instructions->lowest = -2147483648;
-	instructions->dif_bg = 0;
-	instructions->ra_tmp = 0;
-	instructions->rr_tmp = 0;
-	instructions->ra_bg = 0;
-	instructions->ra_bg_tmp = 0;
-	instructions->rr_bg = 0;
-	instructions->rr_bg_tmp = 0;
-}
-
+//resets starting difference to max difference
 void	extra_initialization(t_count *instr)
 {
 	instr->stack_a_pos = 0;

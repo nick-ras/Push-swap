@@ -12,6 +12,7 @@
 
 #include "../push_swap.h"
 
+//This function sorts stack a when there is only three numbers
 t_push	*sort_3_numbers(t_push *stack, t_count *instr_2, int argc)
 {
 	t_push	*next_one;
@@ -31,6 +32,26 @@ t_push	*sort_3_numbers(t_push *stack, t_count *instr_2, int argc)
 	return (go_to_first(stack));
 }
 
+//If there is only 4 numbers in stack, it sorts them. If its 5 numbers, it hands 
+//stack to another functions. It pushes 1-2 numbers to stack b and sorts them back.
+void	sort_five_numbers(t_push *stack_a, t_push *stack_b, t_count *instr_2)
+{
+	t_push	*tmp;
+
+	tmp = stack_a->next;
+	stack_b = pb_first_push(stack_a, stack_b);
+	stack_a = tmp;
+	if (length_list(stack_a) == 4)
+	{
+		tmp = stack_a->next;
+		stack_b = pb(stack_a, stack_b);
+		stack_a = tmp;
+	}
+	stack_a = use_sa_5(stack_a, instr_2);
+	sorting_back(stack_a, stack_b, instr_2);
+}
+
+//This one sorts stack a when there is only 5 numbers
 t_push	*use_sa_5(t_push *stack, t_count *instr_2)
 {
 	t_push	*next_one;
@@ -54,6 +75,8 @@ t_push	*use_sa_5(t_push *stack, t_count *instr_2)
 	return (go_to_first(stack));
 }
 
+//if bottom element on stack a is the closest lower index of stack a.
+//It then revers rotate stack a and swaps the two element
 t_push	*sa_first_and_last(t_push *stack, t_count *instr_2)
 {
 	if (stack->index + 1 == ft_lstlast_new(stack)->index \
@@ -68,7 +91,9 @@ t_push	*sa_first_and_last(t_push *stack, t_count *instr_2)
 	return (stack);
 }
 
-// pushes leftovers to b, subfunctions(sorting_back) puts back
+//All element of stack a, which is not part of longest increasing subsequent,
+//are being pushed to stack b. In the end it invokes another function
+//which pushed them back to stack a (this function has many subfunctions)
 void	push_out_and_in(t_push *stack_a, int argc, t_count *instr_2)
 {
 	t_push	*stack_b;
@@ -98,7 +123,7 @@ void	push_out_and_in(t_push *stack_a, int argc, t_count *instr_2)
 	sorting_back(go_to_first(stack_a), stack_b, instr_2);
 }
 
-//sorting leftover numbers (stack b) back into stack a
+//Sorting numbers in stack b back to stack a, by using a lower number of commands.
 void	sorting_back(t_push *stack_a, t_push *stack_b, t_count *instr_2)
 {
 	initialize_instructions_struct(instr_2);

@@ -12,6 +12,11 @@
 
 #include "../push_swap.h"
 
+//calculates which number is the longest increasing subsequence
+//i used this video https://www.youtube.com/watch?v=E6us4nmXTHs to understand it
+//it updates the field "subs" in the structs of the linked list, and 
+//which holds a pointer to the previous element in the longest increasing subsequent
+//the first element refer to itself which doesnt make sense, but i need it for implementation purposes
 void	make_lis(t_push *stack_a)
 {
 	t_push	*outer;
@@ -41,6 +46,8 @@ void	make_lis(t_push *stack_a)
 	clean_lis(first);
 }
 
+//removes all the "subs" fields in the elements that are not part of the 
+//longest increasing subsequent
 void	clean_lis(t_push *stack_a)
 {
 	t_push	*tmp;
