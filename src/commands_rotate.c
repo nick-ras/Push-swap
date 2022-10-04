@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-//rotates stack a, and gives new last link
+//rotates stack so top element becomes last element
 t_push	*r(t_push *first)
 {
 	t_push	*second;
@@ -30,7 +30,7 @@ t_push	*r(t_push *first)
 	return (second);
 }
 
-//reverse rotates, returns new last
+//reverse rotates, so bottom element becomes top element of stack
 t_push	*rr(t_push *first)
 {
 	t_push	*sec_last;

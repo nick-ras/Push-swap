@@ -12,6 +12,7 @@
 
 #include "../push_swap.h"
 
+//Check if there are more then one of each number
 void	check_multiples(t_push *first, t_count *instr_2)
 {
 	t_push	*outer;
@@ -35,6 +36,7 @@ void	check_multiples(t_push *first, t_count *instr_2)
 	}
 }
 
+//check if command line arguments is outside integer range
 void	check_if_small_or_big(int argc, t_count *instr_2)
 {
 	if (argc > 520 || argc <= 1)
@@ -61,6 +63,7 @@ int	numbers_in_order(t_push *first)
 	return (0);
 }
 
+//checks if all numbers are sorted, when all numbers are on one stack
 void	sort_check_full(t_push *stack_a, t_count *instructions_2, int argc)
 {
 	t_push	*next_nb;
@@ -82,6 +85,7 @@ void	sort_check_full(t_push *stack_a, t_count *instructions_2, int argc)
 		sort_low_to_high(stack_a, instructions_2);
 }
 
+//checks if the numbers on stack a is sorted. Some numbers can still be on stack b
 int	sort_check_partial(t_push *stack_a)
 {
 	t_push	*next_nb;

@@ -12,6 +12,7 @@
 
 #include "../push_swap.h"
 
+// calculates the length of a linked list
 int	length_list(t_push *lst)
 {
 	int		i;
