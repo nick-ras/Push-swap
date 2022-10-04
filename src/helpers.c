@@ -29,6 +29,7 @@ int	length_list(t_push *lst)
 	return (i);
 }
 
+// functions that is good for debugging purposes
 // void	print_lists(t_push *stack_a, t_push *stack_b)
 // {
 // 	ft_printf("list\n");
@@ -55,6 +56,7 @@ int	length_list(t_push *lst)
 // 	}
 // }
 
+// takes a positive or negative integer and return it as a positive integer
 int	abs_val(int value)
 {
 	if (value < 0)
@@ -63,6 +65,7 @@ int	abs_val(int value)
 		return (value);
 }
 
+// exits program and frees all the elements in a linked list and a struct
 void	exit_statement_and_free(t_push *stack_a, int i, t_count *instr_2)
 {
 	t_push	*del;
@@ -86,6 +89,8 @@ void	exit_statement_and_free(t_push *stack_a, int i, t_count *instr_2)
 		exit (0);
 }
 
+// gives all the elements in a linked lists indexes, depending on the number. The lowest numbers gets index 0, 
+// and the next lowest numbers gets 1 etcetera..
 void	indexing(t_push *stack_a, int length)
 {
 	int		tmp;
