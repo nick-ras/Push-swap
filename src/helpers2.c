@@ -12,6 +12,7 @@
 
 #include "../push_swap.h"
 
+// The same as the indexing function, but this time it updates the "index_tmp" field and not "index" field
 void	indexing_partial(t_push *stack_a, int length)
 {
 	int		tmp;
@@ -39,6 +40,7 @@ void	indexing_partial(t_push *stack_a, int length)
 	}
 }
 
+// sets all the "index_tmp" fields in the linked lists to "-1"
 void	clear_partial_index(t_push *stack)
 {
 	stack = go_to_first(stack);
@@ -49,6 +51,7 @@ void	clear_partial_index(t_push *stack)
 	}
 }
 
+//finds the highest index in the "index" field
 int	highest_index(t_push *stack)
 {
 	int		tmp;
@@ -63,6 +66,7 @@ int	highest_index(t_push *stack)
 	return (tmp);
 }
 
+//takes a linked list elements and goes to the top of the stack
 t_push	*go_to_first(t_push *stack)
 {
 	while (stack->prev)

@@ -89,7 +89,7 @@ void	exit_statement_and_free(t_push *stack_a, int i, t_count *instr_2)
 		exit (0);
 }
 
-// gives all the elements in a linked lists indexes, depending on the number. The lowest numbers gets index 0, 
+// gives all the elements in a linked lists indexes, depending on the number. The field is called "index". The lowest numbers gets index 0, 
 // and the next lowest numbers gets 1 etcetera..
 void	indexing(t_push *stack_a, int length)
 {
