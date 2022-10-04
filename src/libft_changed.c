@@ -12,6 +12,7 @@
 
 #include "../push_swap.h"
 
+//find last element in linked list
 t_push	*ft_lstlast_new(t_push *lst)
 {
 	if (!lst)

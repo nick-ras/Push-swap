@@ -12,6 +12,8 @@
 
 #include "../push_swap.h"
 
+//This function has several subfunction. It finds the fastest route for numbers on stack b to get sorted back to the right place in stack a.
+//IT 
 void	sort_low_to_high(t_push *stack, t_count	*instr_2)
 {
 	t_push	*first;

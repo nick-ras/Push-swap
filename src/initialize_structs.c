@@ -12,6 +12,10 @@
 
 #include "../push_swap.h"
 
+//initialize struct the holds the calculations for the element on stack b, that uses
+//the fewest amount of commands (rotate, swap and push command) to be sorted back into stack a,
+//so ex if stack a is 1, 4, 7, and the numbers on stack b is 3, then it lands between 1 and 4 on 
+//stack a
 void	initialize_instructions_struct(t_count *instructions)
 {
 	instructions->dif = -2147483648;
@@ -29,6 +33,8 @@ void	initialize_instructions_struct(t_count *instructions)
 	instructions->lowest = -2147483648;
 }
 
+//resets the calculations everytime a number is sorted back, so new
+//calculations can be made for next number
 void	reset_count_rotations(t_count *instructions)
 {
 	instructions->dif = 0;
@@ -46,6 +52,7 @@ void	reset_count_rotations(t_count *instructions)
 	instructions->lowest = -2147483648;
 }
 
+//
 void	final_initialize_instructions_struct(t_count *instructions)
 {
 	instructions->dif = 2147483647;
