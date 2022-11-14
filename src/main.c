@@ -18,13 +18,18 @@
 //ARG="4 1"; ./push_swap $ARG | ./checker_linux $ARG
 // nået til "4 1 3 6 5 7 8";
 
+//Takes command line arguments, convert them to integers and sorts them by ascending order.
+//the tasks had a lot of specific requirement which made it more difficult to implement this
+//sorting program. I can only use two stacks, and only use the commands from the "commands_.." files.
+//-----------THE TASK is to use the lowest number of commands to sort the numbers----------------
+//it return the lists of commands that need to be executed (which is about 6000 commands for 500 elements)
 int	main(int argc, char **argv)
 {
 	t_push	*stack_a;
 	t_count	*instr_2;
 	t_push	*stack_b;
 
-	is_digits(argv);
+	is_integers(argv);
 	is_not_only_minus(argv);
 	stack_b = NULL;
 	instr_2 = malloc(sizeof(t_count));
@@ -41,69 +46,4 @@ int	main(int argc, char **argv)
 		sort_five_numbers(stack_a, stack_b, instr_2);
 	make_lis(stack_a);
 	push_out_and_in (stack_a, argc, instr_2);
-}
-
-void	is_digits(char **argv)
-{
-	int	i;
-	int	j;
-
-	i = 1;
-	while (argv[i])
-	{
-		j = 0;
-		while (argv[i][j])
-		{
-			if (!ft_isdigit(argv[i][j]) && argv[i][j] != '-' \
-			&& argv[i][j] != 32)
-			{
-				write(1, "Error\n", 6);
-				exit(1);
-			}
-			j++;
-		}
-		i++;
-	}
-}
-
-void	is_not_only_minus(char **argv)
-{
-	int	i;
-	int	j;
-
-	i = 1;
-	while (argv[i])
-	{
-		j = 0;
-		while (argv[i][j])
-		{
-			if (argv[i][j] == '-')
-			{
-				if (!ft_isdigit(argv[i][j + 1]))
-				{
-					write(1, "Error\n", 6);
-					exit(1);
-				}
-			}
-			j++;
-		}
-		i++;
-	}
-}
-
-void	sort_five_numbers(t_push *stack_a, t_push *stack_b, t_count *instr_2)
-{
-	t_push	*tmp;
-
-	tmp = stack_a->next;
-	stack_b = pb_first_push(stack_a, stack_b);
-	stack_a = tmp;
-	if (length_list(stack_a) == 4)
-	{
-		tmp = stack_a->next;
-		stack_b = pb(stack_a, stack_b);
-		stack_a = tmp;
-	}
-	stack_a = use_sa_5(stack_a, instr_2);
-	sorting_back(stack_a, stack_b, instr_2);
 }

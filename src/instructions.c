@@ -12,6 +12,10 @@
 
 #include "../push_swap.h"
 
+/* Calculates the amount of commands needed to push a number on stack b back to its
+place on stack a, which is already sorted. It makes sure the stack a is still sorted
+and its calculated the commands it need to put it before the closest bigger number
+or commands needed to put it after the closest lower number. */
 void	make_instructions(t_push *stack_a, t_push *first, t_push \
 *stack_b, t_count *instr)
 {
@@ -40,7 +44,8 @@ void	make_instructions(t_push *stack_a, t_push *first, t_push \
 	}
 }
 
-//you could throw it into two dif function depending if its plus or minus
+//This commands updates the instructions if the amount of commands needed in the the new calculations are lower then
+//the current "winning" calculation saved int he struct "instr"
 t_push	*make_instructions_subfunction(t_push *stack_a, t_push *stack_b, \
 t_count *instr)
 {
@@ -61,6 +66,8 @@ t_count *instr)
 	return (stack_a->next);
 }
 
+//It calculates whether its faster to use rotation of reverse rotation
+//when it needs to get an element to the top of the list
 int	fastest_route(int rotations, t_push *stack_a)
 {
 	int	length;

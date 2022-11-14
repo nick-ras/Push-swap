@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-//swap first two of a
+//swaps two first elements of a stack
 t_push	*sa(t_push *stack_a)
 {
 	t_push	*next_1;
@@ -35,7 +35,7 @@ t_push	*sa(t_push *stack_a)
 	return (next_1);
 }
 
-///pushes last b to a, returns stack_b_next
+///pushes top element of stack b to stack a. Return top of stack a
 t_push	*pa(t_push *stack_a, t_push *stack_b)
 {
 	t_push	*second_b;
@@ -54,7 +54,7 @@ t_push	*pa(t_push *stack_a, t_push *stack_b)
 	return (second_b);
 }
 
-//pushes last a to b (when stack b is NULL), and return stack b
+//pushes top element of stack a to stack b (when stack b is NULL), and return stack b
 t_push	*pb_first_push(t_push *stack_a, t_push *stack_b)
 {
 	t_push	*second;
@@ -69,7 +69,7 @@ t_push	*pb_first_push(t_push *stack_a, t_push *stack_b)
 	return (stack_b);
 }
 
-////pushes last a to b, and returns new last stack a
+////pushes top element of stack  a to stack b, and returns new top element of stack b
 t_push	*pb(t_push *stack_a, t_push *stack_b)
 {
 	t_push	*second;
