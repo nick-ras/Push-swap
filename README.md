@@ -12,6 +12,10 @@ pa: Push the top element of stack B onto stack A.
 pb: Push the top element of stack A onto stack B.
 Objective: Sort the list of integers in ascending order using the least number of operations. Efficiency is key, as the project is designed to test algorithm optimization and understanding of sorting mechanisms.
 
+Chosen strategy:
+I dont recall the strategy, i just remember i was recommended a math video, and i implemented that in code, with some extra tweaks to make it efficient enough to have almost perfect mark. I remember this as the most complicated project, because you always had to have the full view of the algorithm in your head, in order not to make mistakes in the proces.
+
+
 Key Restrictions & Challenges:
 Limited Operations:
 Unlike more traditional sorting algorithms like quicksort or mergesort, the solution requires creativity in utilizing these operations to minimize the total number of moves.
@@ -19,13 +23,5 @@ Unlike more traditional sorting algorithms like quicksort or mergesort, the solu
 Optimization:
 This involves recognizing patterns in the stack’s order and creating strategies to minimize redundant moves. Especially when stack has a large volume.
 
-
 Edge Case Handling:
 The project requires special attention to edge cases:
-
-Sorting an already sorted list.
-Sorting a list with duplicate elements.
-Lists with only one or two elements.
-Lists with negative numbers. Handling these cases without additional operations or unnecessary steps is crucial for optimizing the algorithm.
-Memory Management:
-Managing two stacks and performing operations on them requires careful memory management, particularly ensuring that the stacks are updated correctly after each operation and maintaining the list order at every step.
