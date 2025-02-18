@@ -37,4 +37,20 @@ make
 2, **Try it out with a list of numbers***
 For example
 ```bash
-gcc -g main.c -Llibft_for_push_swap -lft && ./a.out 1 2 3 4 5 1
+./push_swap 77 33 98 76 23
+```
+this will show of operations that is needed to sort the numbers into stack one, but following the above rules. 
+The output of the above is:
+```bash
+pb
+pb
+sa
+pa
+ra
+ra
+pa
+ra
+ra
+```
+So for example pb pushes the top element of stack A onto stack B, as described above.
+Try it out with 500 numbesr if you want.
