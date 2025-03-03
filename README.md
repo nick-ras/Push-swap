@@ -1,22 +1,19 @@
 # Push_swap Project
 
 ## Description:
-The **Push_swap** project challenges us to implement an efficient sorting algorithm for two stacks with the fewest operations possible. The task is to sort a list of integers using only three operations: `sa` (swap the top two elements of stack A), `sb` (swap the top two elements of stack B), and `pa` (push the top element of stack B onto stack A), `pb` (push the top element of stack A onto stack B), along with a combined `ss`, `pa`, or `pb` operation for efficiency. The goal is to write a program that sorts the integers while minimizing the number of operations used. This project emphasizes algorithmic thinking and optimization techniques.
+The **Push_swap** project challenges us to implement an efficient sorting algorithm for two stacks with the fewest operations possible. They have to be sorted from lowest to highest. The task is to sort a list of integers using as few operations as possible. The allowed operations are as followed:
 
-## Project Requirements:
-- **Input**: A list of integers (positive or negative) provided as command-line arguments. The integers are to be pushed into two stacks, and the sorting process should begin with them.
-
-- **Operations**:
   - `sa`: Swap the first two elements of stack A.
   - `sb`: Swap the first two elements of stack B.
   - `ss`: Perform both `sa` and `sb` simultaneously.
   - `pa`: Push the top element of stack B onto stack A.
   - `pb`: Push the top element of stack A onto stack B.
 
-- **Objective**: Sort the list of integers in ascending order using the least number of operations. Efficiency is key, as the project is designed to test algorithm optimization and understanding of sorting mechanisms.
+##Requirements:
+You get the inputs as command line arguments, and you have to put them into a linked lists, and from there you can push and swap into a second linked list, in order to end up having them sorted in the first linked list.
 
 ## Chosen Strategy:
-The algorithm is based on a math video recommendation, implemented with some additional tweaks for efficiency. It was a complex project requiring constant attention to the algorithm to avoid mistakes in the sorting process. The focus was on handling stack patterns to minimize redundant moves, especially with a large number of elements.
+The basic algorithm i used is Longest Increasing Subsequence. In this algorithm you found sub lists of numbers that are close to each other, which in the end has shown to reduce the total amount of operation needed to sort the numbers in the linked list.
 
 ## Key Restrictions & Challenges:
 - **Limited Operations**: Unlike traditional sorting algorithms like quicksort or mergesort, this project requires creativity in using only a set of operations to sort the stack.
