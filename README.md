@@ -9,7 +9,7 @@ The **Push_swap** project challenges us to implement an efficient sorting algori
   - `pa`: Push the top element of stack B onto stack A.
   - `pb`: Push the top element of stack A onto stack B.
 
-##Requirements:
+## Requirements:
 You get the inputs as command line arguments, and you have to put them into a linked lists, and from there you can push and swap into a second linked list, in order to end up having them sorted in the first linked list.
 
 ## Chosen Strategy:
