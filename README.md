@@ -13,7 +13,7 @@ The **Push_swap** project challenges us to implement an efficient sorting algori
 You get the inputs as command line arguments, and you have to put them into a linked lists, and from there you can push and swap into a second linked list, in order to end up having them sorted in the first linked list.
 
 ## Chosen Strategy:
-The basic algorithm i used is Longest Increasing Subsequence. In this algorithm you found sub lists of numbers that are close to each other, which in the end has shown to reduce the total amount of operation needed to sort the numbers in the linked list.
+The basic algorithm i used is Longest Increasing Subsequence. In this algorithm you find the longest increasing subsecuence, which is a list of numbers, where the next always is bigger than the previous. For example in {2, 1, 3, 4, 2, 5}, its (1, 3, 4, 5). This gives an advantage cause when you push to the other stack, you can rotate the list, and only push the numbers from the longest increasing subsequence. This is one proven way to derease the number of operations. In order to make it more efficient i have made some tweaks, so it got within second highest scoring range.
 
 ## Key Restrictions & Challenges:
 - **Limited Operations**: Unlike traditional sorting algorithms like quicksort or mergesort, this project requires creativity in using only a set of operations to sort the stack.
